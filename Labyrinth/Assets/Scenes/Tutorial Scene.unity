@@ -1404,6 +1404,7 @@ GameObject:
   - component: {fileID: 684492437}
   - component: {fileID: 684492441}
   - component: {fileID: 684492442}
+  - component: {fileID: 684492443}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1523,6 +1524,27 @@ MonoBehaviour:
   Playerbody: {fileID: 684492441}
   Speed: 4
   Sensitivity: 4
+  SprintMultiplier: 2
+  MaxSprint: 50
+  SprintDrain: 0.1
+  SprintRec: 0.01
+  SprintMode: 3
+--- !u!114 &684492443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684492436}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3b23b3d0e3c684497aa178c89f8494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerCamera: {fileID: 963194228}
+  Playerbody: {fileID: 684492441}
+  Speed: 4
+  Sensitivity: 2
   SprintMultiplier: 2
   MaxSprint: 50
   SprintDrain: 0.1

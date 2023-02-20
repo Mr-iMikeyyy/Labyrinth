@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-
-public class Movement : MonoBehaviour
+public class Movement_2 : MonoBehaviour
 {
-    private Vector3 PlayerMovementInput;
-    private Vector2 PlayerMouseInput;
+    private Vector3 PlayerMovementInput; //Used for displacing the character
+    private Vector2 Movement; //used to convert vector2 into vector 3 for movement
+    private Vector2 PlayerCameraControls;
     private float xRot;
     private float yRot;
-    private float CurrentSprint;
+    private float CurrentSprint;//used to check the current amount of sprint
+    private bool isSprinting;
 
     [SerializeField] private Transform PlayerCamera; //Camera Object
     [SerializeField] private Rigidbody Playerbody; //Player Object
@@ -27,28 +29,56 @@ public class Movement : MonoBehaviour
     [SerializeField] private int SprintMode; //Mode 1: when player is standing still, Mode 2: When player is not holding shift
                                              //Mode 3: Both are implemented, doubled boost when player is idle not holding shift.
 
-    //Code for Jumping
-    //[SerializeField] private float Jumpforce;
 
-    // Start is called before the first frame update
+
+    PlayerControls controls;
+
+    //Calls while the script is being created
+    void Awake()
+    {
+        controls = new PlayerControls();
+        //calls when either sprint or the right or left triggers are used
+        controls.Controls.Sprint.performed += ctx => isSprinting = true;
+        //calls when the above function is not used
+        controls.Controls.Sprint.canceled += ctx => isSprinting = false;
+
+        //calls when wasd is used or left thumbstick is used
+        controls.Controls.Movement.performed += ctx => Movement = ctx.ReadValue<Vector2>();
+        //calls when the above function is not used
+        controls.Controls.Movement.canceled += ctx => Movement = Vector2.zero;
+
+        //calls when the right thumbstick or the mouse is moved
+        controls.Controls.Camera.performed += ctx => PlayerCameraControls = ctx.ReadValue<Vector2>();
+        //calls when the above function is not used
+        controls.Controls.Camera.canceled += ctx => PlayerCameraControls = Vector2.zero;
+    }
+    
+
+    //enables the control map
+    void OnEnable()
+    {
+        controls.Controls.Enable();   
+    }
+
+    //disables the map
+    void OnDisable()
+    {
+        controls.Controls.Disable();
+    }
+
     void Start()
     {
+        //initiallizing sprint at the maximum
         CurrentSprint = MaxSprint;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //movement
-        PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-
-        //camera
-        PlayerMouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        PlayerMovementInput = new Vector3(Movement.x, 0f, Movement.y);
 
         MovePlayer();
         MoveCamera();
-
-        Debug.Log(CurrentSprint);
     }
 
     //code affects how the player moves
@@ -58,7 +88,7 @@ public class Movement : MonoBehaviour
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * Speed;
 
         //sprinting code
-        if (Input.GetKey(KeyCode.LeftShift) && CurrentSprint > 0)
+        if (isSprinting && CurrentSprint > 0)
         {
             MoveVector *= SprintMultiplier;
             CurrentSprint -= SprintDrain;
@@ -67,31 +97,28 @@ public class Movement : MonoBehaviour
         //actually moves the player
         Playerbody.velocity = new Vector3(MoveVector.x, Playerbody.velocity.y, MoveVector.z);
 
-        /* Jumping code
-         if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Playerbody.Addforce(Vector3.up * Jumpforce, Forcemode.Impulse);
-        }
-         */
 
         //Recovery Code
         if ((Playerbody.velocity == Vector3.zero && MaxSprint > CurrentSprint) && (SprintMode == 1 || SprintMode == 3))
         {
             CurrentSprint += SprintRec;
         }
-        if ((!Input.GetKey(KeyCode.LeftShift) && CurrentSprint < MaxSprint) && (SprintMode == 2 || SprintMode == 3))
+        if ((!isSprinting && CurrentSprint < MaxSprint) && (SprintMode == 2 || SprintMode == 3))
         {
             CurrentSprint += SprintRec;
         }
+
     }
 
     //code affects how the camera moves
     private void MoveCamera()
     {
-        xRot -= PlayerMouseInput.y * Sensitivity;
+        xRot -= PlayerCameraControls.y * Sensitivity / 2;
 
-        transform.Rotate(0f, PlayerMouseInput.x * Sensitivity, 0f);
+        transform.Rotate(0f, PlayerCameraControls.x * Sensitivity / 2, 0f);
         PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
 
     }
+
+   
 }
