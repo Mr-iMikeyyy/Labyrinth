@@ -15,7 +15,14 @@ public class MazeNode : MonoBehaviour {
     public void RemoveWall(int wallToRemove) {
         walls[wallToRemove].gameObject.SetActive(false);
     }
-    public void aDDWall(int wallToAdd) {
+    public void AddDoor(int wallToRemove, GameObject doorPrefab) {
+        Vector3 wallPosition = walls[wallToRemove].transform.position;
+        Quaternion wallRotation = walls[wallToRemove].transform.rotation;
+        Destroy(walls[wallToRemove].gameObject);
+        GameObject doorObject = Instantiate(doorPrefab, wallPosition, wallRotation, transform);
+        doorObject.name = "Door";
+    }
+    public void AddWall(int wallToAdd) {
         walls[wallToAdd].gameObject.SetActive(true);
     }
 

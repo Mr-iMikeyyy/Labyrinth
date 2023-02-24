@@ -49,110 +49,135 @@ public class MazeGenerator : MonoBehaviour {
     }
 
 
+    /**
+        CreateRoom:
+        This method takes in a list of nodes, a list of completed nodes, a x and y position of the top left node of a room.
+        It creates a room by identifying the 9 nodes that make up the room and removes the walls between them, based on their location
+        relative to each other. If an outside door is required, it removes the top wall of the bottom left node or the bottom wall of
+        the top right node.
+    **/
+    void CreateRoom(List<MazeNode> nodes, List<MazeNode> completedNodes, int x, int y) {
+        MazeNode topLeft = GetNodeByName(nodes, x, y);
+        MazeNode topCenter = GetNodeByName(nodes, x + 1, y);
+        MazeNode topRight = GetNodeByName(nodes, x + 2, y);
+        MazeNode centerLeft = GetNodeByName(nodes, x, y - 1);
+        MazeNode center = GetNodeByName(nodes, x + 1, y - 1);
+        MazeNode centerRight = GetNodeByName(nodes, x + 2, y - 1);
+        MazeNode bottomLeft = GetNodeByName(nodes, x, y - 2);
+        MazeNode bottomCenter = GetNodeByName(nodes, x + 1, y - 2);
+        MazeNode bottomRight = GetNodeByName(nodes, x + 2, y - 2);
+        MazeNode bottomLeftDoor = GetNodeByName(nodes, x, y - 3);
+        MazeNode topRightDoor = GetNodeByName(nodes, x + 2, y + 1);
+
+        if (topLeft != null) {
+            completedNodes.Add(topLeft);
+            topLeft.RemoveWall(0); // RIGHT
+            topLeft.RemoveWall(3); // BOTTOM
+        }
+
+        // Top right
+        if (topRight != null) {
+            completedNodes.Add(topRight);
+            topRight.RemoveWall(1); // LEFT
+            topRight.RemoveWall(3); // BOTTOM
+            topRight.RemoveWall(2); // TOP
+        }
+
+        // Bottom right
+        if (bottomRight != null) {
+            completedNodes.Add(bottomRight);
+            bottomRight.RemoveWall(1); // LEFT
+            bottomRight.RemoveWall(2); // TOP
+        }
+
+        // Top center
+        if (topCenter != null) {
+            completedNodes.Add(topCenter);
+            topCenter.RemoveWall(0); // RIGHT
+            topCenter.RemoveWall(1); // LEFT
+            topCenter.RemoveWall(3); // BOTTOM
+        }
+
+        // Center left
+        if (centerLeft != null) {
+            completedNodes.Add(centerLeft);
+            centerLeft.RemoveWall(0); // RIGHT
+            centerLeft.RemoveWall(2); // TOP
+            centerLeft.RemoveWall(3); // BOTTOM
+        }
+
+        // Center
+        if (center != null) {
+            completedNodes.Add(center);
+            center.RemoveWall(0); // RIGHT
+            center.RemoveWall(1); // LEFT
+            center.RemoveWall(2); // TOP
+            center.RemoveWall(3); // BOTTOM
+        }
+
+        // Center right
+        if (centerRight != null) {
+            completedNodes.Add(centerRight);
+            centerRight.RemoveWall(1); // LEFT
+            centerRight.RemoveWall(2); // TOP
+            centerRight.RemoveWall(3); // BOTTOM
+        }
+
+        // Bottom center
+        if (bottomCenter != null) {
+            completedNodes.Add(bottomCenter);
+            bottomCenter.RemoveWall(1); // LEFT
+            bottomCenter.RemoveWall(0); // RIGHT
+            bottomCenter.RemoveWall(2); // TOP
+            // centerRight.RemoveWall(3); // BOTTOM
+        }
+
+        // Bottom left
+        if (bottomLeft != null) {
+            completedNodes.Add(bottomLeft);
+            bottomLeft.RemoveWall(0); // RIGHT
+            bottomLeft.RemoveWall(2); // TOP
+            bottomLeft.RemoveWall(3); // BOTTOM
+        }
+
+        // Outside Door
+        if (bottomLeftDoor != null) {
+            bottomLeftDoor.RemoveWall(2); // TOP
+        }
+        // Outside Door
+        if (topRightDoor != null) {
+            topRightDoor.RemoveWall(3); // BOTTOM
+        }
+
+    }
+
+
     void GenerateMazeInstant(Vector2Int size) {
         List<MazeNode> nodes = new List<MazeNode>();
         List<MazeNode> currentPath = new List<MazeNode>();
         List<MazeNode> completedNodes = new List<MazeNode>();
         
-
         // Create nodes (Initially all nodes will have 4 walls)
         for (int x = 0; x < size.x; x++) {
             for (int y = 0; y < size.y; y++) {
                 Vector3 nodePos = new Vector3(x - (size.x / 2f), 0, y - (size.y / 2f));
                 MazeNode newNode = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
                 newNode.name = string.Format("Node_{0}_{1}", x, y);
-
-                //
-                // TODO: Put in method to create dynamic rooms CreateRoom(int x, int y)
-                //
-                // Logic to create center room
-                if (x == size.x / 2) { 
-                    // CENTER
-                    if (y == size.y / 2 ) {
-                        completedNodes.Add(newNode);
-                        newNode.RemoveWall(0); // RIGHT
-                        newNode.RemoveWall(1); // LEFT
-                        newNode.RemoveWall(2); // TOP
-                        newNode.RemoveWall(3); // BOTTOM
-                    }
-                    // CENTER BOTTOM
-                    if (y == size.y / 2 - 1 ) {
-                        completedNodes.Add(newNode);
-                        newNode.RemoveWall(0); // RIGHT
-                        newNode.RemoveWall(1); // LEFT
-                        newNode.RemoveWall(2); // TOP
-                        // newNode.RemoveWall(3); // BOTTOM
-                    }
-                    // CENTER TOP
-                    if (y == size.y / 2 + 1 ) {
-                        completedNodes.Add(newNode);
-                        newNode.RemoveWall(0); // RIGHT
-                        newNode.RemoveWall(1); // LEFT
-                        // newNode.RemoveWall(2); // TOP
-                        newNode.RemoveWall(3); // BOTTOM
-                    }
-                }
-                if (y == size.y / 2) {
-                    // CENTER RIGHT
-                    if (x == size.x / 2 + 1) {
-                        completedNodes.Add(newNode);
-                        
-                        newNode.RemoveWall(0); // RIGHT
-                        newNode.RemoveWall(1); // LEFT
-                        newNode.RemoveWall(2); // TOP
-                        newNode.RemoveWall(3); // BOTTOM
-                    }
-                    // CENTER LEFT
-                    if (x == size.x / 2 - 1) {
-                        completedNodes.Add(newNode);
-                        newNode.RemoveWall(0); // RIGHT
-                        // newNode.RemoveWall(1); // LEFT
-                        newNode.RemoveWall(2); // TOP
-                        newNode.RemoveWall(3); // BOTTOM
-                    }
-                }
-
-                if (x == size.x / 2 + 1) {
-                    // CENTER TOP RIGHT
-                    if (y == size.y / 2 + 1) {
-                        completedNodes.Add(newNode);
-                        // newNode.RemoveWall(0); // RIGHT
-                        newNode.RemoveWall(1); // LEFT
-                        // newNode.RemoveWall(2); // TOP
-                        newNode.RemoveWall(3); // BOTTOM
-                    }
-                    // CENTER BOTTOM RIGHT
-                    if (y == size.y / 2 - 1) {
-                        completedNodes.Add(newNode);
-                        // newNode.RemoveWall(0); // RIGHT
-                        newNode.RemoveWall(1); // LEFT
-                        newNode.RemoveWall(2); // TOP
-                        // newNode.RemoveWall(3); // BOTTOM
-                    }
-                    
-                }
-
-                if (x == size.x / 2 - 1) {
-                    // CENTER TOP LEFT
-                    if (y == size.y / 2 + 1) {
-                        completedNodes.Add(newNode);
-                        newNode.RemoveWall(0); // RIGHT
-                        // newNode.RemoveWall(1); // LEFT
-                        // newNode.RemoveWall(2); // TOP
-                        newNode.RemoveWall(3); // BOTTOM
-                    }
-                    // CENTER BOTTOM LEFT
-                    if (y == size.y / 2 - 1) {
-                        completedNodes.Add(newNode);
-                        newNode.RemoveWall(0); // RIGHT
-                        // newNode.RemoveWall(1); // LEFT
-                        newNode.RemoveWall(2); // TOP
-                        // newNode.RemoveWall(3); // BOTTOM
-                    }
-                }
                 nodes.Add(newNode);
             }
         }
+
+        // # topLeft room
+        CreateRoom(nodes, completedNodes, 1, size.y - 2);
+        // # topRight room
+        CreateRoom(nodes, completedNodes, size.x - 4, size.y - 2);
+        // # Center room
+        CreateRoom(nodes, completedNodes, size.x / 2 - 1, size.y / 2 + 1);
+        // # bottomRight room
+        CreateRoom(nodes, completedNodes, size.x - 4, 3);
+        // # bottomLeft room
+        CreateRoom(nodes, completedNodes, 1, 3);
+
 
         // Choose starting node
         currentPath.Add(nodes[nodes.Count / 2 - size.x]);
