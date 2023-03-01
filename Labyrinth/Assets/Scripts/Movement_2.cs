@@ -28,10 +28,7 @@ public class Movement_2 : MonoBehaviour
     [Header("0: No Recovery, 1: Not Moving, 2: Not sprinting, 3:Both")]
     [SerializeField] private int SprintMode; //Mode 1: when player is standing still, Mode 2: When player is not holding shift
                                              //Mode 3: Both are implemented, doubled boost when player is idle not holding shift.
-
-
-
-    PlayerControls controls;
+    PlayerControls controls; //Controller Class
 
     //Calls while the script is being created
     void Awake()

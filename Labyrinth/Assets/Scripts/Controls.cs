@@ -53,6 +53,33 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InteractA"",
+                    ""type"": ""Button"",
+                    ""id"": ""a4582071-4e9d-41cd-b56d-e6eb30c588bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CancelB"",
+                    ""type"": ""Button"",
+                    ""id"": ""4e4ae327-318a-496e-ae8a-339014c587dd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuStart"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e4a5685-e615-40dc-89c0-37c9231288aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -187,6 +214,72 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""187e16c5-f150-47b1-9dad-be06b608e4e9"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractA"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43be329a-6ff8-4bd6-8331-52ddb8718f94"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InteractA"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00289a4a-e99e-47e4-ba7b-776e068fb858"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CancelB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c84f978e-00a0-47fc-b83e-2b81df44e591"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CancelB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab5c8650-f463-4eb8-9c51-063ea6d95970"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuStart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44489231-d581-4355-bae5-024795f6d53e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuStart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -198,6 +291,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Controls_Camera = m_Controls.FindAction("Camera", throwIfNotFound: true);
         m_Controls_Movement = m_Controls.FindAction("Movement", throwIfNotFound: true);
         m_Controls_Sprint = m_Controls.FindAction("Sprint", throwIfNotFound: true);
+        m_Controls_InteractA = m_Controls.FindAction("InteractA", throwIfNotFound: true);
+        m_Controls_CancelB = m_Controls.FindAction("CancelB", throwIfNotFound: true);
+        m_Controls_MenuStart = m_Controls.FindAction("MenuStart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -260,6 +356,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Controls_Camera;
     private readonly InputAction m_Controls_Movement;
     private readonly InputAction m_Controls_Sprint;
+    private readonly InputAction m_Controls_InteractA;
+    private readonly InputAction m_Controls_CancelB;
+    private readonly InputAction m_Controls_MenuStart;
     public struct ControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -267,6 +366,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Camera => m_Wrapper.m_Controls_Camera;
         public InputAction @Movement => m_Wrapper.m_Controls_Movement;
         public InputAction @Sprint => m_Wrapper.m_Controls_Sprint;
+        public InputAction @InteractA => m_Wrapper.m_Controls_InteractA;
+        public InputAction @CancelB => m_Wrapper.m_Controls_CancelB;
+        public InputAction @MenuStart => m_Wrapper.m_Controls_MenuStart;
         public InputActionMap Get() { return m_Wrapper.m_Controls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -285,6 +387,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnSprint;
+                @InteractA.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnInteractA;
+                @InteractA.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnInteractA;
+                @InteractA.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnInteractA;
+                @CancelB.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnCancelB;
+                @CancelB.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnCancelB;
+                @CancelB.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnCancelB;
+                @MenuStart.started -= m_Wrapper.m_ControlsActionsCallbackInterface.OnMenuStart;
+                @MenuStart.performed -= m_Wrapper.m_ControlsActionsCallbackInterface.OnMenuStart;
+                @MenuStart.canceled -= m_Wrapper.m_ControlsActionsCallbackInterface.OnMenuStart;
             }
             m_Wrapper.m_ControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -298,6 +409,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @InteractA.started += instance.OnInteractA;
+                @InteractA.performed += instance.OnInteractA;
+                @InteractA.canceled += instance.OnInteractA;
+                @CancelB.started += instance.OnCancelB;
+                @CancelB.performed += instance.OnCancelB;
+                @CancelB.canceled += instance.OnCancelB;
+                @MenuStart.started += instance.OnMenuStart;
+                @MenuStart.performed += instance.OnMenuStart;
+                @MenuStart.canceled += instance.OnMenuStart;
             }
         }
     }
@@ -307,5 +427,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnCamera(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnInteractA(InputAction.CallbackContext context);
+        void OnCancelB(InputAction.CallbackContext context);
+        void OnMenuStart(InputAction.CallbackContext context);
     }
 }

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Debug
+  m_Title: Project
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 86
+  controlID: 81
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 87
+  controlID: 65
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 88
+  controlID: 66
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -268,8 +268,8 @@ MonoBehaviour:
     y: 0
     width: 886.39996
     height: 476
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -330,9 +330,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 64}
-    m_SelectedIDs: 065f0000
-    m_LastClickedID: 24326
-    m_ExpandedIDs: 00000000fa5e000000ca9a3bffffff7f
+    m_SelectedIDs: 265f0000
+    m_LastClickedID: 24358
+    m_ExpandedIDs: 000000001a5f000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -360,7 +360,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000fa5e0000
+    m_ExpandedIDs: 000000001a5f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -488,9 +488,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 365d0000
-      m_LastClickedID: 23862
-      m_ExpandedIDs: 34fbffff365d0000
+      m_SelectedIDs: 4c5f0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 30fbffff145d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -772,9 +772,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 3.0086663, y: 9.347096, z: 3.6046968}
+    m_Target: {x: 4.2389646, y: 3.056607, z: 4.7509193}
     speed: 2
-    m_Value: {x: 3.0086663, y: 9.347096, z: 3.6046968}
+    m_Value: {x: 4.2389646, y: 3.056607, z: 4.7509193}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -821,13 +821,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.3697322, y: -0.5817357, z: 0.33463845, w: -0.64276034}
+    m_Target: {x: -0.17168806, y: 0.12787502, z: -0.02249876, w: -0.9766964}
     speed: 2
-    m_Value: {x: -0.36968747, y: -0.5816653, z: 0.33459798, w: -0.64268255}
+    m_Value: {x: -0.17166482, y: 0.1278577, z: -0.022495713, w: -0.9765641}
   m_Size:
-    m_Target: 0.7006901
+    m_Target: 0.8660254
     speed: 2
-    m_Value: 0.7006901
+    m_Value: 0.8660254
   m_Ortho:
     m_Target: 0
     speed: 2
