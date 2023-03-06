@@ -48,7 +48,6 @@ public class Movement : MonoBehaviour
         MovePlayer();
         MoveCamera();
 
-        Debug.Log(CurrentSprint);
     }
 
     //code affects how the player moves
