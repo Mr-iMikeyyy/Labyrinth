@@ -6,12 +6,12 @@ using UnityEngine.InputSystem;
 public class Movement_2 : MonoBehaviour
 {
     private Vector3 PlayerMovementInput; //Used for displacing the character
-    private Vector2 Movement; //used to convert vector2 into vector 3 for movement
-    private Vector2 PlayerCameraControls;
     private float xRot;
     private float yRot;
     private float CurrentSprint;//used to check the current amount of sprint
     private bool isSprinting;
+    private Vector2 Movement; //used to convert vector2 into vector 3 for movement
+    private Vector2 PlayerCameraControls;
 
     [SerializeField] private Transform PlayerCamera; //Camera Object
     [SerializeField] private Rigidbody Playerbody; //Player Object
@@ -28,50 +28,25 @@ public class Movement_2 : MonoBehaviour
     [Header("0: No Recovery, 1: Not Moving, 2: Not sprinting, 3:Both")]
     [SerializeField] private int SprintMode; //Mode 1: when player is standing still, Mode 2: When player is not holding shift
                                              //Mode 3: Both are implemented, doubled boost when player is idle not holding shift.
-    PlayerControls controls; //Controller Class
-
-    //Calls while the script is being created
-    void Awake()
-    {
-        controls = new PlayerControls();
-        //calls when either sprint or the right or left triggers are used
-        controls.Controls.Sprint.performed += ctx => isSprinting = true;
-        //calls when the above function is not used
-        controls.Controls.Sprint.canceled += ctx => isSprinting = false;
-
-        //calls when wasd is used or left thumbstick is used
-        controls.Controls.Movement.performed += ctx => Movement = ctx.ReadValue<Vector2>();
-        //calls when the above function is not used
-        controls.Controls.Movement.canceled += ctx => Movement = Vector2.zero;
-
-        //calls when the right thumbstick or the mouse is moved
-        controls.Controls.Camera.performed += ctx => PlayerCameraControls = ctx.ReadValue<Vector2>();
-        //calls when the above function is not used
-        controls.Controls.Camera.canceled += ctx => PlayerCameraControls = Vector2.zero;
-    }
     
-
-    //enables the control map
-    void OnEnable()
-    {
-        controls.Controls.Enable();   
-    }
-
-    //disables the map
-    void OnDisable()
-    {
-        controls.Controls.Disable();
-    }
+    private InputManager input; //Moved all Inputs to this class.
 
     void Start()
     {
         //initiallizing sprint at the maximum
         CurrentSprint = MaxSprint;
+
+        //gets controls from input manager
+        input = GetComponent<InputManager>();
+
     }
 
     void Update()
     {
         //movement
+        isSprinting = input.getisSprinting();
+        PlayerCameraControls = input.getPlayerCameraControls();
+        Movement = input.getMovement();
         PlayerMovementInput = new Vector3(Movement.x, 0f, Movement.y);
 
         MovePlayer();
