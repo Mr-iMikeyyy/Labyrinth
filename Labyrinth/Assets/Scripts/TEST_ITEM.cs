@@ -12,6 +12,7 @@ public class TEST_ITEM : MonoBehaviour, ICollectible
     {
         Debug.Log("item collected");
         //Destroys the object
+        PlayerInventory.addKey("White");
         Destroy(gameObject);
         //This lets other functions react to this variable activating.
         OnCollected?.Invoke();

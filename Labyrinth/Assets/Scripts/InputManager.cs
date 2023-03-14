@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     private bool isSprinting;
     private Vector2 Movement; //used to convert vector2 into vector 3 for movement
     private Vector2 PlayerCameraControls;
+    private bool interact;
     //Calls while the script is being created
     void Awake()
     {
@@ -26,6 +27,10 @@ public class InputManager : MonoBehaviour
         controls.Controls.Camera.performed += ctx => PlayerCameraControls = ctx.ReadValue<Vector2>();
         //calls when the above function is not used
         controls.Controls.Camera.canceled += ctx => PlayerCameraControls = Vector2.zero;
+
+        //calls when button is pressed
+        controls.Controls.InteractA.performed += ctx => interact = true;
+        controls.Controls.InteractA.canceled += ctx => interact = false;
     }
 
 
@@ -40,7 +45,8 @@ public class InputManager : MonoBehaviour
     {
         controls.Controls.Disable();
     }
-    
+
+
     public bool getisSprinting ()
     {
         return isSprinting;
@@ -56,4 +62,8 @@ public class InputManager : MonoBehaviour
         return PlayerCameraControls;
     }
 
+    public bool getInteract()
+    {
+        return interact;
+    }
 }

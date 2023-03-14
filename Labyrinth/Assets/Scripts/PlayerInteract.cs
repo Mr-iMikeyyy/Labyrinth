@@ -8,9 +8,10 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float distance = 3f;
     [SerializeField] private LayerMask mask;
     // Start is called before the first frame update
+    InputManager input;
     void Start()
     {
-
+        input = GetComponent<InputManager>();
     }
 
     // Update is called once per frame
@@ -26,7 +27,13 @@ public class PlayerInteract : MonoBehaviour
         {
             if (hitInfo.collider.GetComponent<Interactable>() != null)
             {
-                Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
+                Interactable obj = hitInfo.collider.GetComponent<Interactable>();
+                if (input.getInteract())
+                {
+
+                    //activates the interaction
+                    obj.BaseInteract();
+                }
             }
         }
     }
