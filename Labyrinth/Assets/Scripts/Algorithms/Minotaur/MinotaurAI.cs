@@ -132,7 +132,7 @@ public class MinotaurAI : MonoBehaviour {
     {
         if (!walkPointSet)
         {
-            getWalkPoint()
+            getWalkPoint();
         }
         if (walkPointSet)
         {
@@ -175,7 +175,5 @@ public class MinotaurAI : MonoBehaviour {
         {
             walkPointSet = true;
         }
-
-
+    }
 }
-
