@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Labyrinth/Assets/Materials.meta
 guid: dd779372551d1904b9a86ce4b914890e
+========
+guid: aab4e489addbeff44b8c383e904256ab
+>>>>>>>> 14251d4388fa6be01eff9ee57f1683c5800de4b2:Labyrinth/Assets/Scripts.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
