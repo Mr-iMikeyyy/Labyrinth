@@ -67,6 +67,8 @@ public class Movement_2 : MonoBehaviour
     {
         //initiallizing sprint at the maximum
         CurrentSprint = MaxSprint;
+        PlayerStats.setMaxSprint(MaxSprint);
+        PlayerStats.setSprint(CurrentSprint);
     }
 
     void Update()
@@ -76,6 +78,9 @@ public class Movement_2 : MonoBehaviour
 
         MovePlayer();
         MoveCamera();
+
+        PlayerStats.setMaxSprint(MaxSprint);
+        PlayerStats.setSprint(CurrentSprint);
     }
 
     //code affects how the player moves

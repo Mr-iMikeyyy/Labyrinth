@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//this class is called upon other classes to store data
 public static class PlayerInventory 
 {
     public static List<string> Keys = new List<string>();
