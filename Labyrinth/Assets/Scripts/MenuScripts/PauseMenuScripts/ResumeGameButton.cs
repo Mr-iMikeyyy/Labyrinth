@@ -7,7 +7,7 @@ public class ResumeGameButton : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject playerCamera;
 
-    public void OnResumeButtonClicked()
+    public void ResumeGame()
     {
         // Hide the pause menu
         pauseMenu.SetActive(false);
