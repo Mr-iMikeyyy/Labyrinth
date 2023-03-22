@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEngine.AI;
 
 public class BadGuyHealth : MonoBehaviour
@@ -176,4 +176,4 @@ public class MinotaurAI : MonoBehaviour {
             walkPointSet = true;
         }
     }
-}
+}*/
