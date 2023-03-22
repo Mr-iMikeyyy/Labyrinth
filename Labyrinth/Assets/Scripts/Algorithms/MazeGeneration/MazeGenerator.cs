@@ -34,7 +34,7 @@ public class MazeGenerator : MonoBehaviour {
     [SerializeField] float nodeSize;
 
     private void Start() {
-        GenerateMazeInstant(mazeSize);
+        GenerateMazeInstant(MazeParams.getSize());
         //StartCoroutine(GenerateMaze(mazeSize));
     }
 
