@@ -12,17 +12,17 @@ public class RestartGameButton : MonoBehaviour
         confirmationDialog.SetActive(false);
     }
 
-    public void OnClick()
+    public void OpenRestartConfirmationMenu()
     {
         confirmationDialog.SetActive(true);
     }
 
-    public void OnConfirm()
+    public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void OnCancel()
+    public void CloseRestartConfirmationMenu()
     {
         confirmationDialog.SetActive(false);
     }
