@@ -4,5 +4,8 @@ using UnityEngine;
 
 //template
 public interface ICollectible {
-    public void collect();
+    public virtual void collect()
+    {
+
+    }
 }

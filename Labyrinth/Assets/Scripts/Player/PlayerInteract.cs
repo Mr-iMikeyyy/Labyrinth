@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//this class is placed on the Player. It allows the Player to interact with things by pressing a button
 public class PlayerInteract : MonoBehaviour
 {
     [SerializeField] private Camera cam;
