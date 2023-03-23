@@ -31,56 +31,28 @@ public class Movement_2 : MonoBehaviour
     PlayerControls controls; //Controller Class
 
     //Calls while the script is being created
-    void Awake()
-    {
-        controls = new PlayerControls();
-        //calls when either sprint or the right or left triggers are used
-        controls.Controls.Sprint.performed += ctx => isSprinting = true;
-        //calls when the above function is not used
-        controls.Controls.Sprint.canceled += ctx => isSprinting = false;
-
-        //calls when wasd is used or left thumbstick is used
-        controls.Controls.Movement.performed += ctx => Movement = ctx.ReadValue<Vector2>();
-        //calls when the above function is not used
-        controls.Controls.Movement.canceled += ctx => Movement = Vector2.zero;
-
-        //calls when the right thumbstick or the mouse is moved
-        controls.Controls.Camera.performed += ctx => PlayerCameraControls = ctx.ReadValue<Vector2>();
-        //calls when the above function is not used
-        controls.Controls.Camera.canceled += ctx => PlayerCameraControls = Vector2.zero;
-    }
-    
-
-    //enables the control map
-    void OnEnable()
-    {
-        controls.Controls.Enable();   
-    }
-
-    //disables the map
-    void OnDisable()
-    {
-        controls.Controls.Disable();
-    }
+    private InputManager input; //Moved all Inputs to this class.
 
     void Start()
     {
         //initiallizing sprint at the maximum
         CurrentSprint = MaxSprint;
-        PlayerStats.setMaxSprint(MaxSprint);
-        PlayerStats.setSprint(CurrentSprint);
+
+        //gets controls from input manager
+        input = GetComponent<InputManager>();
+
     }
 
     void Update()
     {
         //movement
+        isSprinting = input.getisSprinting();
+        PlayerCameraControls = input.getPlayerCameraControls();
+        Movement = input.getMovement();
         PlayerMovementInput = new Vector3(Movement.x, 0f, Movement.y);
 
         MovePlayer();
         MoveCamera();
-
-        PlayerStats.setMaxSprint(MaxSprint);
-        PlayerStats.setSprint(CurrentSprint);
     }
 
     //code affects how the player moves
