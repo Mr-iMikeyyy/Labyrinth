@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerCamera: {fileID: 424887435}
   Playerbody: {fileID: 344588106}
-  Speed: 5
+  Speed: 3
   Sensitivity: 1
   SprintMultiplier: 2
   MaxSprint: 100
@@ -449,7 +449,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 1.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -511,8 +511,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344588101}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 1, z: 5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.5, y: 1, z: 1.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 424887435}
@@ -560,7 +560,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -596,8 +596,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424887432}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.01, y: 1, z: 0.04}
+  m_LocalScale: {x: 1.0088, y: 1.0088, z: 1.0088}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 344588110}
@@ -627,12 +627,12 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500527429}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -641,7 +641,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.5
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -707,6 +707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 584500077}
   - component: {fileID: 584500076}
+  - component: {fileID: 584500078}
   m_Layer: 0
   m_Name: Maze gen
   m_TagString: Untagged
@@ -727,9 +728,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodePrefab: {fileID: 8775671690344581252, guid: 2095953e7008ff2448b01e8bddd4ec1c, type: 3}
-  blankNodePrefab: {fileID: 0}
-  mazeSize: {x: 30, y: 30}
-  nodeSize: 0
+  mazeSize: {x: 11, y: 11}
+  objectsToPlace:
+  - {fileID: 100000, guid: f224c1dc99e7bc841ae5a1e1e37d8849, type: 3}
+  - {fileID: 100000, guid: 5b8b1ef4862b0214bb901b95407aeb52, type: 3}
+  - {fileID: 100000, guid: d2bae68a73c37b9409630fa2251431bc, type: 3}
+  - {fileID: 100000, guid: 600bd9ed8b5184f4a8233b6472bc387e, type: 3}
+  - {fileID: 100000, guid: 481b635407ffb1f4c9f82ae6f468e377, type: 3}
+  - {fileID: 120638, guid: f8efad34b6fb67641a44679362c8f942, type: 3}
+  playerCharacter: {fileID: 344588101}
 --- !u!4 &584500077
 Transform:
   m_ObjectHideFlags: 0
@@ -739,12 +746,21 @@ Transform:
   m_GameObject: {fileID: 584500075}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!45 &584500078
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584500075}
+  m_Enabled: 0
+  m_CustomSkybox: {fileID: 2100000, guid: e632c4b1ce376264d95ef45858c23fde, type: 2}
 --- !u!1 &1509037004
 GameObject:
   m_ObjectHideFlags: 0

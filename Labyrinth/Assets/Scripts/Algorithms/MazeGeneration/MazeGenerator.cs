@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MazeGenerator : MonoBehaviour {
         /**
@@ -9,7 +10,6 @@ public class MazeGenerator : MonoBehaviour {
             Depth-First Search (DFS): This is a recursive algorithm that works by starting at a random cell and randomly choosing
             a neighboring cell to visit. The visited cell is marked and the process is repeated with the newly visited cell until
             all cells have been visited. This algorithm creates mazes with long, winding paths and few branches.
-
             1.	Initialize a list of nodes to include in the maze, where each node represents a square in the maze.
             2.	Choose a starting node from the list of nodes.
             3.	Mark the starting node as visited and add it to the list of completed nodes.
@@ -25,16 +25,18 @@ public class MazeGenerator : MonoBehaviour {
             It continues until all nodes have been visited, ensuring that there is a path between any two nodes in the maze. The algorithm maintains 
             a list of completed nodes, a current path, and a list of unvisited nodes, and randomly chooses the next node to visit. By using a random 
             selection, the algorithm generates unique mazes every time it is run.
-
-
         **/
     [SerializeField] MazeNode nodePrefab;
-    [SerializeField] MazeNode blankNodePrefab;
+    // [SerializeField] MazeNode blankNodePrefab;
     [SerializeField] Vector2Int mazeSize;
-    [SerializeField] float nodeSize;
+    // [SerializeField] float nodeSize;
+    public GameObject[] objectsToPlace;
+    public GameObject playerCharacter;
+
+    // public NavMeshSurface navMeshSurface;
 
     private void Start() {
-        GenerateMazeInstant(MazeParams.getSize());
+        GenerateMazeInstant(MazeParams.getSize(), objectsToPlace, playerCharacter);
         //StartCoroutine(GenerateMaze(mazeSize));
     }
 
@@ -56,7 +58,8 @@ public class MazeGenerator : MonoBehaviour {
         relative to each other. If an outside door is required, it removes the top wall of the bottom left node or the bottom wall of
         the top right node.
     **/
-    void CreateRoom(List<MazeNode> nodes, List<MazeNode> completedNodes, int x, int y) {
+    void CreateRoom(List<MazeNode> nodes, List<MazeNode> completedNodes, int x, int y, bool is_center_room, int starting_room) {
+        // MazeNode centerCenter = GetNodeByName(nodes, )
         MazeNode topLeft = GetNodeByName(nodes, x, y);
         MazeNode topCenter = GetNodeByName(nodes, x + 1, y);
         MazeNode topRight = GetNodeByName(nodes, x + 2, y);
@@ -96,6 +99,12 @@ public class MazeGenerator : MonoBehaviour {
             topCenter.RemoveWall(0); // RIGHT
             topCenter.RemoveWall(1); // LEFT
             topCenter.RemoveWall(3); // BOTTOM
+            topCenter.AddChest();
+            if (is_center_room)  {
+
+            } else {
+
+            }
         }
 
         // Center left
@@ -104,6 +113,9 @@ public class MazeGenerator : MonoBehaviour {
             centerLeft.RemoveWall(0); // RIGHT
             centerLeft.RemoveWall(2); // TOP
             centerLeft.RemoveWall(3); // BOTTOM
+            if (starting_room == 1) {
+                playerCharacter.transform.position = centerLeft.transform.position;
+            }
         }
 
         // Center
@@ -113,6 +125,13 @@ public class MazeGenerator : MonoBehaviour {
             center.RemoveWall(1); // LEFT
             center.RemoveWall(2); // TOP
             center.RemoveWall(3); // BOTTOM
+            if (is_center_room)  {
+                // center.addLadder();
+                center.SetAsCompletionNode();
+            } else {
+                center.AddTable();
+            }
+            
         }
 
         // Center right
@@ -142,45 +161,92 @@ public class MazeGenerator : MonoBehaviour {
 
         // Outside Door
         if (bottomLeftDoor != null) {
-            bottomLeftDoor.RemoveWall(2); // TOP
+                bottomLeftDoor.AddDoor(2, is_center_room); // TOP
         }
         // Outside Door
         if (topRightDoor != null) {
-            topRightDoor.RemoveWall(3); // BOTTOM
+                topRightDoor.AddDoor(3, is_center_room); // BOTTOM
+
         }
 
     }
 
+    void PlaceObjectsRandomly(GameObject objectPrefab, int numObjects, List<MazeNode> nodes, bool add_gravity) {
+        for (int i = 0; i < numObjects; i++) {
+            // Place object at random position in the maze
+            float minX = float.MaxValue;
+            float minZ = float.MaxValue;
+            float maxX = float.MinValue;
+            float maxZ = float.MinValue;
+            foreach (MazeNode node in nodes) {
+                minX = Mathf.Min(minX, node.transform.position.x);
+                minZ = Mathf.Min(minZ, node.transform.position.z);
+                maxX = Mathf.Max(maxX, node.transform.position.x);
+                maxZ = Mathf.Max(maxZ, node.transform.position.z);
+            }
+            float x = UnityEngine.Random.Range(minX, maxX);
+            float z = UnityEngine.Random.Range(minZ, maxZ);
+            GameObject newObject = Instantiate(objectPrefab, new Vector3(x, 0, z), Quaternion.identity);
 
-    void GenerateMazeInstant(Vector2Int size) {
+            if (add_gravity) {
+                // Add Rigidbody component and enable gravity
+                Rigidbody rb = newObject.AddComponent<Rigidbody>();
+                rb.useGravity = true;
+
+                // Add MeshCollider component
+                MeshCollider collider = newObject.AddComponent<MeshCollider>();
+                collider.convex = true; // Enable convex mesh collider for more accurate collisions
+            }
+
+
+        }
+    }
+
+    void GenerateMazeInstant(Vector2Int size, GameObject[] objectsToPlace, GameObject playerCharacter) {
         List<MazeNode> nodes = new List<MazeNode>();
         List<MazeNode> currentPath = new List<MazeNode>();
         List<MazeNode> completedNodes = new List<MazeNode>();
-        
+
+        GameObject objectPrefab = objectsToPlace[0];
+        GameObject objectPrefab1 = objectsToPlace[1];
+        GameObject objectPrefab2 = objectsToPlace[2];
+        GameObject objectPrefab3 = objectsToPlace[3];
+        GameObject objectPrefab4 = objectsToPlace[4];
+        GameObject objectPrefab5 = objectsToPlace[5];
+
         // Create nodes (Initially all nodes will have 4 walls)
-        for (int x = 0; x < size.x; x++) {
+        for (int w = 0; w < size.x; w++) {
             for (int y = 0; y < size.y; y++) {
-                Vector3 nodePos = new Vector3(x - (size.x / 2f), 0, y - (size.y / 2f));
+                Vector3 nodePos = new Vector3(w - (size.x / 2f), 0, y - (size.y / 2f));
                 MazeNode newNode = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
-                newNode.name = string.Format("Node_{0}_{1}", x, y);
+                newNode.name = string.Format("Node_{0}_{1}", w, y);
                 nodes.Add(newNode);
             }
         }
 
+        PlaceObjectsRandomly(objectPrefab, 21, nodes, false);
+        PlaceObjectsRandomly(objectPrefab1, 33, nodes, false);
+        PlaceObjectsRandomly(objectPrefab2, 150, nodes, false);
+        PlaceObjectsRandomly(objectPrefab3, 150, nodes, false);
+        PlaceObjectsRandomly(objectPrefab4, 10, nodes, true);
+        // PlaceObjectsRandomly(objectPrefab5, 30, nodes, false);
+        
+        
         // # topLeft room
-        CreateRoom(nodes, completedNodes, 1, size.y - 2);
+        CreateRoom(nodes, completedNodes, 1, size.y - 2, false, 1);
         // # topRight room
-        CreateRoom(nodes, completedNodes, size.x - 4, size.y - 2);
+        CreateRoom(nodes, completedNodes, size.x - 4, size.y - 2, false, 0);
         // # Center room
-        CreateRoom(nodes, completedNodes, size.x / 2 - 1, size.y / 2 + 1);
+        CreateRoom(nodes, completedNodes, size.x / 2 - 1, size.y / 2 + 1, true, 0);
         // # bottomRight room
-        CreateRoom(nodes, completedNodes, size.x - 4, 3);
+        CreateRoom(nodes, completedNodes, size.x - 4, 3, false, 0);
         // # bottomLeft room
-        CreateRoom(nodes, completedNodes, 1, 3);
+        CreateRoom(nodes, completedNodes, 1, 3, false, 0);
+
 
 
         // Choose starting node
-        currentPath.Add(nodes[nodes.Count / 2 - size.x]);
+        currentPath.Add(nodes[nodes.Count / 2 - size.x + 2]);
         currentPath[0].SetState(NodeState.Current);
 
         while (completedNodes.Count < nodes.Count) {
