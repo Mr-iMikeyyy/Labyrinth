@@ -5,7 +5,7 @@ using UnityEngine;
 public class Doors : Interactable
 {
     [SerializeField] public string keyType;
-
+    [SerializeField] private Animator doorAnimator;
 
     void Start()
     {
@@ -20,7 +20,8 @@ public class Doors : Interactable
         if (PlayerInventory.checkKeys(keyType))
         {
             PlayerInventory.removeKey(keyType);
-            Destroy(gameObject);
+            // Destroy(gameObject);
+            doorAnimator.SetTrigger("DoorATrigger");
         }
     }
 }

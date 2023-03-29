@@ -21,8 +21,8 @@ public class NewGameButton : MonoBehaviour
 
     public void StartNewGame()
     {
-        MazeParams.setSize(100);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level end menu");
+        MazeParams.setSize(17);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Maze gen test");
     }
 }
 
