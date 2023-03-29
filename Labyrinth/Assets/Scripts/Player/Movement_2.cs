@@ -53,6 +53,8 @@ public class Movement_2 : MonoBehaviour
 
         MovePlayer();
         MoveCamera();
+        PlayerStats.setMaxSprint(MaxSprint);
+        PlayerStats.setSprint(CurrentSprint);
     }
 
     //code affects how the player moves
