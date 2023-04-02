@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
         public GameObject pauseMenu;
         public GameObject playerCamera;
 
+
         private bool isPaused = false;
 
         void Update()
@@ -19,14 +20,14 @@ using UnityEngine.SceneManagement;
                 if (isPaused)
                 {
                     pauseMenu.SetActive(true);
-
+                    PlayerStats.timer.PauseTiming();
                     Time.timeScale = 0;
                 }
                 else
                 {
                 
                     pauseMenu.SetActive(false);
-                
+                    PlayerStats.timer.StartTiming();
                     Time.timeScale = 1;
                 }
             }

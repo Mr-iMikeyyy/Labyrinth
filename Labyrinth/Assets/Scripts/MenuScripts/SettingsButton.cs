@@ -20,13 +20,13 @@ public class SettingsButton : MonoBehaviour
     private float tempSFXVolume;
     private float ConvertToDecibels(float volume)
     {
-     if (volume == 0)
+        if (volume == 0)
         {
-        return -80f;
+            return -80f;
         }
         else
         {
-        return Mathf.Log10(volume) * 20f;
+            return Mathf.Log10(volume) * 20f;
         }
     }
 
