@@ -90,9 +90,12 @@ public class Movement_2 : MonoBehaviour
     private void MoveCamera()
     {
         xRot -= PlayerCameraControls.y * Sensitivity / 2;
-
         transform.Rotate(0f, PlayerCameraControls.x * Sensitivity / 2, 0f);
-        PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+
+        if (xRot + PlayerCamera.rotation.x < 90 && xRot + PlayerCamera.rotation.x > -90)
+        {
+            PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        }
 
     }
 
