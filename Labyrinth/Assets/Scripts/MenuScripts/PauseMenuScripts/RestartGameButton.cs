@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class RestartGameButton : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class RestartGameButton : MonoBehaviour
     public void OpenRestartConfirmationMenu()
     {
         confirmationDialog.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("RestartYes"));
     }
 
     public void RestartGame()
@@ -25,5 +27,6 @@ public class RestartGameButton : MonoBehaviour
     public void CloseRestartConfirmationMenu()
     {
         confirmationDialog.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("RestartGameButton"));
     }
 }
