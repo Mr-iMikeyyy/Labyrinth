@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using PlayerInformation;
+using UnityEngine.EventSystems;
 
 namespace PlayerInformation
 {
@@ -26,6 +27,8 @@ namespace PlayerInformation
         private void ShowLevelCompleteMenu()
         {
             levelCompleteMenu.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(GameObject.Find("NextLevelButton"));
         }
     }
 }

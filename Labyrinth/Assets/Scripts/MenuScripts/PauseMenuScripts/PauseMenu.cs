@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
     public class PauseMenu : MonoBehaviour
     {
@@ -13,7 +14,7 @@ using UnityEngine.SceneManagement;
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
             {
                 isPaused = !isPaused;
 
@@ -21,6 +22,7 @@ using UnityEngine.SceneManagement;
                 {
                     pauseMenu.SetActive(true);
                     PlayerStats.timer.PauseTiming();
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find("ResumeGameButton"));
                     Time.timeScale = 0;
                 }
                 else

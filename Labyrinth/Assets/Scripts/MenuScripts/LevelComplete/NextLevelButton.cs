@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class NextLevelButton : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class NextLevelButton : MonoBehaviour
     public void OpenConfirmationBox()
     {
         confirmationMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("NextLevelYes"));
     }
 
     public void OpenNextLevel()
@@ -20,5 +22,6 @@ public class NextLevelButton : MonoBehaviour
     public void CloseConfirmationBox()
     {
         confirmationMenu.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("NextLevelButton"));
     }
 }

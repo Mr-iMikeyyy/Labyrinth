@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class SettingsButton : MonoBehaviour
 {
@@ -68,6 +69,7 @@ public class SettingsButton : MonoBehaviour
         tempSFXVolume = sfxSlider.value;
 
         settingsMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("ApplyButton"));
     }
 
     // Close settings menu
@@ -87,6 +89,9 @@ public class SettingsButton : MonoBehaviour
             UpdateTextValues();
 
             settingsMenu.SetActive(false);
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(GameObject.Find("SettingsButton"));
         }
     }
 
@@ -107,6 +112,12 @@ public class SettingsButton : MonoBehaviour
         // Set temporary volume values to default volume values
         tempMusicVolume = musicSlider.value;
         tempSFXVolume = sfxSlider.value;
+
+        CloseSettingsMenu();
+
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("SettingsButton"));
+        
     }
 
     // Apply settings changes
@@ -125,6 +136,8 @@ public class SettingsButton : MonoBehaviour
         prevSFXVolume = sfxSlider.value;
 
         CloseSettingsMenu();
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("SettingsButton"));
     }
 
 
@@ -135,6 +148,4 @@ public class SettingsButton : MonoBehaviour
         musicText.text = Mathf.Round(musicSlider.value * 100) + "%";
         sfxText.text = Mathf.Round(sfxSlider.value * 100) + "%";
     }
-
-    //
 }
