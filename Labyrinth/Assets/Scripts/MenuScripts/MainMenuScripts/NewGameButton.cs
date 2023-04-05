@@ -8,12 +8,7 @@ using UnityEngine.EventSystems;
 public class NewGameButton : MonoBehaviour
 {
     public GameObject confirmationBox;
-
-    private void Start()
-    {
-        CloseConfirmationBox();
-    }
-
+    
     public void OpenConfirmationBox()
     {
         confirmationBox.SetActive(true);
@@ -21,6 +16,7 @@ public class NewGameButton : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(GameObject.Find("NewGameYes"));
     }
 
+        
     public void CloseConfirmationBox()
     {
         confirmationBox.SetActive(false);

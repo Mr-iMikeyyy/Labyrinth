@@ -8,11 +8,6 @@ public class MainMenuButton : MonoBehaviour
 {
     public GameObject mainMenuConfirmationMenu;
 
-    private void Start()
-    {
-        mainMenuConfirmationMenu.SetActive(false);
-    }
-
     public void OpenMainMenuConfirmationMenu()
     {
        

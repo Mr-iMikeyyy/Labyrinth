@@ -8,12 +8,7 @@ using UnityEngine.EventSystems;
 public class ExitGameButton : MonoBehaviour
 {
     public GameObject exitConfirmation;
-
-    void Start()
-    {
-        CloseExitConfirmation();
-    }
-
+    
     public void OpenExitConfirmation()
     {
         exitConfirmation.SetActive(true);

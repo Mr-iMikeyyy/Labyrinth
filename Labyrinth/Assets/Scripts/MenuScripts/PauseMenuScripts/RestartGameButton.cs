@@ -8,11 +8,6 @@ public class RestartGameButton : MonoBehaviour
 {
     public GameObject confirmationDialog;
 
-    private void Start()
-    {
-        confirmationDialog.SetActive(false);
-    }
-
     public void OpenRestartConfirmationMenu()
     {
         confirmationDialog.SetActive(true);

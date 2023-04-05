@@ -8,11 +8,6 @@ public class InfinityModeButton : MonoBehaviour
 {
     public GameObject confirmationBox;
 
-    public void Start()
-    {
-        CloseConfirmationBox();
-    }
-
     public void ShowConfirmationBox()
     {
         confirmationBox.SetActive(true);
