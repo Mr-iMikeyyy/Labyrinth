@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
 public class SettingsButton : MonoBehaviour
 {
-    public AudioMixer audioMixer;
+    public AudioSource mainMenuBackground;
+    public AudioSource buttonHover;
+    public AudioSource buttonClicks;
     public Slider musicSlider;
     public Slider sfxSlider;
     public TextMeshProUGUI musicText;
@@ -19,46 +20,44 @@ public class SettingsButton : MonoBehaviour
     private float prevSFXVolume;
     private float tempMusicVolume;
     private float tempSFXVolume;
-    private float ConvertToDecibels(float volume)
-    {
-        if (volume == 0)
-        {
-            return -80f;
-        }
-        else
-        {
-            return Mathf.Log10(volume) * 20f;
-        }
-    }
 
-    void Start()
-    {
-        // Set default slider values
-        musicSlider.value = 0.5f;
-        sfxSlider.value = 0.5f;
+void Start()
+{
+    // Set default slider values to 50%
+    musicSlider.value = 0.5f;
+    sfxSlider.value = 0.5f;
 
-        // Save initial volume values
-        prevMusicVolume = musicSlider.value;
-        prevSFXVolume = sfxSlider.value;
+    // Save initial volume values
+    prevMusicVolume = musicSlider.value;
+    prevSFXVolume = sfxSlider.value;
 
-        // Update text values
-        UpdateTextValues();
-    }
+    // Update temporary volume values
+    tempMusicVolume = musicSlider.value;
+    tempSFXVolume = sfxSlider.value;
 
-    // Set music volume
+    // Set the volume of the audio sources to the default values
+    mainMenuBackground.volume = musicSlider.value;
+    buttonHover.volume = sfxSlider.value;
+    buttonClicks.volume = sfxSlider.value;
+
+    // Update text values
+    UpdateTextValues();
+}
+
+
     public void SetMusicVolume(float volume)
     {
-        audioMixer.SetFloat("MusicVolume", ConvertToDecibels(volume));
+        mainMenuBackground.volume = volume;
         UpdateTextValues();
-        tempMusicVolume = volume; // update tempMusicVolume
+        tempMusicVolume = volume;
     }
 
-    // Set SFX volume
     public void SetSFXVolume(float volume)
     {
-        audioMixer.SetFloat("SFXVolume", ConvertToDecibels(volume));
+        buttonHover.volume = volume;
+        buttonClicks.volume = volume;
         UpdateTextValues();
-        tempSFXVolume = volume; // update tempSFXVolume
+        tempSFXVolume = volume;
     }
 
     // Open settings menu
@@ -95,14 +94,12 @@ public class SettingsButton : MonoBehaviour
         }
     }
 
-
     // Reset settings to default
     public void ResetSettings()
     {
-        audioMixer.SetFloat("MusicVolume", ConvertToDecibels(0.5f));
-        audioMixer.SetFloat("SFXVolume", ConvertToDecibels(0.5f));
-        musicSlider.value = 0.5f;
-        sfxSlider.value = 0.5f;
+        musicSlider.value = mainMenuBackground.volume;
+        sfxSlider.value = buttonHover.volume;
+        sfxSlider.value = buttonClicks.volume;
         UpdateTextValues();
 
         // Save default volume values
@@ -127,20 +124,19 @@ public class SettingsButton : MonoBehaviour
         prevMusicVolume = tempMusicVolume;
         prevSFXVolume = tempSFXVolume;
 
-        // Apply volume changes to AudioMixer
-        audioMixer.SetFloat("MusicVolume", ConvertToDecibels(prevMusicVolume));
-        audioMixer.SetFloat("SFXVolume", ConvertToDecibels(prevSFXVolume));
-
         // Update previous volume values
         prevMusicVolume = musicSlider.value;
         prevSFXVolume = sfxSlider.value;
+
+        // Apply volume changes to audio sources
+        mainMenuBackground.volume = prevMusicVolume;
+        buttonHover.volume = prevSFXVolume;
+        buttonClicks.volume = prevSFXVolume;
 
         CloseSettingsMenu();
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(GameObject.Find("SettingsButton"));
     }
-
-
 
     // Update text values based on slider values
     private void UpdateTextValues()
