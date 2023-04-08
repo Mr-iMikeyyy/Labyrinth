@@ -575,7 +575,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d005a40ac9c0664f9340f89ee5759cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 8ec13f4eada642e408e96d08c80f325b, type: 2}
+  mainMenuBackground: {fileID: 0}
+  buttonHover: {fileID: 0}
+  buttonClicks: {fileID: 0}
   musicSlider: {fileID: 149441233}
   sfxSlider: {fileID: 681376429}
   musicText: {fileID: 827642684}
@@ -833,7 +835,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d005a40ac9c0664f9340f89ee5759cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 8ec13f4eada642e408e96d08c80f325b, type: 2}
+  mainMenuBackground: {fileID: 0}
+  buttonHover: {fileID: 0}
+  buttonClicks: {fileID: 0}
   musicSlider: {fileID: 149441233}
   sfxSlider: {fileID: 681376429}
   musicText: {fileID: 827642684}
@@ -2441,7 +2445,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d005a40ac9c0664f9340f89ee5759cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 8ec13f4eada642e408e96d08c80f325b, type: 2}
+  mainMenuBackground: {fileID: 0}
+  buttonHover: {fileID: 0}
+  buttonClicks: {fileID: 0}
   musicSlider: {fileID: 149441233}
   sfxSlider: {fileID: 681376429}
   musicText: {fileID: 827642684}
@@ -3029,7 +3035,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d005a40ac9c0664f9340f89ee5759cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 8ec13f4eada642e408e96d08c80f325b, type: 2}
+  mainMenuBackground: {fileID: 0}
+  buttonHover: {fileID: 0}
+  buttonClicks: {fileID: 0}
   musicSlider: {fileID: 149441233}
   sfxSlider: {fileID: 681376429}
   musicText: {fileID: 827642684}
@@ -3499,7 +3507,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d005a40ac9c0664f9340f89ee5759cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 8ec13f4eada642e408e96d08c80f325b, type: 2}
+  mainMenuBackground: {fileID: 0}
+  buttonHover: {fileID: 0}
+  buttonClicks: {fileID: 0}
   musicSlider: {fileID: 149441233}
   sfxSlider: {fileID: 681376429}
   musicText: {fileID: 827642684}
@@ -4359,7 +4369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d005a40ac9c0664f9340f89ee5759cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 8ec13f4eada642e408e96d08c80f325b, type: 2}
+  mainMenuBackground: {fileID: 0}
+  buttonHover: {fileID: 0}
+  buttonClicks: {fileID: 0}
   musicSlider: {fileID: 149441233}
   sfxSlider: {fileID: 681376429}
   musicText: {fileID: 827642684}
@@ -4477,7 +4489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d005a40ac9c0664f9340f89ee5759cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 8ec13f4eada642e408e96d08c80f325b, type: 2}
+  mainMenuBackground: {fileID: 0}
+  buttonHover: {fileID: 0}
+  buttonClicks: {fileID: 0}
   musicSlider: {fileID: 149441233}
   sfxSlider: {fileID: 681376429}
   musicText: {fileID: 827642684}
@@ -7685,7 +7699,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d005a40ac9c0664f9340f89ee5759cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 8ec13f4eada642e408e96d08c80f325b, type: 2}
+  mainMenuBackground: {fileID: 0}
+  buttonHover: {fileID: 0}
+  buttonClicks: {fileID: 0}
   musicSlider: {fileID: 149441233}
   sfxSlider: {fileID: 681376429}
   musicText: {fileID: 827642684}
@@ -8195,7 +8211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1518736411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10065,7 +10081,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d005a40ac9c0664f9340f89ee5759cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 8ec13f4eada642e408e96d08c80f325b, type: 2}
+  mainMenuBackground: {fileID: 0}
+  buttonHover: {fileID: 0}
+  buttonClicks: {fileID: 0}
   musicSlider: {fileID: 149441233}
   sfxSlider: {fileID: 681376429}
   musicText: {fileID: 827642684}

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class SettingsButton : MonoBehaviour
+public class MainMenuSettings : MonoBehaviour
 {
-    public AudioSource mainMenuBackground;
+    public AudioSource backgroundMusic;
     public AudioSource buttonHover;
     public AudioSource buttonClicks;
     public Slider musicSlider;
@@ -20,36 +20,55 @@ public class SettingsButton : MonoBehaviour
     private float prevSFXVolume;
     private float tempMusicVolume;
     private float tempSFXVolume;
+    private const string musicPrefKey = "musicVolume";
+    private const string sfxPrefKey = "sfxVolume";
 
-void Start()
-{
-    // Set default slider values to 50%
-    musicSlider.value = 0.5f;
-    sfxSlider.value = 0.5f;
+    void Start()
+    {
+        // Load saved volume settings from PlayerPrefs
+        if (PlayerPrefs.HasKey(musicPrefKey))
+        {
+            musicSlider.value = PlayerPrefs.GetFloat(musicPrefKey);
+        }
+        else
+        {
+            musicSlider.value = 0.25f;
+        }
+        
+        if (PlayerPrefs.HasKey(sfxPrefKey))
+        {
+            sfxSlider.value = PlayerPrefs.GetFloat(sfxPrefKey);
+        }
+        else
+        {
+            sfxSlider.value = 0.25f;
+        }
 
-    // Save initial volume values
-    prevMusicVolume = musicSlider.value;
-    prevSFXVolume = sfxSlider.value;
+        // Save initial volume values
+        prevMusicVolume = musicSlider.value;
+        prevSFXVolume = sfxSlider.value;
 
-    // Update temporary volume values
-    tempMusicVolume = musicSlider.value;
-    tempSFXVolume = sfxSlider.value;
+        // Update temporary volume values
+        tempMusicVolume = musicSlider.value;
+        tempSFXVolume = sfxSlider.value;
 
-    // Set the volume of the audio sources to the default values
-    mainMenuBackground.volume = musicSlider.value;
-    buttonHover.volume = sfxSlider.value;
-    buttonClicks.volume = sfxSlider.value;
+        // Set the volume of the audio sources to the default values
+        backgroundMusic.volume = musicSlider.value;
+        buttonHover.volume = sfxSlider.value;
+        buttonClicks.volume = sfxSlider.value;
 
-    // Update text values
-    UpdateTextValues();
-}
+        // Update text values
+        UpdateTextValues();
+    }
+
 
 
     public void SetMusicVolume(float volume)
     {
-        mainMenuBackground.volume = volume;
+        backgroundMusic.volume = volume;
         UpdateTextValues();
         tempMusicVolume = volume;
+        PlayerPrefs.SetFloat(musicPrefKey, volume);
     }
 
     public void SetSFXVolume(float volume)
@@ -58,7 +77,9 @@ void Start()
         buttonClicks.volume = volume;
         UpdateTextValues();
         tempSFXVolume = volume;
+        PlayerPrefs.SetFloat(sfxPrefKey, volume);
     }
+
 
     // Open settings menu
     public void OpenSettingsMenu()
@@ -94,12 +115,10 @@ void Start()
         }
     }
 
-    // Reset settings to default
     public void ResetSettings()
     {
-        musicSlider.value = mainMenuBackground.volume;
-        sfxSlider.value = buttonHover.volume;
-        sfxSlider.value = buttonClicks.volume;
+        musicSlider.value = 0.25f;
+        sfxSlider.value = 0.25f;
         UpdateTextValues();
 
         // Save default volume values
@@ -110,12 +129,17 @@ void Start()
         tempMusicVolume = musicSlider.value;
         tempSFXVolume = sfxSlider.value;
 
+        // Apply volume changes to audio sources
+        backgroundMusic.volume = prevMusicVolume;
+        buttonHover.volume = prevSFXVolume;
+        buttonClicks.volume = prevSFXVolume;
+
         CloseSettingsMenu();
 
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(GameObject.Find("SettingsButton"));
-        
     }
+
 
     // Apply settings changes
     public void ApplySettings()
@@ -129,7 +153,7 @@ void Start()
         prevSFXVolume = sfxSlider.value;
 
         // Apply volume changes to audio sources
-        mainMenuBackground.volume = prevMusicVolume;
+        backgroundMusic.volume = prevMusicVolume;
         buttonHover.volume = prevSFXVolume;
         buttonClicks.volume = prevSFXVolume;
 
