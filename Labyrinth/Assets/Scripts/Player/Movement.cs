@@ -30,6 +30,10 @@ public class Movement : MonoBehaviour
     //Code for Jumping
     //[SerializeField] private float Jumpforce;
 
+    // Checks if player is moving and/or sprinting
+    public bool isMoving;
+    public bool isSprinting; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +65,11 @@ public class Movement : MonoBehaviour
         {
             MoveVector *= SprintMultiplier;
             CurrentSprint -= SprintDrain;
+            isSprinting = true;
+        }
+        else
+        {
+            isSprinting = false;
         }
 
         //actually moves the player
@@ -72,6 +81,16 @@ public class Movement : MonoBehaviour
             Playerbody.Addforce(Vector3.up * Jumpforce, Forcemode.Impulse);
         }
          */
+
+         //  Check for Movement
+        if(MoveVector != Vector3.zero)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false; 
+        }
 
         //Recovery Code
         if ((Playerbody.velocity == Vector3.zero && MaxSprint > CurrentSprint) && (SprintMode == 1 || SprintMode == 3))

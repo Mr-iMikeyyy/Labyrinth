@@ -25,6 +25,6 @@ public class MainMenuButton : MonoBehaviour
     public void ConfirmMainMenu()
     {
         
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu2");
     }
 }
