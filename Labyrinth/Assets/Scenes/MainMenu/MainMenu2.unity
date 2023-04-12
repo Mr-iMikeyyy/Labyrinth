@@ -7799,8 +7799,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2112999538}
-  - component: {fileID: 2112999537}
   - component: {fileID: 2112999536}
+  - component: {fileID: 2112999539}
   m_Layer: 0
   m_Name: SoundThingy
   m_TagString: Untagged
@@ -7820,8 +7820,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ccc63a595eac8a4facc9f74814fa8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSettings: {fileID: 2112999537}
---- !u!114 &2112999537
+  audioSettings: {fileID: 0}
+--- !u!4 &2112999538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112999535}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 490.86438, y: 282.15628, z: 2.8659337}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2112999539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7838,21 +7853,6 @@ MonoBehaviour:
   buttonHover: {fileID: 310557301}
   footsteps: {fileID: 0}
   sprintFootsteps: {fileID: 0}
---- !u!4 &2112999538
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112999535}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 490.86438, y: 282.15628, z: 2.8659337}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2116808296
 GameObject:
   m_ObjectHideFlags: 0

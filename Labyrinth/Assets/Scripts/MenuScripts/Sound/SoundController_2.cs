@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class SoundController_2 : MonoBehaviour
 {
-
+    public AudioSettings audioSettings;
+    
     void Start()
     {
         audioSettings.ambientMusic.volume = PlayerPrefs.GetFloat("musicVolume", 0.25f);

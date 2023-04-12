@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SoundController : MonoBehaviour
+public class AudioSettings : MonoBehaviour
 {
     public AudioSource ambientMusic;
     public AudioSource buttonClick;
