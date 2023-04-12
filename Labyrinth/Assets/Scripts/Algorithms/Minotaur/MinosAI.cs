@@ -1,16 +1,13 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-
-
-
-
 public class MinosAI : MonoBehaviour {
 
-    public NavMeshAgent agent;
-    public Transform player;
-    public LayerMask whatIsGround, whatIsPlayer;
-    public MinosSenses senses; 
+    private NavMeshAgent agent;
+    private Transform player;
+    private MinosSenses senses; 
+
+    private NavMeshBuilder builder;
 
 
 
@@ -19,22 +16,24 @@ public class MinosAI : MonoBehaviour {
     // Not sure on the best approach yet.
 
     //roaming
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
+    private Vector3 walkPoint;
+    private bool walkPointSet = false;
 
     //chasing
 
 
     //attacking
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    private float timeBetweenAttacks = 1f;
+    private bool alreadyAttacked = false;
 
     private void Start ()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         senses = GetComponent<MinosSenses>();
+        builder = GameObject.Find("Floor").GetComponent<NavMeshBuilder>();
+        getWalkPoint();
+        agent.SetDestination(walkPoint);
     }
 
     private void Update()
@@ -100,14 +99,6 @@ public class MinosAI : MonoBehaviour {
 
     private void getWalkPoint()
     {
-        float randomz = Random.Range(-walkPointRange, walkPointRange);
-        float randomx = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomx, transform.position.y, transform.position.z + randomz);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        {
-            walkPointSet = true;
-        }
+        walkPoint = builder.RandomNavmeshLocation(4f);
     }
 }

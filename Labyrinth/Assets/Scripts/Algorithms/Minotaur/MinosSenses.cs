@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class MinosSenses : MonoBehaviour
 {
-    public float viewRadius, viewAngle;
+    private float viewRadius = 15f;
+    private float viewAngle = 45f;
 
-    public LayerMask targetPlayer;
-    public LayerMask obstacleMask;
+    private LayerMask targetPlayer;
+    private LayerMask obstacleMask;
 
-    public GameObject player;
+    private GameObject player;
 
     [SerializeField] float attackRange = 2f;
 
@@ -19,6 +20,7 @@ public class MinosSenses : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        System.Console.WriteLine(player);
     }
 
     void Update()
@@ -26,21 +28,27 @@ public class MinosSenses : MonoBehaviour
         Vector3 playTarget = (player.transform.position - transform.position).normalized;
 
         if (Vector3.Angle(transform.forward, playTarget) < viewAngle / 2)
-    {
+        {
         float distanceToTarget = Vector3.Distance(transform.position, player.transform.position);
 
-        if (distanceToTarget < viewRadius)
-        {
-            if (Physics.Raycast(transform.position, playTarget, distanceToTarget, obstacleMask) == false)
+            if (distanceToTarget < viewRadius)
             {
-                inSight = true;
-
-                if (distanceToTarget < attackRange)
+                if (Physics.Raycast(transform.position, playTarget, distanceToTarget, obstacleMask) == false)
                 {
-                    inAttackRange = true;
+                    inSight = true;
+
+                    if (distanceToTarget < attackRange)
+                    {
+                        inAttackRange = true;
+                    }
+                    else
+                    {
+                        inAttackRange = false;
+                    }
                 }
                 else
                 {
+                    inSight = false;
                     inAttackRange = false;
                 }
             }
@@ -56,12 +64,6 @@ public class MinosSenses : MonoBehaviour
             inAttackRange = false;
         }
     }
-    else
-    {
-        inSight = false;
-        inAttackRange = false;
-    }
-}
     public bool GetInSight() {
         return inSight;
     }
