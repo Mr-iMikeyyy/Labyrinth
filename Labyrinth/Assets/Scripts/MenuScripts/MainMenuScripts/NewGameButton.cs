@@ -22,7 +22,7 @@ public class NewGameButton : MonoBehaviour
     public void StartNewGame()
     {
         MazeParams.setSize(15);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Maze gen test");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
     }
 }
 
