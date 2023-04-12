@@ -6,7 +6,8 @@ using PlayerInformation;
 public class InputManager : MonoBehaviour
 {
     PlayerControls controls; //Controller Class
-    private bool isSprinting;
+    public bool isSprinting;
+    public bool isMoving;
     private Vector2 Movement; //used to convert vector2 into vector 3 for movement
     private Vector2 PlayerCameraControls;
     private bool interact;
@@ -32,6 +33,12 @@ public class InputManager : MonoBehaviour
         //calls when button is pressed
         controls.Controls.InteractA.performed += ctx => interact = true;
         controls.Controls.InteractA.canceled += ctx => interact = false;
+
+        //rotates the current item in player inventory
+        controls.Controls.PowerupScrollLeft.performed += ctx => PlayerInventory.leftRotatePower();
+        controls.Controls.PowerupScrollRight.performed += ctx => PlayerInventory.rightRotatePower();
+
+        controls.Controls.UsePowerup.performed += ctx => usePowerup();
     }
 
 
@@ -66,5 +73,11 @@ public class InputManager : MonoBehaviour
     public bool getInteract()
     {
         return interact;
+    }
+
+    public void usePowerup()
+    {
+        UsePowerup.activate();
+        Debug.Log("working");
     }
 }
