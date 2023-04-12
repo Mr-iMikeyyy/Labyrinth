@@ -22,7 +22,7 @@ public class FootstepScript : MonoBehaviour
     // Update is called once per frame
  void Update()
     {
-        if (movementScript.isMoving && !movementScript.isSprinting)
+        if (movementScript.isMoving && !movementScript.audioSprint)
         {
             if (!footstep.enabled)
             {
@@ -33,7 +33,7 @@ public class FootstepScript : MonoBehaviour
                 sprintFootstep.enabled = false;
             }
         }
-        else if (movementScript.isMoving && movementScript.isSprinting)
+        else if (movementScript.isMoving && movementScript.audioSprint)
         {
             if(!sprintFootstep.enabled)
             {

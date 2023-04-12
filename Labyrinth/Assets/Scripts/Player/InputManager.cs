@@ -6,7 +6,8 @@ using PlayerInformation;
 public class InputManager : MonoBehaviour
 {
     PlayerControls controls; //Controller Class
-    private bool isSprinting;
+    public bool isSprinting;
+    public bool isMoving;
     private Vector2 Movement; //used to convert vector2 into vector 3 for movement
     private Vector2 PlayerCameraControls;
     private bool interact;

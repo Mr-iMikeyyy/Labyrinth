@@ -13,6 +13,7 @@ public class Movement_2 : MonoBehaviour
     private float CurrentSprint;//used to check the current amount of sprint
     public bool isSprinting;
     public bool isMoving;
+    public bool audioSprint;
 
     [SerializeField] private Transform PlayerCamera; //Camera Object
     [SerializeField] private Rigidbody Playerbody; //Player Object
@@ -70,6 +71,11 @@ public class Movement_2 : MonoBehaviour
         {
             MoveVector *= SprintMultiplier;
             CurrentSprint -= SprintDrain;
+            audioSprint = true;
+        }
+        else   
+        {
+            audioSprint = false;
         }
 
         //actually moves the player
