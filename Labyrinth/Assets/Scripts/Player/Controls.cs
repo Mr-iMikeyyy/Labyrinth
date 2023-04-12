@@ -80,6 +80,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PowerupScrollLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""09511f99-ff18-4131-861c-857ea9da1e56"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PowerupScrollRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""6bddf715-7dde-47b8-bb31-f6b339a23ad8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UsePowerup"",
+                    ""type"": ""Button"",
+                    ""id"": ""d49b9abe-1689-45d1-8fb9-cc71fe2a7f12"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -278,6 +305,72 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MenuStart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4b394f4-419b-480c-86b0-f4276cb41743"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PowerupScrollLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96c672c0-4c97-4eeb-ba42-c6fc5bc53191"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PowerupScrollLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d9705e2-6cc0-4fc0-aace-928b270f870d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PowerupScrollRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7136110-0145-4243-ab12-4bc72a76d280"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PowerupScrollRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d793472c-7334-4f29-99a8-beb82e1d3c10"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UsePowerup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed81d443-005a-49ce-a931-f75de9059256"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UsePowerup"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -569,6 +662,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Controls_InteractA = m_Controls.FindAction("InteractA", throwIfNotFound: true);
         m_Controls_CancelB = m_Controls.FindAction("CancelB", throwIfNotFound: true);
         m_Controls_MenuStart = m_Controls.FindAction("MenuStart", throwIfNotFound: true);
+        m_Controls_PowerupScrollLeft = m_Controls.FindAction("PowerupScrollLeft", throwIfNotFound: true);
+        m_Controls_PowerupScrollRight = m_Controls.FindAction("PowerupScrollRight", throwIfNotFound: true);
+        m_Controls_UsePowerup = m_Controls.FindAction("UsePowerup", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_NavigateMenu = m_UI.FindAction("NavigateMenu", throwIfNotFound: true);
@@ -642,6 +738,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Controls_InteractA;
     private readonly InputAction m_Controls_CancelB;
     private readonly InputAction m_Controls_MenuStart;
+    private readonly InputAction m_Controls_PowerupScrollLeft;
+    private readonly InputAction m_Controls_PowerupScrollRight;
+    private readonly InputAction m_Controls_UsePowerup;
     public struct ControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -652,6 +751,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @InteractA => m_Wrapper.m_Controls_InteractA;
         public InputAction @CancelB => m_Wrapper.m_Controls_CancelB;
         public InputAction @MenuStart => m_Wrapper.m_Controls_MenuStart;
+        public InputAction @PowerupScrollLeft => m_Wrapper.m_Controls_PowerupScrollLeft;
+        public InputAction @PowerupScrollRight => m_Wrapper.m_Controls_PowerupScrollRight;
+        public InputAction @UsePowerup => m_Wrapper.m_Controls_UsePowerup;
         public InputActionMap Get() { return m_Wrapper.m_Controls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -679,6 +781,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MenuStart.started += instance.OnMenuStart;
             @MenuStart.performed += instance.OnMenuStart;
             @MenuStart.canceled += instance.OnMenuStart;
+            @PowerupScrollLeft.started += instance.OnPowerupScrollLeft;
+            @PowerupScrollLeft.performed += instance.OnPowerupScrollLeft;
+            @PowerupScrollLeft.canceled += instance.OnPowerupScrollLeft;
+            @PowerupScrollRight.started += instance.OnPowerupScrollRight;
+            @PowerupScrollRight.performed += instance.OnPowerupScrollRight;
+            @PowerupScrollRight.canceled += instance.OnPowerupScrollRight;
+            @UsePowerup.started += instance.OnUsePowerup;
+            @UsePowerup.performed += instance.OnUsePowerup;
+            @UsePowerup.canceled += instance.OnUsePowerup;
         }
 
         private void UnregisterCallbacks(IControlsActions instance)
@@ -701,6 +812,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MenuStart.started -= instance.OnMenuStart;
             @MenuStart.performed -= instance.OnMenuStart;
             @MenuStart.canceled -= instance.OnMenuStart;
+            @PowerupScrollLeft.started -= instance.OnPowerupScrollLeft;
+            @PowerupScrollLeft.performed -= instance.OnPowerupScrollLeft;
+            @PowerupScrollLeft.canceled -= instance.OnPowerupScrollLeft;
+            @PowerupScrollRight.started -= instance.OnPowerupScrollRight;
+            @PowerupScrollRight.performed -= instance.OnPowerupScrollRight;
+            @PowerupScrollRight.canceled -= instance.OnPowerupScrollRight;
+            @UsePowerup.started -= instance.OnUsePowerup;
+            @UsePowerup.performed -= instance.OnUsePowerup;
+            @UsePowerup.canceled -= instance.OnUsePowerup;
         }
 
         public void RemoveCallbacks(IControlsActions instance)
@@ -796,6 +916,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnInteractA(InputAction.CallbackContext context);
         void OnCancelB(InputAction.CallbackContext context);
         void OnMenuStart(InputAction.CallbackContext context);
+        void OnPowerupScrollLeft(InputAction.CallbackContext context);
+        void OnPowerupScrollRight(InputAction.CallbackContext context);
+        void OnUsePowerup(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

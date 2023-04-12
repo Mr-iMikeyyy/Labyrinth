@@ -78,6 +78,7 @@ public class Movement_2 : MonoBehaviour
             audioSprint = false;
         }
 
+
         //actually moves the player
         Playerbody.velocity = new Vector3(MoveVector.x, Playerbody.velocity.y, MoveVector.z);
 
