@@ -10,7 +10,6 @@ public abstract class Collectible : MonoBehaviour, ICollectible
     // Start is called before the first frame update
     public void collect()
     {
-        Debug.Log("item collected");
         //Destroys the object
         Destroy(gameObject);
         //This lets other functions react to this variable activating.

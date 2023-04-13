@@ -40,17 +40,21 @@ public class MinosAI : MonoBehaviour {
     {
         if (!senses.GetInSight())
         {
+            // Debug.Log("1");
             Roaming();
         }
         else if (senses.GetInSight() && !senses.GetInAttackRange())
         {
+            // Debug.Log("2");
             ChasePlayer();
         }
         else if (senses.GetInSight() && senses.GetInAttackRange() && !alreadyAttacked)
         {
+            // Debug.Log("3");
             AttackPlayer();
         }
         else {
+            // Debug.Log("4");
             ChasePlayer();
         }
     }
@@ -100,5 +104,6 @@ public class MinosAI : MonoBehaviour {
     private void getWalkPoint()
     {
         walkPoint = builder.RandomNavmeshLocation(4f);
+        walkPointSet = true;
     }
 }

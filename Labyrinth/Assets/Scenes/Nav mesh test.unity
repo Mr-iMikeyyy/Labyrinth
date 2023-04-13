@@ -293,14 +293,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296785910}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 1, z: 0.04}
+  m_LocalRotation: {x: -0, y: 0.3380727, z: -0, w: 0.9411201}
+  m_LocalPosition: {x: 0.010000229, y: 1, z: 0.03999996}
   m_LocalScale: {x: 1.0088, y: 1.0088, z: 1.0088}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 643918176}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 39.519, z: 0}
 --- !u!1 &407250609
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 643918169}
   - component: {fileID: 643918168}
   m_Layer: 0
-  m_Name: Player (1)
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,7 +691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016621783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.33, y: 0.66, z: 23.09}
+  m_LocalPosition: {x: 5.89, y: 0.66, z: 5.43}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -732,15 +732,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7ed64fe6f9bba4c9ddeb5b1da32ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 0
-  viewAngle: 0
-  targetPlayer:
-    serializedVersion: 2
-    m_Bits: 0
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  player: {fileID: 0}
   attackRange: 2
 --- !u!114 &1016621790
 MonoBehaviour:
@@ -754,24 +745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84855cd21c6122548b9f210764e1154e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minotaurSpeed: 6
-  minotaurRotationSpeed: 8
-  attackDistance: 5
-  sightRange: 15
-  playerInAttackRange: 0
-  playerinSight: 0
-  agent: {fileID: 0}
-  player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 0
-  senses: {fileID: 0}
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 0
-  timeBetweenAttacks: 0
 --- !u!1 &1106500729
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,6 +825,8 @@ GameObject:
   - component: {fileID: 1732631574}
   - component: {fileID: 1732631573}
   - component: {fileID: 1732631572}
+  - component: {fileID: 1732631577}
+  - component: {fileID: 1732631576}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -931,13 +906,55 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732631571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55, y: 0, z: 55}
-  m_LocalScale: {x: 11, y: 1, z: 11}
+  m_LocalPosition: {x: 9.2832, y: 0, z: 13.1574}
+  m_LocalScale: {x: 2.1234035, y: 1, z: 2.4235678}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1732631576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732631571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd5d17c05eac694caf15e76bb5fab0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1732631577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732631571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: e518580ce859f7444a169f496274bef9, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &2104614933
 GameObject:
   m_ObjectHideFlags: 0

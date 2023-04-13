@@ -10,7 +10,6 @@ public class TEST_ITEM : MonoBehaviour, ICollectible
     // Start is called before the first frame update
     public void collect()
     {
-        Debug.Log("item collected");
         //Destroys the object
         PlayerInventory.addKey("White");
         Destroy(gameObject);

@@ -16,8 +16,8 @@ public class Timer : MonoBehaviour
     {
         if (isTiming)
             time += Time.deltaTime;
-        Debug.Log(time);
-        Debug.Log(isTiming);
+        // Debug.Log(time);
+        // Debug.Log(isTiming);
     }
 
     public void StartTiming()
