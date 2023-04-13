@@ -7,6 +7,14 @@ public static class PlayerStats {
     private static float HP;
     private static float MaxSprint;
     private static float Sprint;
+    private static GameObject timerObject;
+    public static Timer timer;
+
+    static PlayerStats()
+    {
+        timerObject = new GameObject("Timer");
+        timer = timerObject.AddComponent<Timer>();
+    }
 
     public static void setMaxHP(float x)
     {

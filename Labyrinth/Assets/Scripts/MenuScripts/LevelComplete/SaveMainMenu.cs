@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class SaveMainMenu : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class SaveMainMenu : MonoBehaviour
     public void OpenConfirmationBox()
     {
         confirmationMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("MainMenuYes"));
     }
 
     public void OpenMainMenu()
@@ -21,5 +23,6 @@ public class SaveMainMenu : MonoBehaviour
     {
        
         confirmationMenu.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(GameObject.Find("MainMenuButton"));
     }
 }
