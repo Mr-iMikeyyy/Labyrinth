@@ -207,12 +207,12 @@ public class MazeGenerator : MonoBehaviour {
         List<MazeNode> currentPath = new List<MazeNode>();
         List<MazeNode> completedNodes = new List<MazeNode>();
 
-        GameObject objectPrefab = objectsToPlace[0];
-        GameObject objectPrefab1 = objectsToPlace[1];
-        GameObject objectPrefab2 = objectsToPlace[2];
-        GameObject objectPrefab3 = objectsToPlace[3];
-        GameObject objectPrefab4 = objectsToPlace[4];
-        GameObject objectPrefab5 = objectsToPlace[5];
+        GameObject objectPrefab = objectsToPlace[0]; // Mud_A 
+        GameObject objectPrefab1 = objectsToPlace[1]; // mushroom_A
+        GameObject objectPrefab2 = objectsToPlace[2]; // rock_A2
+        GameObject objectPrefab3 = objectsToPlace[3]; // rock_A
+        GameObject objectPrefab4 = objectsToPlace[4]; // skull
+        GameObject objectPrefab5 = objectsToPlace[5]; // PowerUp
 
         // Create nodes (Initially all nodes will have 4 walls)
         for (int w = 0; w < size.x; w++) {
@@ -336,8 +336,6 @@ public class MazeGenerator : MonoBehaviour {
                 currentPath[currentPath.Count - 1].SetState(NodeState.Completed);
                 currentPath.RemoveAt(currentPath.Count - 1);
             }
-
-
         }
     }
 

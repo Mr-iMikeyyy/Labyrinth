@@ -11,7 +11,9 @@ public class Movement_2 : MonoBehaviour
     private float xRot;
     private float yRot;
     private float CurrentSprint;//used to check the current amount of sprint
-    private bool isSprinting;
+    public bool isSprinting;
+    public bool isMoving;
+    public bool audioSprint;
 
     [SerializeField] private Transform PlayerCamera; //Camera Object
     [SerializeField] private Rigidbody Playerbody; //Player Object
@@ -53,6 +55,9 @@ public class Movement_2 : MonoBehaviour
 
         MovePlayer();
         MoveCamera();
+        PlayerStats.setMaxSprint(MaxSprint);
+        PlayerStats.setSprint(CurrentSprint);
+        getIsMoving();
     }
 
     //code affects how the player moves
@@ -66,7 +71,13 @@ public class Movement_2 : MonoBehaviour
         {
             MoveVector *= SprintMultiplier;
             CurrentSprint -= SprintDrain;
+            audioSprint = true;
         }
+        else   
+        {
+            audioSprint = false;
+        }
+
 
         //actually moves the player
         Playerbody.velocity = new Vector3(MoveVector.x, Playerbody.velocity.y, MoveVector.z);
@@ -88,10 +99,23 @@ public class Movement_2 : MonoBehaviour
     private void MoveCamera()
     {
         xRot -= PlayerCameraControls.y * Sensitivity / 2;
-
         transform.Rotate(0f, PlayerCameraControls.x * Sensitivity / 2, 0f);
-        PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
 
+        if (xRot + PlayerCamera.rotation.x < 90 && xRot + PlayerCamera.rotation.x > -90)
+        {
+            PlayerCamera.transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+        }
+
+    }
+
+    void getIsMoving(){
+        
+        if(Playerbody.velocity == Vector3.zero){
+            isMoving = false;
+        }
+        else{
+            isMoving = true;
+        }
     }
 
    
