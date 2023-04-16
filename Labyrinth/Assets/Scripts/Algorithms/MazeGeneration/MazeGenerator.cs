@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class MazeGenerator : MonoBehaviour {
         /**
@@ -32,13 +33,136 @@ public class MazeGenerator : MonoBehaviour {
     // [SerializeField] float nodeSize;
     public GameObject[] objectsToPlace;
     public GameObject playerCharacter;
-
     // public NavMeshSurface navMeshSurface;
+    
+    public List<KeyValuePair<int, Occludee>> Occludees = new();
+
+    // Instance is needed to access the Occludees list from Occludee.cs
+    // This would be better if we had a GameManager class that could handle this instead.
+    public static MazeGenerator Instance { get; private set; }
+    private void Awake()
+    {
+        // Ensure that there is only one instance of MazeGenerator
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     private void Start() {
         GenerateMazeInstant(MazeParams.getSize(), objectsToPlace, playerCharacter);
         //StartCoroutine(GenerateMaze(mazeSize));
     }
+    private void Update()
+    {
+        // If player is moving start raycasting to find what objects to disable for occlusion culling
+        // if (playerCharacter.GetComponent<Movement_2>().GetPlayerBody().velocity.magnitude < 0.1f)
+        //     return;
+        Occlude();
+    }
+
+    private void Occlude()
+    {
+        // Define the cone angle in degrees
+        float coneAngle = 155f;
+
+        // Define the raycast distance
+        float maxDistance = 10f;
+        Vector3 coneDirection = Camera.main.transform.forward;
+
+        // Calculate the half-angle of the cone in radians
+        float halfAngle = Mathf.Deg2Rad * coneAngle * 0.5f;
+
+        // Perform a frustum cull to get all objects within the cone
+        Collider[] colliders = Physics.OverlapSphere(Camera.main.transform.position, maxDistance);
+
+        // Draw the cone
+        Vector3 rightVector = Vector3.Cross(coneDirection, Vector3.right).normalized;
+        Vector3 upVector = Vector3.Cross(rightVector, coneDirection).normalized;
+        Vector3 startPoint = Camera.main.transform.position;
+        Vector3 endPoint = startPoint + coneDirection * maxDistance;
+        float coneRadius = maxDistance * Mathf.Tan(halfAngle);
+        Vector3 upperEdge = endPoint + upVector * coneRadius;
+        Vector3 lowerEdge = endPoint - upVector * coneRadius;
+
+        Debug.DrawLine(startPoint, endPoint, Color.yellow);
+        Debug.DrawLine(startPoint, upperEdge, Color.yellow);
+        Debug.DrawLine(startPoint, lowerEdge, Color.yellow);
+        Debug.DrawLine(upperEdge, lowerEdge, Color.yellow);
+        foreach (Collider collider in colliders)
+        {
+            //(IsInCone(collider.transform.position - Camera.main.transform.position, coneDirection, halfAngle))
+            if (IsInsideCone(collider.transform.position, Camera.main.transform.position, coneDirection, coneAngle, maxDistance))
+            {
+                Debug.Log(collider.gameObject.name);
+                bool isVisible = IsVisible(collider.gameObject);
+                // if (isVisible)
+                // {
+                //     Debug.Log("Object is visible: " + collider.gameObject.name);
+                    
+                //     collider.gameObject.GetComponent<Renderer>().enabled = true;
+                // }
+                // else
+                // {
+                //     Debug.Log("Object is occluded: " + collider.gameObject.name);
+                //     collider.gameObject.GetComponent<Renderer>().enabled = false;
+                // }
+                if (!isVisible)
+                {
+                    // If the object is occluded, apply the red outline material
+                    Material outlineMaterial = Resources.Load<Material>("RedOutlineMaterial");
+                    collider.gameObject.GetComponent<Renderer>().material = outlineMaterial;
+                }
+                else
+                {
+                    // If the object is visible, apply a green material
+                    Material greenMaterial = Resources.Load<Material>("GreenMaterial");
+                    collider.gameObject.GetComponent<Renderer>().material = greenMaterial;
+                }
+            }
+        }
+    }
+
+    private bool IsInCone(Vector3 direction, Vector3 coneDirection, float halfAngle)
+    {
+        float angle = Vector3.Angle(coneDirection, direction);
+        return angle < halfAngle;
+    }
+    public static bool IsInsideCone ( Vector3 point, Vector3 coneOrigin, Vector3 coneDirection, float maxAngle, float maxDistance )
+    {
+        var distanceToConeOrigin = ( point - coneOrigin ).magnitude;
+        if ( distanceToConeOrigin < maxDistance )
+        {
+            var pointDirection = point - coneOrigin;
+            var angle = Vector3.Angle ( coneDirection, pointDirection );
+            if ( angle < maxAngle )
+                return true;
+        }
+        return false;
+    }
+    private bool IsVisible(GameObject gameObject)
+    {
+        // Create a temporary camera to perform the visibility check
+        Camera camera = new GameObject().AddComponent<Camera>();
+
+        // Set the camera's position and rotation to match the player's
+        camera.transform.position = Camera.main.transform.position;
+        camera.transform.rotation = Camera.main.transform.rotation;
+
+        // Set the camera's culling mask to only render the specified layer
+        int layerMask = 1 << gameObject.layer;
+        camera.cullingMask = layerMask;
+
+        // Check if the object is visible in the camera's view
+        Vector3 viewportPoint = camera.WorldToViewportPoint(gameObject.transform.position);
+        bool isVisible = (viewportPoint.x >= 0f && viewportPoint.x <= 1f && viewportPoint.y >= 0f && viewportPoint.y <= 1f && viewportPoint.z >= 0f);
+
+        // Destroy the temporary camera
+        Destroy(camera.gameObject);
+
+        return isVisible;
+    }
+
 
     public MazeNode GetNodeByName(List<MazeNode> nodes, int x, int y) {
         string nodeName = string.Format("Node_{0}_{1}", x, y);

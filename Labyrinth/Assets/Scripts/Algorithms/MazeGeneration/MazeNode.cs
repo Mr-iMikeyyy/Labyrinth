@@ -30,7 +30,9 @@ public class MazeNode : MonoBehaviour {
     }
 
     public void RemoveWall(int wallToRemove) {
-        walls[wallToRemove].gameObject.SetActive(false);
+        //walls[wallToRemove].gameObject.SetActive(false);
+        // If the wall is removed, you should destroy the wall instead of setting active to false.
+        Destroy(walls[wallToRemove].gameObject);
         // floor.gameObject.SetActive(true);
     }
     public void AddDoor(int wallToRemove, bool is_center_room) {

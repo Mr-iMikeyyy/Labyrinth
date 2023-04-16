@@ -99,5 +99,7 @@ public class Movement_2 : MonoBehaviour
 
     }
 
-   
+    public Rigidbody GetPlayerBody() {
+        return Playerbody;
+    }
 }
