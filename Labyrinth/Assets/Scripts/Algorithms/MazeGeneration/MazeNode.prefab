@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8775671690344581255}
   - component: {fileID: 8775671690344581252}
-  - component: {fileID: 3164532432827310061}
   m_Layer: 0
   m_Name: MazeNode
   m_TagString: Untagged
@@ -59,6 +58,7 @@ MonoBehaviour:
   Door: {fileID: 100002, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
   Ceiling: {fileID: 8205534907789392427}
   Light: {fileID: 2970420001424625756, guid: c09db1dc9ea855647951b5074a6bd706, type: 3}
+  CenterCollider: {fileID: 2092176488054550555, guid: 6396885554fc3984685452b0de080c72, type: 3}
   Table: {fileID: 100000, guid: 0ff3c7f078c0d9a4c80e10f7a91edb29, type: 3}
   Stool: {fileID: 100000, guid: d2260e8cc0733da40abaea2112e65d9c, type: 3}
   Torch: {fileID: 257793879213621040}
@@ -67,32 +67,6 @@ MonoBehaviour:
   Ladder: {fileID: 100000, guid: 3ba09df563495414ca3fcf8ea9989169, type: 3}
   floor: {fileID: 5974538617497273859}
   floorMaterial: {fileID: 2100000, guid: be58ddce4e45cba4b89fd01aa4f23446, type: 2}
---- !u!61 &3164532432827310061
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8775671690344581253}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1001 &256790489246638424
 PrefabInstance:
   m_ObjectHideFlags: 0

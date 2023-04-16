@@ -10,6 +10,7 @@ public static class PlayerStats {
     private static GameObject timerObject;
     public static Timer timer;
 
+    
     static PlayerStats()
     {
         timerObject = new GameObject("Timer");

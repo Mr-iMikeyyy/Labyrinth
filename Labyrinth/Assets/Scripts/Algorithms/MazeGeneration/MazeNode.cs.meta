@@ -3,7 +3,19 @@ guid: 38f8597eae546994eab82002299da1e2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Door: {instanceID: 0}
+  - Ceiling: {instanceID: 0}
+  - Light: {instanceID: 0}
+  - CenterCollider: {fileID: 2092176488054550555, guid: 6396885554fc3984685452b0de080c72, type: 3}
+  - Table: {instanceID: 0}
+  - Stool: {instanceID: 0}
+  - Torch: {instanceID: 0}
+  - Chest: {instanceID: 0}
+  - Latern: {instanceID: 0}
+  - Ladder: {instanceID: 0}
+  - floor: {instanceID: 0}
+  - floorMaterial: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
