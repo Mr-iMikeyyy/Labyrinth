@@ -9,6 +9,8 @@ public static class PlayerStats {
     private static float Sprint;
     private static GameObject timerObject;
     public static Timer timer;
+    private static int currentLevel = 1;
+    private static int maxLevel = 2;
 
     
     static PlayerStats()
@@ -20,6 +22,13 @@ public static class PlayerStats {
     public static void setMaxHP(float x)
     {
         MaxHP = x;
+    }
+    public static void resetCurrentLevel() {
+        currentLevel = 1;
+    }
+    public static void incrementCurrentLevel()
+    {
+        currentLevel += 1;
     }
     public static void setHP(float x)
     {
@@ -48,5 +57,13 @@ public static class PlayerStats {
     public static float getMaxSprint()
     {
         return MaxSprint;
+    }
+    public static int getCurrentLevel()
+    {
+        return currentLevel;
+    }
+    public static int getMaxLevel()
+    {
+        return maxLevel;
     }
 }

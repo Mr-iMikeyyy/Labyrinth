@@ -156,6 +156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Neg Z Top
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -212,6 +216,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: edc89b7f38231d5449d2606e44d527af, type: 3}
       propertyPath: m_Name
       value: Neg Z Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: edc89b7f38231d5449d2606e44d527af, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: edc89b7f38231d5449d2606e44d527af, type: 3}
       propertyPath: m_RootOrder
@@ -294,6 +302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pos X Top
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -351,6 +363,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Neg X Top
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -406,6 +422,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 5ca67efe11d80b148b8a350656cb158d, type: 3}
       propertyPath: m_Name
+      value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5ca67efe11d80b148b8a350656cb158d, type: 3}
+      propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5ca67efe11d80b148b8a350656cb158d, type: 3}
@@ -510,6 +530,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pos X Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: edc89b7f38231d5449d2606e44d527af, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: edc89b7f38231d5449d2606e44d527af, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -591,6 +615,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pos Z Top
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -647,6 +675,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: edc89b7f38231d5449d2606e44d527af, type: 3}
       propertyPath: m_Name
       value: Neg X Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: edc89b7f38231d5449d2606e44d527af, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: edc89b7f38231d5449d2606e44d527af, type: 3}
       propertyPath: m_RootOrder
@@ -803,6 +835,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: edc89b7f38231d5449d2606e44d527af, type: 3}
       propertyPath: m_Name
       value: Pos Z Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: edc89b7f38231d5449d2606e44d527af, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: edc89b7f38231d5449d2606e44d527af, type: 3}
       propertyPath: m_RootOrder

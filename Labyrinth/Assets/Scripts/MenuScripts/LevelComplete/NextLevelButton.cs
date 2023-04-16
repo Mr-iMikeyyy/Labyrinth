@@ -7,7 +7,9 @@ using UnityEngine.EventSystems;
 public class NextLevelButton : MonoBehaviour
 {
     public GameObject confirmationMenu;
+    
 
+    
     public void OpenConfirmationBox()
     {
         confirmationMenu.SetActive(true);
@@ -16,7 +18,13 @@ public class NextLevelButton : MonoBehaviour
 
     public void OpenNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (PlayerStats.getCurrentLevel() >= PlayerStats.getMaxLevel() ) {
+            SceneManager.LoadScene("Credits");
+        } else {
+            PlayerStats.incrementCurrentLevel();
+            SceneManager.LoadScene("Maze Gen Test");
+        }
+        
     }
 
     public void CloseConfirmationBox()
