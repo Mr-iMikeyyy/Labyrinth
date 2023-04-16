@@ -5,15 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LevelEnd/MainMenu/MainMenu.unity
     guid: 2951026f6ae3e71468fae96d5cab4553
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tutorial/Tutorial Scene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tutorial/HUD and player setup.unity
     guid: 400c6169ad0bc934988ff1812cc7ec5b
+  - enabled: 1
+    path: Assets/Scenes/MainMenu/MainMenu2.unity
+    guid: 41a0748a5babcb447a63da6925e7558a
+  - enabled: 1
+    path: Assets/Scenes/Nav mesh test/Nav mesh test.unity
+    guid: b4db14c5acd6d4e43909f6d96c6b58b1
   - enabled: 1
     path: Assets/Scenes/Tutorial/Maze Gen Test.unity
     guid: 85e5ba24c49046f4ba6b6863708f91dd
