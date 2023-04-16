@@ -13,6 +13,7 @@ public class MazeNode : MonoBehaviour {
     [SerializeField] GameObject Door;
     [SerializeField] GameObject Ceiling;
     [SerializeField] GameObject Light;
+    [SerializeField] GameObject CenterCollider;
     [SerializeField] GameObject Table;
     [SerializeField] GameObject Stool;
     [SerializeField] GameObject Torch;
@@ -84,9 +85,18 @@ public class MazeNode : MonoBehaviour {
 
         // Instantiate the table prefab at the center position
         GameObject lightObject = Instantiate(Light, floorCenter, Quaternion.identity, transform);
-        // GameObject ladderObject = Instantiate(Ladder, floorCenter, Quaternion.identity, transform);
         lightObject.name = "Light";
+
+        
+        // GameObject ladderObject = Instantiate(Ladder, floorCenter, Quaternion.identity, transform);
         // ladderObject.name = "Ladder";
+
+        GameObject collider = Instantiate(CenterCollider, floorCenter, Quaternion.identity, transform);
+        Vector3 newPos = collider.transform.position;
+        newPos.y += 0.5f;
+        collider.transform.position = newPos;
+        collider.name = "Continue";
+        
     }
 
     public void SetState(NodeState state) {

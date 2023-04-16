@@ -490,8 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79b561877f4ec18468af7d6e943d3f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelCompleteMenu: {fileID: 795225651}
-  playerCamera: {fileID: 268500560}
+  levelCompleteMenu: {fileID: 0}
 --- !u!1 &279785350
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,7 +737,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelCompleteMenu: {fileID: 795225651}
-  playerCamera: {fileID: 268500560}
 --- !u!1 &349524680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,7 +1308,6 @@ GameObject:
   - component: {fileID: 795225654}
   - component: {fileID: 795225653}
   - component: {fileID: 795225652}
-  - component: {fileID: 795225656}
   m_Layer: 5
   m_Name: LevelCompleteMenu
   m_TagString: Untagged
@@ -1403,20 +1400,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &795225656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795225651}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79b561877f4ec18468af7d6e943d3f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelCompleteMenu: {fileID: 795225651}
-  playerCamera: {fileID: 268500560}
 --- !u!1 &832060314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,7 +2162,6 @@ GameObject:
   - component: {fileID: 1498503339}
   - component: {fileID: 1498503341}
   - component: {fileID: 1498503340}
-  - component: {fileID: 1498503343}
   m_Layer: 0
   m_Name: LevelCompleteMenuContainer
   m_TagString: Untagged
@@ -2199,8 +2181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79b561877f4ec18468af7d6e943d3f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelCompleteMenu: {fileID: 795225651}
-  playerCamera: {fileID: 268500560}
+  levelCompleteMenu: {fileID: 0}
 --- !u!114 &1498503340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2266,20 +2247,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1498503343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1498503337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79b561877f4ec18468af7d6e943d3f63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelCompleteMenu: {fileID: 795225651}
-  playerCamera: {fileID: 268500560}
 --- !u!1 &1603228056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,6 +2942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 958e57a2ab353a745905416f4e3994f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSprinting: 0
+  isMoving: 0
 --- !u!114 &1949315059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2987,6 +2956,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c3b23b3d0e3c684497aa178c89f8494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSprinting: 0
+  isMoving: 0
+  audioSprint: 0
   PlayerCamera: {fileID: 268500563}
   Playerbody: {fileID: 1949315060}
   Speed: 5
@@ -3104,8 +3076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79b561877f4ec18468af7d6e943d3f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelCompleteMenu: {fileID: 795225651}
-  playerCamera: {fileID: 268500560}
+  levelCompleteMenu: {fileID: 0}
 --- !u!1 &2048363433
 GameObject:
   m_ObjectHideFlags: 0
