@@ -15,7 +15,6 @@ public class GameOverMenu : MonoBehaviour
         {
             isGameOver = true;
             Time.timeScale = 0;
-            playerCamera.SetActive(false);
             gameOverMenu.SetActive(true);
 
             EventSystem.current.SetSelectedGameObject(GameObject.Find("ReturnButton"));
