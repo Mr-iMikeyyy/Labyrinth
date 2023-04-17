@@ -359,6 +359,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f5997804875ae5742b5619958df4af88, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
 --- !u!1 &44310520
@@ -3009,26 +3013,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: -89.997, z: 0}
---- !u!1 &472936681 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100002, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
-  m_PrefabInstance: {fileID: 12156029}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &472936682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 472936681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02095de9487f7864c8f61acc61cebce4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptMessage: 
-  keyType: White
-  doorAnimator: {fileID: 472936683}
 --- !u!95 &472936683 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
@@ -6411,6 +6395,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1137148661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
+  m_PrefabInstance: {fileID: 12156029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1137148665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137148661}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99999994, y: 2.15, z: 0.16499996}
+  m_Center: {x: 0.48499998, y: 1.075, z: 0.049999997}
+--- !u!114 &1137148666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137148661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02095de9487f7864c8f61acc61cebce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: 
+  keyType: White
+  doorAnimator: {fileID: 472936683}
 --- !u!1 &1149296505
 GameObject:
   m_ObjectHideFlags: 0
