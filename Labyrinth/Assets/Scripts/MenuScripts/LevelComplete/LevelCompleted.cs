@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using PlayerInformation;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace PlayerInformation
 {
@@ -32,9 +33,13 @@ namespace PlayerInformation
 
         private void ShowLevelCompleteMenu()
         {
-            levelCompleteMenu.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(GameObject.Find("NextLevelButton"));
+            if (PlayerStats.getCurrentLevel() >= PlayerStats.getMaxLevel()) {
+                SceneManager.LoadScene("Credits");
+            } else{
+                levelCompleteMenu.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(GameObject.Find("NextLevelButton"));
+            }
         }
     }
 }
