@@ -72,4 +72,8 @@ public static class PlayerStats {
     {
         return timer;
     }
+    public static GameObject getTimerObject()
+    {
+        return timerObject;
+    }
 }
