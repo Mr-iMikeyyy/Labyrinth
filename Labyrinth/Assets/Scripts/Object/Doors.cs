@@ -21,7 +21,8 @@ public class Doors : Interactable
         {
             PlayerInventory.removeKey(keyType);
             // Destroy(gameObject);
-            doorAnimator.SetTrigger("DoorATrigger");
+            // doorAnimator.SetTrigger("DoorATrigger");
+            doorAnimator.Play("DoorATrigger");
         }
     }
 }

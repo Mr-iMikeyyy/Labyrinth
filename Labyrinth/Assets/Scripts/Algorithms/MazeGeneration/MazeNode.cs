@@ -26,6 +26,7 @@ public class MazeNode : MonoBehaviour {
     private void Awake() {
         floor.gameObject.SetActive(true);
         Ladder.gameObject.SetActive(false);
+        
         // Light.gameObject.SetActive(false);
         // floor.material = floorMaterial; // set the floor material
     }
@@ -67,8 +68,8 @@ public class MazeNode : MonoBehaviour {
         Chest.transform.rotation = Quaternion.Euler(chestRotation);
 
         // Scale the chest GameObject by 50% in all directions
-        Vector3 chestScale = Chest.transform.localScale * 0.5f;
-        Chest.transform.localScale = chestScale;
+        // Vector3 chestScale = Chest.transform.localScale * 0.5f;
+        // Chest.transform.localScale = chestScale;
         // Instantiate a new chest object at the calculated position
         GameObject chestObject = Instantiate(Chest, chestPos, Quaternion.identity);
 
