@@ -21,7 +21,6 @@ public class SaveMainMenu : MonoBehaviour
 
     public void CloseConfirmationBox()
     {
-       
         confirmationMenu.SetActive(false);
         EventSystem.current.SetSelectedGameObject(GameObject.Find("MainMenuButton"));
     }

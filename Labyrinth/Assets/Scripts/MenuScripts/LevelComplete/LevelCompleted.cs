@@ -18,7 +18,6 @@ namespace PlayerInformation
         void Start()
         {
             playerCamera = GameObject.Find("Main Camera");
-
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -33,6 +32,10 @@ namespace PlayerInformation
 
         private void ShowLevelCompleteMenu()
         {
+            // Upon level completion the player's time is saved and the level complete menu is shown.
+            PlayerStats.getTimer().PauseTiming();
+            PlayerStats.getTimer().SaveLevelTime(PlayerStats.Name, PlayerStats.getCurrentLevel());
+
             if (PlayerStats.getCurrentLevel() >= PlayerStats.getMaxLevel()) {
                 SceneManager.LoadScene("Credits");
             } else{

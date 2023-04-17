@@ -21,10 +21,12 @@ public class NextLevelButton : MonoBehaviour
         if (PlayerStats.getCurrentLevel() >= PlayerStats.getMaxLevel() ) {
             SceneManager.LoadScene("Credits");
         } else {
+            // Reset the timer and increment the current level.
+            PlayerStats.getTimer().ResetTimer();
+
             PlayerStats.incrementCurrentLevel();
             SceneManager.LoadScene("Maze Gen Test");
         }
-        
     }
 
     public void CloseConfirmationBox()

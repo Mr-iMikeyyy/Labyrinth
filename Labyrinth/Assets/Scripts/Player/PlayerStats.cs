@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class PlayerStats {
+    
+    public static string Name { get; set; }
+    public static Timer timer { get; set; }
     private static float MaxHP;
     private static float HP;
     private static float MaxSprint;
     private static float Sprint;
     private static GameObject timerObject;
-    public static Timer timer;
     private static int currentLevel = 1;
     private static int maxLevel = 2;
 
@@ -65,5 +67,9 @@ public static class PlayerStats {
     public static int getMaxLevel()
     {
         return maxLevel;
+    }
+    public static Timer getTimer()
+    {
+        return timer;
     }
 }

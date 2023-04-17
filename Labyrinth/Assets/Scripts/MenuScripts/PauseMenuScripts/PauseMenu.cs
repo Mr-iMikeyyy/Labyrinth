@@ -21,7 +21,7 @@ using UnityEngine.EventSystems;
                 if (isPaused)
                 {
                     pauseMenu.SetActive(true);
-                    PlayerStats.timer.PauseTiming();
+                    PlayerStats.getTimer().PauseTiming();
                     EventSystem.current.SetSelectedGameObject(GameObject.Find("ResumeGameButton"));
                     Time.timeScale = 0;
                 }
@@ -29,7 +29,7 @@ using UnityEngine.EventSystems;
                 {
                 
                     pauseMenu.SetActive(false);
-                    PlayerStats.timer.StartTiming();
+                    PlayerStats.getTimer().StartTiming();
                     Time.timeScale = 1;
                 }
             }
