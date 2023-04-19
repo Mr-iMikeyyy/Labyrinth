@@ -29,7 +29,7 @@ public class MazeNode : MonoBehaviour {
     private void Awake() {
         floor.gameObject.SetActive(true);
         Ladder.gameObject.SetActive(false);
-        surface = GetComponent()
+        
         // Light.gameObject.SetActive(false);
         // floor.material = floorMaterial; // set the floor material
     }

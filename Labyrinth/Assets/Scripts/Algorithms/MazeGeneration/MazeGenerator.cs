@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+using Unity.AI.Navigation;
 
 public class MazeGenerator : MonoBehaviour {
         /**
@@ -33,26 +33,26 @@ public class MazeGenerator : MonoBehaviour {
     public GameObject[] objectsToPlace;
     public GameObject playerCharacter;
     public GameObject enemyCharacter;
-    private MazeNode[] completedMazeNodes;
+    private List<MazeNode> completedMazeNodes;
 
-    private NavMeshSurface[] navMeshSurfaces;
+    private List<NavMeshSurface> navMeshSurfaces;
 
     private void Start() {
         GenerateMazeInstant(MazeParams.getSize(), objectsToPlace, playerCharacter);
-        BakeMesh()
-        InstantiateMino()
+        BakeMesh();
+        InstantiateMino();
         //StartCoroutine(GenerateMaze(mazeSize));
     }
 
     private void BakeMesh() {
         // Add each MazeNode mesh surface to local array or surfaces
         foreach (MazeNode node in completedMazeNodes) {
-            NavMeshSurface surface = node.GetNavMeshSurface;
-            navMeshSurfaces.add(surface);
+            NavMeshSurface surface = node.GetComponentInChildren<NavMeshSurface>();
+            navMeshSurfaces.Add(surface);
         }
 
         // Bake the Mesh
-        for (int i = 0; i < navMeshSurfaces.Length; i++) {
+        for (int i = 0; i < navMeshSurfaces.Count; i++) {
             navMeshSurfaces[i].BuildNavMesh();
         }
 
@@ -356,7 +356,7 @@ public class MazeGenerator : MonoBehaviour {
             else {
                 completedNodes.Add(currentPath[currentPath.Count - 1]);
                 // Local array for NavMesh baking
-                completedMazeNodes.Add(urrentPath[currentPath.Count - 1]);
+                completedMazeNodes.Add(currentPath[currentPath.Count - 1]);
                 currentPath[currentPath.Count - 1].SetState(NodeState.Completed);
                 currentPath.RemoveAt(currentPath.Count - 1);
             }
