@@ -47,14 +47,14 @@ public class NewGameButton : MonoBehaviour
 
     public void ValidateName()
     {
-        // PlayerStats.Name = NameInputField.text;
-        // if (PlayerStats.Name == "")
-        // {
-        //     // make input box outlined in red and say "Please enter a name"
-        //     NameInputField.text = "Please enter a name";
-        //     NameInputField.textComponent.color = Color.red;
-        //     return;
-        // }
+        PlayerStats.Name = NameInputField.text;
+        if (PlayerStats.Name == "")
+        {
+            // make input box outlined in red and say "Please enter a name"
+            NameInputField.text = "Please enter a name";
+            NameInputField.textComponent.color = Color.red;
+            return;
+        }
         StartNewGame();
     }
 

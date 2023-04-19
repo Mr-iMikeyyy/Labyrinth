@@ -491,6 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelCompleteMenu: {fileID: 0}
+  CompletedTime: {fileID: 0}
 --- !u!1 &279785350
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelCompleteMenu: {fileID: 795225651}
+  CompletedTime: {fileID: 279785352}
 --- !u!1 &349524680
 GameObject:
   m_ObjectHideFlags: 0
@@ -2182,6 +2184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelCompleteMenu: {fileID: 0}
+  CompletedTime: {fileID: 279785352}
 --- !u!114 &1498503340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3077,6 +3080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelCompleteMenu: {fileID: 0}
+  CompletedTime: {fileID: 0}
 --- !u!1 &2048363433
 GameObject:
   m_ObjectHideFlags: 0

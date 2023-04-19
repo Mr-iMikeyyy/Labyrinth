@@ -45,7 +45,8 @@ public class Timer : MonoBehaviour
         string scores = PlayerPrefs.GetString("HighScores");
         
         List<HighScore> highScores = new List<HighScore>();
-        highScores = JsonUtility.FromJson<List<HighScore>>(scores);
+        if (!string.IsNullOrEmpty(scores))
+            highScores = JsonUtility.FromJson<List<HighScore>>(scores);
         
         // Add new score
         highScores.Add(new HighScore(name, level, time));
@@ -68,4 +69,5 @@ public class Timer : MonoBehaviour
         scores = JsonUtility.ToJson(highScores);
         PlayerPrefs.SetString("HighScores", scores);
     }
+
 }

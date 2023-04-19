@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using PlayerInformation;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace PlayerInformation
 {
@@ -12,6 +13,7 @@ namespace PlayerInformation
     {
         [SerializeField] private GameObject levelCompleteMenu;
         private GameObject playerCamera;
+        public TMP_Text CompletedTime;
 
         private bool isCompleted = false;
 
@@ -42,6 +44,12 @@ namespace PlayerInformation
                 levelCompleteMenu.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(GameObject.Find("NextLevelButton"));
+                CompletedTime.text = string.Format(
+                    "{0:00}:{1:00}:{2:00}",
+                    PlayerStats.getTimer().GetTime() / 3600,
+                    PlayerStats.getTimer().GetTime() / 60,
+                    PlayerStats.getTimer().GetTime() % 60
+                );
             }
         }
     }
