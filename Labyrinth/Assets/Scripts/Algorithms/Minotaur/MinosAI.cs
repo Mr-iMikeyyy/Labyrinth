@@ -2,12 +2,10 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class MinosAI : MonoBehaviour {
-
-    private NavMeshAgent agent;
     private Transform player;
     private MinosSenses senses; 
 
-    private NavMeshBuilder builder;
+    // private UnityEngine.AI.NavMesh minosNavMesh;
 
 
 
@@ -29,11 +27,11 @@ public class MinosAI : MonoBehaviour {
     private void Start ()
     {
         player = GameObject.Find("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
+        // agent = GetComponent<NavMeshAgent>();
         senses = GetComponent<MinosSenses>();
-        builder = GameObject.Find("Floor").GetComponent<NavMeshBuilder>();
+        
         getWalkPoint();
-        agent.SetDestination(walkPoint);
+        // agent.SetDestination(walkPoint);
     }
 
     private void Update()
@@ -61,7 +59,7 @@ public class MinosAI : MonoBehaviour {
 
     private void ChasePlayer() {
         // The Minotaur should be slightly faster than the player
-        agent.SetDestination(player.position);
+        // agent.SetDestination(player.position);
             
     }
 
@@ -73,7 +71,7 @@ public class MinosAI : MonoBehaviour {
         }
         if (walkPointSet)
         {
-            agent.SetDestination(walkPoint);
+            // agent.SetDestination(walkPoint);
         }
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
@@ -86,7 +84,7 @@ public class MinosAI : MonoBehaviour {
 
     private void AttackPlayer()
     {
-        agent.SetDestination(transform.position);
+        // agent.SetDestination(transform.position);
         transform.LookAt(player);
 
         if (!alreadyAttacked)
@@ -103,7 +101,7 @@ public class MinosAI : MonoBehaviour {
 
     private void getWalkPoint()
     {
-        walkPoint = builder.RandomNavmeshLocation(4f);
+        // walkPoint = builder.RandomNavmeshLocation(4f);
         walkPointSet = true;
     }
 }
