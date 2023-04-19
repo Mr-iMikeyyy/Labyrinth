@@ -32,6 +32,7 @@ public class MazeGenerator : MonoBehaviour {
     // [SerializeField] float nodeSize;
     public GameObject[] objectsToPlace;
     public GameObject playerCharacter;
+    public GameObject enemyCharacter;
     private MazeNode[] completedMazeNodes;
 
     private NavMeshSurface[] navMeshSurfaces;
