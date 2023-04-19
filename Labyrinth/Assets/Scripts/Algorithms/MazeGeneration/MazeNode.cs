@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.AI.Navigation;
+using UnityEngine.AI;
 
 public enum NodeState {
     Available,
@@ -23,15 +24,18 @@ public class MazeNode : MonoBehaviour {
     [SerializeField] GameObject Ladder;
     [SerializeField] MeshRenderer floor;
     [SerializeField] Material floorMaterial;
-    private NavMeshSurface navmesh;
+    public NavMeshSurface surface;
 
     private void Awake() {
         floor.gameObject.SetActive(true);
         Ladder.gameObject.SetActive(false);
-        
-        
+        surface = GetComponent()
         // Light.gameObject.SetActive(false);
         // floor.material = floorMaterial; // set the floor material
+    }
+
+    public NavMeshSurface GetNavMeshSurface(){
+        return surface;
     }
 
     public void RemoveWall(int wallToRemove) {

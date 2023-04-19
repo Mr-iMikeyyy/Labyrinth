@@ -32,12 +32,34 @@ public class MazeGenerator : MonoBehaviour {
     // [SerializeField] float nodeSize;
     public GameObject[] objectsToPlace;
     public GameObject playerCharacter;
+    private MazeNode[] completedMazeNodes;
 
-    // public NavMeshSurface navMeshSurface;
+    private NavMeshSurface[] navMeshSurfaces;
 
     private void Start() {
         GenerateMazeInstant(MazeParams.getSize(), objectsToPlace, playerCharacter);
+        BakeMesh()
+        InstantiateMino()
         //StartCoroutine(GenerateMaze(mazeSize));
+    }
+
+    private void BakeMesh() {
+        // Add each MazeNode mesh surface to local array or surfaces
+        foreach (MazeNode node in completedMazeNodes) {
+            NavMeshSurface surface = node.GetNavMeshSurface;
+            navMeshSurfaces.add(surface);
+        }
+
+        // Bake the Mesh
+        for (int i = 0; i < navMeshSurfaces.Length; i++) {
+            navMeshSurfaces[i].BuildNavMesh();
+        }
+
+    }
+
+    private void InstantiateMino() {
+        
+
     }
 
     public MazeNode GetNodeByName(List<MazeNode> nodes, int x, int y) {
@@ -332,7 +354,8 @@ public class MazeGenerator : MonoBehaviour {
             }
             else {
                 completedNodes.Add(currentPath[currentPath.Count - 1]);
-
+                // Local array for NavMesh baking
+                completedMazeNodes.Add(urrentPath[currentPath.Count - 1]);
                 currentPath[currentPath.Count - 1].SetState(NodeState.Completed);
                 currentPath.RemoveAt(currentPath.Count - 1);
             }
