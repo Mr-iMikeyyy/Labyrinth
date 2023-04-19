@@ -34,7 +34,7 @@ public class MazeGenerator : MonoBehaviour {
     public GameObject playerCharacter;
     public GameObject enemyCharacter;
     private List<MazeNode> completedMazeNodes;
-
+    private List<MazeNode> roomNodes;
     private List<NavMeshSurface> navMeshSurfaces;
 
     private void Start() {
@@ -59,7 +59,8 @@ public class MazeGenerator : MonoBehaviour {
     }
 
     private void InstantiateMino() {
-        
+        MazeNode nodeToPlaceMino = GetNodeByName(completedMazeNodes, mazeSize.x, mazeSize.y)
+        enemyCharacter.transform.position = 
 
     }
 
