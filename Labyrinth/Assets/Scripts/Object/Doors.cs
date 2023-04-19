@@ -6,6 +6,7 @@ public class Doors : Interactable
 {
     [SerializeField] public string keyType;
     [SerializeField] private Animator doorAnimator;
+    private Collider thiscoll;
 
     void Start()
     {
@@ -13,6 +14,7 @@ public class Doors : Interactable
         {
             keyType = "White";
         }
+        thiscoll = GetComponent<Collider>();
     }
 
     override protected void Interact()
@@ -21,8 +23,8 @@ public class Doors : Interactable
         {
             PlayerInventory.removeKey(keyType);
             // Destroy(gameObject);
-            // doorAnimator.SetTrigger("DoorAOpen");
-            doorAnimator.Play("DoorAOpen");
+            doorAnimator.Play("door opening");
+            thiscoll.enabled = false;
         }
     }
 }
