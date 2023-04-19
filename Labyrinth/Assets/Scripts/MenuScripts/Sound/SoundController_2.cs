@@ -11,6 +11,8 @@ public class SoundController_2 : MonoBehaviour
         audioSettings.buttonHover.volume = PlayerPrefs.GetFloat("sfxVolume", 0.25f);
         audioSettings.footsteps.volume = PlayerPrefs.GetFloat("sfxVolume", 0.25f);
         audioSettings.sprintFootsteps.volume = PlayerPrefs.GetFloat("sfxVolume", 0.25f); 
+        audioSettings.breathing.volume = PlayerPrefs.GetFloat("sfxVolume", 0.25f);
+        audioSettings.noStaminaBreathing.volume = PlayerPrefs.GetFloat("sfxVolume", 0.25f);
     }
 
 }

@@ -33,6 +33,7 @@ public class Movement : MonoBehaviour
     // Checks if player is moving and/or sprinting
     public bool isMoving;
     public bool isSprinting; 
+    public bool noStaminaAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +71,15 @@ public class Movement : MonoBehaviour
         else
         {
             isSprinting = false;
+        }
+
+        if(CurrentSprint == 0)
+        {
+            noStaminaAudio = true; 
+        }
+        else
+        {
+            noStaminaAudio = false;
         }
 
         //actually moves the player

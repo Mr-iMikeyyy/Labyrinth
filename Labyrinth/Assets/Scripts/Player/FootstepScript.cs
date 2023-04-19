@@ -8,13 +8,21 @@ public class FootstepScript : MonoBehaviour
 
     public AudioSource sprintFootstep;
 
+    public AudioSource runBreathing;
+
+    public AudioSource noStamina;
+
     private Movement_2 movementScript;
+
+    private bool isPlayingNoStaminaAudio = false;
 
     // Start is called before the first frame update
     void Start()
     {
         footstep.enabled = false;
         sprintFootstep.enabled = false;
+        runBreathing.enabled = false;
+        noStamina.enabled = false;
 
         movementScript = GetComponent<Movement_2>();
     }
@@ -31,6 +39,7 @@ public class FootstepScript : MonoBehaviour
             if (sprintFootstep.enabled)
             {
                 sprintFootstep.enabled = false;
+                runBreathing.enabled = false;
             }
         }
         else if (movementScript.isMoving && movementScript.audioSprint)
@@ -38,6 +47,7 @@ public class FootstepScript : MonoBehaviour
             if(!sprintFootstep.enabled)
             {
                 sprintFootstep.enabled = true;
+                runBreathing.enabled = true;
             }
             if (footstep.enabled)
             {
@@ -54,7 +64,20 @@ public class FootstepScript : MonoBehaviour
             if (sprintFootstep.enabled)
             {
                 sprintFootstep.enabled = false;
+                runBreathing.enabled = false;
             }
+        }
+        
+        if(movementScript.noStaminaAudio && !isPlayingNoStaminaAudio)
+        {
+            noStamina.enabled = true;
+            noStamina.Play();
+            isPlayingNoStaminaAudio = true;
+        }
+        else if(!movementScript.noStaminaAudio && isPlayingNoStaminaAudio)
+        {
+            noStamina.enabled = false;
+            isPlayingNoStaminaAudio = false;
         }
     }
 }

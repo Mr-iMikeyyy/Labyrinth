@@ -14,6 +14,7 @@ public class Movement_2 : MonoBehaviour
     public bool isSprinting;
     public bool isMoving;
     public bool audioSprint;
+    public bool noStaminaAudio;
 
     [SerializeField] private Transform PlayerCamera; //Camera Object
     [SerializeField] private Rigidbody Playerbody; //Player Object
@@ -76,6 +77,16 @@ public class Movement_2 : MonoBehaviour
         else   
         {
             audioSprint = false;
+        }
+        
+        if(CurrentSprint <= 0.001f)
+        {
+            noStaminaAudio = true;
+            Debug.Log("No Stamina Left");
+        }
+        if(CurrentSprint >= MaxSprint)
+        {
+            noStaminaAudio = false;
         }
 
 
