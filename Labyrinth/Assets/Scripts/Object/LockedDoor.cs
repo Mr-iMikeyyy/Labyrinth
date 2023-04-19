@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Doors : Interactable
+public class LockedDoor : Interactable
 {
     [SerializeField] public string keyType;
     [SerializeField] private Animator doorAnimator;
