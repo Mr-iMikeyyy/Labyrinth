@@ -38,7 +38,7 @@ public class MazeGenerator : MonoBehaviour {
     private List<NavMeshSurface> navMeshSurfaces;
 
     private void Start() {
-        GenerateMazeInstant(MazeParams.getSize(), objectsToPlace, playerCharacter);
+        completedMazeNodes = GenerateMazeInstant(MazeParams.getSize(), objectsToPlace, playerCharacter);
         BakeMesh();
         InstantiateMino();
         //StartCoroutine(GenerateMaze(mazeSize));
@@ -59,8 +59,8 @@ public class MazeGenerator : MonoBehaviour {
     }
 
     private void InstantiateMino() {
-        MazeNode nodeToPlaceMino = GetNodeByName(completedMazeNodes, mazeSize.x, mazeSize.y)
-        enemyCharacter.transform.position = nodeToPlaceMino.transform.position
+        MazeNode nodeToPlaceMino = GetNodeByName(completedMazeNodes, mazeSize.x, mazeSize.y);
+        enemyCharacter.transform.position = nodeToPlaceMino.transform.position;
 
     }
 
@@ -226,7 +226,7 @@ public class MazeGenerator : MonoBehaviour {
         }
     }
 
-    void GenerateMazeInstant(Vector2Int size, GameObject[] objectsToPlace, GameObject playerCharacter) {
+    List<MazeNode> GenerateMazeInstant(Vector2Int size, GameObject[] objectsToPlace, GameObject playerCharacter) {
         List<MazeNode> nodes = new List<MazeNode>();
         List<MazeNode> currentPath = new List<MazeNode>();
         List<MazeNode> completedNodes = new List<MazeNode>();
@@ -357,11 +357,12 @@ public class MazeGenerator : MonoBehaviour {
             else {
                 completedNodes.Add(currentPath[currentPath.Count - 1]);
                 // Local array for NavMesh baking
-                completedMazeNodes.Add(currentPath[currentPath.Count - 1]);
+                // completedMazeNodes.Add(currentPath[currentPath.Count - 1]);
                 currentPath[currentPath.Count - 1].SetState(NodeState.Completed);
                 currentPath.RemoveAt(currentPath.Count - 1);
             }
         }
+        return completedNodes;
     }
 
     IEnumerator GenerateMaze(Vector2Int size)
