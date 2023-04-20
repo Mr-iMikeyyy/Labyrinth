@@ -186,7 +186,7 @@ public class MazeGenerator : MonoBehaviour {
             }
             float x = UnityEngine.Random.Range(minX, maxX);
             float z = UnityEngine.Random.Range(minZ, maxZ);
-            GameObject newObject = Instantiate(objectPrefab, new Vector3(x, 0, z), Quaternion.identity);
+            GameObject newObject = Instantiate(objectPrefab, new Vector3(x, 0, z), Quaternion.Euler(0, Random.Range(0, 360), 0));
 
             if (add_gravity) {
                 // Add Rigidbody component and enable gravity
