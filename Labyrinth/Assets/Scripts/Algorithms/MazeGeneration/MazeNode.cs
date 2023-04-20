@@ -10,7 +10,8 @@ public enum NodeState {
 
 public class MazeNode : MonoBehaviour {
     [SerializeField] GameObject[] walls;
-    [SerializeField] GameObject Door;
+    [SerializeField] GameObject LockedDoor;
+    [SerializeField] GameObject UnlockedDoor;
     [SerializeField] GameObject Ceiling;
     [SerializeField] GameObject Light;
     [SerializeField] GameObject CenterCollider;
@@ -22,6 +23,7 @@ public class MazeNode : MonoBehaviour {
     [SerializeField] GameObject Ladder;
     [SerializeField] MeshRenderer floor;
     [SerializeField] Material floorMaterial;
+    private GameObject doorObject;
 
     private void Awake() {
         floor.gameObject.SetActive(true);
@@ -39,7 +41,14 @@ public class MazeNode : MonoBehaviour {
         Vector3 wallPosition = walls[wallToRemove].transform.position;
         Quaternion wallRotation = walls[wallToRemove].transform.rotation;
         Destroy(walls[wallToRemove].gameObject);
-        GameObject doorObject = Instantiate(Door, wallPosition, wallRotation, transform);
+        if (is_center_room)
+        {
+            doorObject = Instantiate(LockedDoor, wallPosition, wallRotation, transform);
+        }
+        else
+        {
+            doorObject = Instantiate(UnlockedDoor, wallPosition, wallRotation, transform);
+        }
         doorObject.name = "Door";
         if (is_center_room) {
 

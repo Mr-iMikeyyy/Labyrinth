@@ -55,14 +55,15 @@ MonoBehaviour:
   - {fileID: 6546145013654945897}
   - {fileID: 8599071040574123600}
   - {fileID: 2060056372759609396}
-  Door: {fileID: 100002, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
+  LockedDoor: {fileID: 8859436034979542030, guid: 28e8143880107994a899759b1e98eb34, type: 3}
+  UnlockedDoor: {fileID: 1751754486744676352, guid: 4876c29c8e7a6de4d814c0e47d11dee2, type: 3}
   Ceiling: {fileID: 8205534907789392427}
   Light: {fileID: 2970420001424625756, guid: c09db1dc9ea855647951b5074a6bd706, type: 3}
   CenterCollider: {fileID: 2092176488054550555, guid: 6396885554fc3984685452b0de080c72, type: 3}
   Table: {fileID: 100000, guid: 0ff3c7f078c0d9a4c80e10f7a91edb29, type: 3}
   Stool: {fileID: 100000, guid: d2260e8cc0733da40abaea2112e65d9c, type: 3}
   Torch: {fileID: 257793879213621040}
-  Chest: {fileID: 100000, guid: 7810fdb93000ac64ab00c2345b97634b, type: 3}
+  Chest: {fileID: 1890061786622724496, guid: 87e1d9adb459b5c4bbaf6ce7b5cc86e7, type: 3}
   Latern: {fileID: 100000, guid: d8a74945658b380478d7a378c1819582, type: 3}
   Ladder: {fileID: 100000, guid: 3ba09df563495414ca3fcf8ea9989169, type: 3}
   floor: {fileID: 5974538617497273859}
