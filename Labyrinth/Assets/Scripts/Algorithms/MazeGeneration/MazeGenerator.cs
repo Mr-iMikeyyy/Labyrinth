@@ -39,7 +39,7 @@ public class MazeGenerator : MonoBehaviour {
 
     private void Start() {
         completedMazeNodes = GenerateMazeInstant(MazeParams.getSize(), objectsToPlace, playerCharacter);
-        BakeMesh();
+        // BakeMesh();
         InstantiateMino();
         //StartCoroutine(GenerateMaze(mazeSize));
     }
@@ -59,7 +59,9 @@ public class MazeGenerator : MonoBehaviour {
     }
 
     private void InstantiateMino() {
-        MazeNode nodeToPlaceMino = GetNodeByName(completedMazeNodes, mazeSize.x, mazeSize.y);
+        MazeNode nodeToPlaceMino = GetNodeByName(completedMazeNodes, MazeParams.getSize().x - 1, 0);
+        Debug.Log("maze x = " + mazeSize.x);
+        Debug.Log("maze y = " + mazeSize.y);
         enemyCharacter.transform.position = nodeToPlaceMino.transform.position;
 
     }
