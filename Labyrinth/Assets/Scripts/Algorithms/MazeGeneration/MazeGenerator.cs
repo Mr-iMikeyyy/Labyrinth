@@ -60,7 +60,7 @@ public class MazeGenerator : MonoBehaviour {
 
     private void InstantiateMino() {
         MazeNode nodeToPlaceMino = GetNodeByName(completedMazeNodes, mazeSize.x, mazeSize.y)
-        enemyCharacter.transform.position = 
+        enemyCharacter.transform.position = nodeToPlaceMino.transform.position
 
     }
 
