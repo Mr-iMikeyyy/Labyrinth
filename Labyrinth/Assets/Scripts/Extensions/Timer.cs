@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour
 {
     float time = 0.0f;
     bool isTiming = false;
+    private const int MAX_HIGH_SCORES = 3;
 
     // Cleans up the timer when the scene is loaded and starts the timer.
     private void Start()
@@ -42,15 +43,23 @@ public class Timer : MonoBehaviour
 
     public void SaveLevelTime(string name, int level)
     {
-        string scores = PlayerPrefs.GetString("HighScores");
-        
         List<HighScore> highScores = new List<HighScore>();
+
+        string scores = PlayerPrefs.GetString("HighScores");
         if (!string.IsNullOrEmpty(scores))
+        {
             highScores = JsonUtility.FromJson<List<HighScore>>(scores);
-        
+        }
+
         // Add new score
         highScores.Add(new HighScore(name, level, time));
-        
+
+        // debug the highScores list
+        foreach(HighScore hs in highScores)
+        {
+            Debug.Log("Name: " + hs.name + ", Level: " + hs.level + ", Time: " + hs.time);
+        }
+
         // bubble sort the high scores
         for (int i = 0; i < highScores.Count; i++)
         {
@@ -65,9 +74,20 @@ public class Timer : MonoBehaviour
             }
         }
 
-        // save the high scores
-        scores = JsonUtility.ToJson(highScores);
-        PlayerPrefs.SetString("HighScores", scores);
+        // debugging
+        for (int i = 0; i < highScores.Count; i++)
+        {
+            Debug.Log("Name: " + highScores[i].name + ", Level: " + highScores[i].level + ", Time: " + highScores[i].time);
+        }
+        if (highScores.Count > MAX_HIGH_SCORES)
+        {
+            highScores.RemoveAt(MAX_HIGH_SCORES);
+        }
+
+        // Save the high scores
+        string updatedScores = JsonUtility.ToJson(highScores);
+        PlayerPrefs.SetString("HighScores", updatedScores);
+        Debug.Log("These are the current scores: " + updatedScores);
     }
 
 }

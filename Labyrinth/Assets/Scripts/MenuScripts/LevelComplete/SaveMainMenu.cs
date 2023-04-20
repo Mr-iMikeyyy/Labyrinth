@@ -16,7 +16,7 @@ public class SaveMainMenu : MonoBehaviour
 
     public void OpenMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu2");
     }
 
     public void CloseConfirmationBox()
