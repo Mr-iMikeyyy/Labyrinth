@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Unity.AI.Navigation;
-using UnityEngine.AI;
 
 public enum NodeState {
     Available,

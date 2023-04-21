@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.AI.Navigation;
+using System.Linq;
 
 public class MazeGenerator : MonoBehaviour {
         /**
@@ -48,11 +49,13 @@ public class MazeGenerator : MonoBehaviour {
 
 
         // Add each MazeNode mesh surface to local array or surfaces
-        GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
+        List<GameObject> floors = Resources.FindObjectsOfTypeAll(typeof(GameObject)).Cast<GameObject>().Where(g => g.tag == "Floor").ToList();
+        Debug.Log(floors);
         List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
         foreach (GameObject floor in floors) {
             surfaces.Add(floor.GetComponent<NavMeshSurface>());
         }
+        Debug.Log(surfaces);
         NavMeshSurface[] surfArr = surfaces.ToArray();
 
         foreach(NavMeshSurface surf in surfArr) {
