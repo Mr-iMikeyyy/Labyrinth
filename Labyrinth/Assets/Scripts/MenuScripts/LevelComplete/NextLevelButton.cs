@@ -26,6 +26,7 @@ public class NextLevelButton : MonoBehaviour
             PlayerStats.getTimer().ResetTimer();
             PlayerStats.incrementCurrentLevel();
             SceneManager.LoadScene("Maze Gen Test");
+            PlayerStats.getTimer().StartTiming();
         }
     }
 
