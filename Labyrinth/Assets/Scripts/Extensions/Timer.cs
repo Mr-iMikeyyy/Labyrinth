@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-
 public class Timer : MonoBehaviour
 {
     float time = 0.0f;
@@ -43,51 +42,40 @@ public class Timer : MonoBehaviour
 
     public void SaveLevelTime(string name, int level)
     {
-        List<HighScore> highScores = new List<HighScore>();
+        HighScoreCollection highScoreCollection = new HighScoreCollection();
 
         string scores = PlayerPrefs.GetString("HighScores");
         if (!string.IsNullOrEmpty(scores))
         {
-            highScores = JsonUtility.FromJson<List<HighScore>>(scores);
+            highScoreCollection = JsonUtility.FromJson<HighScoreCollection>(scores);
         }
 
         // Add new score
-        highScores.Add(new HighScore(name, level, time));
-
-        // debug the highScores list
-        foreach(HighScore hs in highScores)
-        {
-            Debug.Log("Name: " + hs.name + ", Level: " + hs.level + ", Time: " + hs.time);
-        }
+        highScoreCollection.highScores.Add(new HighScore(name, level, time));
 
         // bubble sort the high scores
-        for (int i = 0; i < highScores.Count; i++)
+        for (int i = 0; i < highScoreCollection.highScores.Count; i++)
         {
-            for (int j = 0; j < highScores.Count - 1; j++)
+            for (int j = 0; j < highScoreCollection.highScores.Count - 1; j++)
             {
-                if (highScores[j].time > highScores[j + 1].time)
+                if (highScoreCollection.highScores[j].time > highScoreCollection.highScores[j + 1].time)
                 {
-                    HighScore temp = highScores[j];
-                    highScores[j] = highScores[j + 1];
-                    highScores[j + 1] = temp;
+                    HighScore temp = highScoreCollection.highScores[j];
+                    highScoreCollection.highScores[j] = highScoreCollection.highScores[j + 1];
+                    highScoreCollection.highScores[j + 1] = temp;
                 }
             }
         }
 
-        // debugging
-        for (int i = 0; i < highScores.Count; i++)
+        // remove scores exceeding max count
+        if (highScoreCollection.highScores.Count > MAX_HIGH_SCORES)
         {
-            Debug.Log("Name: " + highScores[i].name + ", Level: " + highScores[i].level + ", Time: " + highScores[i].time);
-        }
-        if (highScores.Count > MAX_HIGH_SCORES)
-        {
-            highScores.RemoveAt(MAX_HIGH_SCORES);
+            highScoreCollection.highScores.RemoveRange(MAX_HIGH_SCORES, highScoreCollection.highScores.Count - MAX_HIGH_SCORES);
         }
 
         // Save the high scores
-        string updatedScores = JsonUtility.ToJson(highScores);
+        string updatedScores = JsonUtility.ToJson(highScoreCollection);
         PlayerPrefs.SetString("HighScores", updatedScores);
         Debug.Log("These are the current scores: " + updatedScores);
     }
-
 }

@@ -7,28 +7,26 @@ using TMPro;
 
 public class SeeHighScores : MonoBehaviour
 {
+    public TextMeshProUGUI[] highScoreTexts;
     public GameObject highScoreListPanel;
-    public TextMeshProUGUI[] highScoreTexts = new TextMeshProUGUI[3];
 
     private List<HighScore> highScores = new List<HighScore>();
-    private const int MAX_HIGH_SCORES = 3;
 
-    private void LoadHighScores()
+    private void Start()
     {
-        string scores = PlayerPrefs.GetString("HighScores");
-
-        if (string.IsNullOrEmpty(scores))
-        {
-            highScores = new List<HighScore>();
-        }
-        else
-        {
-            highScores = JsonUtility.FromJson<List<HighScore>>(scores);
-        }
-        Debug.Log("Loaded high scores: " + scores);
-        UpdateHighScoreTexts();
+        LoadHighScores();
     }
 
+    public void LoadHighScores()
+    {
+        string scores = PlayerPrefs.GetString("HighScores");
+        if (!string.IsNullOrEmpty(scores))
+        {
+            HighScoreCollection highScoreCollection = JsonUtility.FromJson<HighScoreCollection>(scores);
+            highScores = highScoreCollection.highScores;
+        }
+        Debug.Log("Loaded high scores: " + scores);
+    }
 
     private void UpdateHighScoreTexts()
     {
@@ -56,7 +54,6 @@ public class SeeHighScores : MonoBehaviour
     {
         highScoreListPanel.SetActive(true);
 
-        LoadHighScores();
         UpdateHighScoreTexts();
 
         EventSystem.current.SetSelectedGameObject(null);
