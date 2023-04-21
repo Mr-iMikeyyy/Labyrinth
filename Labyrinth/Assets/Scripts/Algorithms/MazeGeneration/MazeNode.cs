@@ -24,7 +24,8 @@ public class MazeNode : MonoBehaviour {
     [SerializeField] GameObject Ladder;
     [SerializeField] MeshRenderer floor;
     [SerializeField] Material floorMaterial;
-    public NavMeshSurface surface;
+    [SerializeField] GameObject floorObject;
+    [SerializeField] NavMeshSurface surface;
 
     private void Awake() {
         floor.gameObject.SetActive(true);

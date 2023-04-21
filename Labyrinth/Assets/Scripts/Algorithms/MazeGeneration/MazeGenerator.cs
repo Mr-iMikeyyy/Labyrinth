@@ -33,37 +33,56 @@ public class MazeGenerator : MonoBehaviour {
     public GameObject[] objectsToPlace;
     public GameObject playerCharacter;
     public GameObject enemyCharacter;
-    private List<MazeNode> completedMazeNodes;
+    // private List<MazeNode> completedMazeNodes;
     private List<MazeNode> roomNodes;
     private List<NavMeshSurface> navMeshSurfaces;
 
     private void Start() {
-        completedMazeNodes = GenerateMazeInstant(MazeParams.getSize(), objectsToPlace, playerCharacter);
-        // BakeMesh();
-        InstantiateMino();
+        List<MazeNode> completedMazeNodes = GenerateMazeInstant(MazeParams.getSize(), objectsToPlace, playerCharacter);
+        BakeMesh(completedMazeNodes);
+        InstantiateMino(completedMazeNodes);
         //StartCoroutine(GenerateMaze(mazeSize));
     }
 
-    private void BakeMesh() {
+    private void BakeMesh(List<MazeNode> completedMazeNodes) {
+
+
         // Add each MazeNode mesh surface to local array or surfaces
-        foreach (MazeNode node in completedMazeNodes) {
-            NavMeshSurface surface = node.GetComponentInChildren<NavMeshSurface>();
-            navMeshSurfaces.Add(surface);
+        GameObject[] floors = GameObject.FindGameObjectsWithTag("Floor");
+        List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
+        foreach (GameObject floor in floors) {
+            surfaces.Add(floor.GetComponent<NavMeshSurface>());
+        }
+        NavMeshSurface[] surfArr = surfaces.ToArray();
+
+        foreach(NavMeshSurface surf in surfArr) {
+            surf.BuildNavMesh();
         }
 
-        // Bake the Mesh
-        for (int i = 0; i < navMeshSurfaces.Count; i++) {
-            navMeshSurfaces[i].BuildNavMesh();
-        }
 
+        // Debug.Log(completedMazeNodes);
+        // foreach (MazeNode node in completedMazeNodes) {
+        //     Debug.Log(completedMazeNodes);
+        //     navMeshSurfaces.Add(node.GetNavMeshSurface()); 
+        //     // NavMeshSurface surface = node.GetComponentInChildren<NavMeshSurface>();
+        //     // navMeshSurfaces.Add(surface);
+        //     // Debug.Log(surface);
+        // }
+
+        // // Bake the Mesh
+        // for (int i = 0; i < navMeshSurfaces.Count; i++) {
+        //     navMeshSurfaces[i].BuildNavMesh();
+        // }
+        // Debug.Log(navMeshSurfaces);
     }
 
-    private void InstantiateMino() {
+    private void InstantiateMino(List<MazeNode> completedMazeNodes) {
         MazeNode nodeToPlaceMino = GetNodeByName(completedMazeNodes, MazeParams.getSize().x - 1, 0);
         Debug.Log("maze x = " + mazeSize.x);
         Debug.Log("maze y = " + mazeSize.y);
-        enemyCharacter.transform.position = nodeToPlaceMino.transform.position;
-
+        Vector3 enemyPos = nodeToPlaceMino.transform.position;
+        enemyPos.y += 1;
+        enemyCharacter.transform.position = enemyPos;
     }
 
     public MazeNode GetNodeByName(List<MazeNode> nodes, int x, int y) {
@@ -249,7 +268,9 @@ public class MazeGenerator : MonoBehaviour {
                 nodes.Add(newNode);
             }
         }
+        // foreach (MazeNode node in nodes) {
 
+        // }
         PlaceObjectsRandomly(objectPrefab, 21, nodes, false);
         PlaceObjectsRandomly(objectPrefab1, 33, nodes, false);
         PlaceObjectsRandomly(objectPrefab2, 150, nodes, false);

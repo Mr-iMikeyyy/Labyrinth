@@ -16,7 +16,7 @@ public class TimerClock : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(PlayerStats.timer.GetTime());
+        // Debug.Log(PlayerStats.timer.GetTime());
         // Display time in hh:mm:ss format; round to the nearest 2 decimal places.
         time.text = string.Format(
             "{0:00}:{1:00}:{2:00}",

@@ -67,6 +67,8 @@ MonoBehaviour:
   Ladder: {fileID: 100000, guid: 3ba09df563495414ca3fcf8ea9989169, type: 3}
   floor: {fileID: 5974538617497273859}
   floorMaterial: {fileID: 2100000, guid: be58ddce4e45cba4b89fd01aa4f23446, type: 2}
+  floorObject: {fileID: 5974538617499277507}
+  surface: {fileID: 4345638374745593116}
 --- !u!1001 &256790489246638424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -444,6 +446,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5ca67efe11d80b148b8a350656cb158d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5ca67efe11d80b148b8a350656cb158d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -523,18 +529,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 5ca67efe11d80b148b8a350656cb158d, type: 3}
---- !u!114 &7248674148290879956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5974538617499277507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12ecde3c6a9545943bebd5e84de20d17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4345638374745593116
 MonoBehaviour:
   m_ObjectHideFlags: 0
