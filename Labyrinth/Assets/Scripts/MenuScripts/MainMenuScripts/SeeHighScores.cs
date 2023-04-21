@@ -11,10 +11,17 @@ public class SeeHighScores : MonoBehaviour
     public GameObject highScoreListPanel;
 
     private List<HighScore> highScores = new List<HighScore>();
+    //UN-COMMENT ME TO DELETE HIGH SCORES bool scoresCleared = false;
 
     private void Start()
     {
         LoadHighScores();
+        //UN-COMMENT ME TO DELETE HIGH SCORES
+    /*  if (!scoresCleared)
+        {
+            PlayerPrefs.DeleteKey("HighScores");
+            scoresCleared = true;
+        } */
     }
 
     public void LoadHighScores()
