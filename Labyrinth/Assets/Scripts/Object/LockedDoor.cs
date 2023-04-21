@@ -7,6 +7,8 @@ public class LockedDoor : Interactable
     [SerializeField] public string keyType;
     [SerializeField] private Animator doorAnimator;
     private Collider thiscoll;
+    public AudioSource doorOpenSound;
+    public AudioSource doorLockedSound;
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class LockedDoor : Interactable
             PlayerInventory.removeKey(keyType);
             // Destroy(gameObject);
             doorAnimator.Play("door opening");
+            doorOpenSound.Play();
             thiscoll.enabled = false;
         }
     }

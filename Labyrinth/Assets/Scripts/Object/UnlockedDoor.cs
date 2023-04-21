@@ -7,6 +7,7 @@ public class UnlockedDoor : Interactable
     [SerializeField] public string keyType;
     [SerializeField] private Animator doorAnimator;
     private Collider thiscoll;
+    public AudioSource doorOpenSound;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class UnlockedDoor : Interactable
     override protected void Interact()
     {
         doorAnimator.Play("door opening");
+        doorOpenSound.Play();
         thiscoll.enabled = false;
     }
 }
