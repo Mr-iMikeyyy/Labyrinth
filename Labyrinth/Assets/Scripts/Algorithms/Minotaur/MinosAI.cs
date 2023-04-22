@@ -102,19 +102,19 @@ public class MinosAI : MonoBehaviour {
 
     private void getWalkPoint()
     {
-        walkPoint = RandomNavmeshLocation(4f);
+        walkPoint = RandomNavmeshLocation(50f);
         walkPointSet = true;
     }
     public Vector3 RandomNavmeshLocation(float radius) {
         Vector3 finalPosition = Vector3.zero;
-        // while (finalPosition == Vector3.zero) {
-        //     Vector3 randomDirection = Random.insideUnitSphere * radius;
-        //     randomDirection += transform.position;
-        //     NavMeshHit hit;
-        //     if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1)) {
-        //         finalPosition = hit.position;            
-        //     }
-        // }
+        while (finalPosition == Vector3.zero) {
+            Vector3 randomDirection = Random.insideUnitSphere * radius;
+            randomDirection += transform.position;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomDirection, out hit, radius, 1); 
+            finalPosition = hit.position;            
+            
+        }
         return finalPosition;
     }
 }

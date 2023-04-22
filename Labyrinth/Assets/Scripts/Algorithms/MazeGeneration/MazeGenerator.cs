@@ -83,11 +83,12 @@ public class MazeGenerator : MonoBehaviour {
 
     private void InstantiateMino(List<MazeNode> completedMazeNodes) {
         MazeNode nodeToPlaceMino = GetNodeByName(completedMazeNodes, MazeParams.getSize().x - 1, 0);
-        Debug.Log("maze x = " + mazeSize.x);
-        Debug.Log("maze y = " + mazeSize.y);
+        // Debug.Log("maze x = " + mazeSize.x);
+        // Debug.Log("maze y = " + mazeSize.y);
         Vector3 enemyPos = nodeToPlaceMino.transform.position;
-        enemyPos.y += 1;
-        enemyCharacter.transform.position = enemyPos;
+        enemyPos.y = 1;
+        // enemyCharacter.transform.position = enemyPos;
+        Instantiate(enemyCharacter, enemyPos, Quaternion.identity);
     }
 
     public MazeNode GetNodeByName(List<MazeNode> nodes, int x, int y) {
@@ -236,8 +237,8 @@ public class MazeGenerator : MonoBehaviour {
             }
             float x = UnityEngine.Random.Range(minX, maxX);
             float z = UnityEngine.Random.Range(minZ, maxZ);
-            Vector3 objectPos = new Vector3(x, 0, z) * 4f; // Multiply position by 4
-            GameObject newObject = Instantiate(objectPrefab, objectPos, Quaternion.identity);
+            // Vector3 objectPos = new Vector3(x, 0, z); // Multiply position by 4
+            GameObject newObject = Instantiate(objectPrefab, new Vector3(x, 0, z), Quaternion.identity);
 
             if (add_gravity) {
                 // Add Rigidbody component and enable gravity
@@ -247,7 +248,9 @@ public class MazeGenerator : MonoBehaviour {
                 // Add MeshCollider component
                 MeshCollider collider = newObject.AddComponent<MeshCollider>();
                 collider.convex = true; // Enable convex mesh collider for more accurate collisions
+
             }
+            newObject.transform.localScale *= 4f;
         }
     }
 
@@ -273,17 +276,7 @@ public class MazeGenerator : MonoBehaviour {
                 nodes.Add(newNode);
             }
         }
-        for (int w = 0; w < size.x; w++) {
-            for (int y = 0; y < size.y; y++) {
-                Vector3 nodePos = new Vector3((w - (size.x / 2f)) * 4, 0, (y - (size.y / 2f)) * 4);
-                MazeNode newNode = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
-                newNode.name = string.Format("Node_{0}_{1}", w, y);
-                nodes.Add(newNode);
-            }
-        }
-        // foreach (MazeNode node in nodes) {
-
-        // }
+        
         PlaceObjectsRandomly(objectPrefab, 21, nodes, false);
         PlaceObjectsRandomly(objectPrefab1, 33, nodes, false);
         PlaceObjectsRandomly(objectPrefab2, 150, nodes, false);
