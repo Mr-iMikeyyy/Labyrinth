@@ -32,13 +32,13 @@ using Random = UnityEngine.Random;
 
 public class MazeGenerator : MonoBehaviour {
     [SerializeField] MazeNode nodePrefab;
-    [SerializeField] Vector2Int mazeSize;
     [SerializeField] GameObject navMesh;
 
     public GameObject[] objectsToPlace;
     public GameObject playerCharacter;
     public GameObject enemyCharacter;
-    private List<NavMeshSurface> navMeshSurfaces;
+    // private Random random = new Random();
+    public StringUtils stringUtils = new StringUtils();
 
     private void Start() {
         // Generate a maze with specified size, objects to place, and player character, 
@@ -89,118 +89,113 @@ public class MazeGenerator : MonoBehaviour {
     List<MazeNode> GenerateMaze(GameObject[] objectsToPlace, GameObject playerCharacter) {
         Vector2Int mazeSize = MazeParams.getSize();
 
-        List<MazeNode> currentPath = new List<MazeNode>();
+        Stack<MazeNode> currentPath = new Stack<MazeNode>();
         List<MazeNode> completedNodes = new List<MazeNode>();
+
+
+
         List<MazeNode> nodes = CreateMazeGrid(mazeSize);
 
-        PlaceObjects(objectsToPlace, nodes);
+        PlaceRandom(objectsToPlace, nodes);
 
         PlaceRooms(mazeSize, nodes, completedNodes);
 
         // Choose starting node
-        currentPath.Add(nodes[nodes.Count / 2 - mazeSize.x + 2]);
-        currentPath[0].SetState(NodeState.Current);
+        MazeNode currentNode = GetNodeByName(nodes, 0, 0);
+
+        currentPath.Push(currentNode);
+        completedNodes.Add(currentNode);
 
         while (completedNodes.Count < nodes.Count) {
+            List<MazeNode> neighborNodes = GetNeighborNodes(nodes, currentNode);
+            Debug.Log($"There are {neighborNodes.Count} neighbor nodes to node: {currentNode.name}");
 
-            // Check nodes next to the current node
-            List<int> possibleNextNodes = new List<int>();
-            List<int> possibleDirections = new List<int>();
+            // Filter out neighbors that are already in the completedNodes list
+            neighborNodes = neighborNodes.Where(node => !completedNodes.Contains(node)).ToList();
 
-            int currentNodeIndex = nodes.IndexOf(currentPath[currentPath.Count - 1]);
-            int currentNodeX = currentNodeIndex / mazeSize.y;
-            int currentNodeY = currentNodeIndex % mazeSize.y;
+            if (neighborNodes.Count > 0) {
+                // Choose a random node from the available neighbor nodes
+                int randomIndex = Random.Range(0, neighborNodes.Count);
+                MazeNode nextNode = neighborNodes[randomIndex];
 
-            Debug.Log($"currentNodeX: {currentNodeX}");
-            Debug.Log($"currentNodeY: {currentNodeY}");
-            Debug.Log($"Maze Size: {mazeSize}");
+                // Remove the walls between the currentNode and the nextNode
+                RemoveWallsBetween(currentNode, nextNode);
 
-
-            if (currentNodeX < mazeSize.x - 1) {
-                try {
-                    // Check node to the right of the current node
-                    if (!completedNodes.Contains(nodes[currentNodeIndex + mazeSize.y]) &&
-                        !currentPath.Contains(nodes[currentNodeIndex + mazeSize.y])) {
-                        possibleDirections.Add(1);
-                        possibleNextNodes.Add(currentNodeIndex + mazeSize.y);
-                    }
-                } catch (IndexOutOfRangeException e) {
-                    // Handle the exception here
-                    Debug.LogError($"Index out of range: {e.Message}");
+                // Add the selected node to the current path and completed nodes
+                currentPath.Push(nextNode);
+                completedNodes.Add(nextNode);
+                
+                // Update the current node
+                currentNode = nextNode;
+            } else {
+                // If there are no uncompleted neighbors, backtrack until we find one
+                if (currentPath.Count > 0) {
+                    currentNode = currentPath.Pop();
+                } else {
+                    // If the stack is empty, we have visited all nodes
+                    break;
                 }
-            }
-            if (currentNodeX > 0) {
-                // Check node to the left of the current node
-                if (!completedNodes.Contains(nodes[currentNodeIndex - mazeSize.y]) &&
-                    !currentPath.Contains(nodes[currentNodeIndex - mazeSize.y])) {
-                    possibleDirections.Add(2);
-                    possibleNextNodes.Add(currentNodeIndex - mazeSize.y);
-                }
-            }
-            if (currentNodeY < mazeSize.y - 1) {
-                // Check node above the current node
-                if (!completedNodes.Contains(nodes[currentNodeIndex + 1]) &&
-                    !currentPath.Contains(nodes[currentNodeIndex + 1])) {
-                    possibleDirections.Add(3);
-                    possibleNextNodes.Add(currentNodeIndex + 1);
-                }
-            }
-            if (currentNodeY > 0) {
-                // Check node below the current node
-                if (!completedNodes.Contains(nodes[currentNodeIndex - 1]) &&
-                    !currentPath.Contains(nodes[currentNodeIndex - 1])) {
-                    possibleDirections.Add(4);
-                    possibleNextNodes.Add(currentNodeIndex - 1);
-                }
-            }
-
-            // Choose next node
-            if (possibleDirections.Count > 0) {
-                // Choose a random direction from the possibleDirections list
-                int chosenDirection = Random.Range(0, possibleDirections.Count);
-                // Get the node corresponding to the chosen direction
-                MazeNode chosenNode = nodes[possibleNextNodes[chosenDirection]];
-
-                // Depending on the chosen direction, remove the wall between the current node and the chosen node
-                switch (possibleDirections[chosenDirection]) {
-                    case 1:
-                        // Remove top wall of the chosen node, and bottom wall of the current node
-                        chosenNode.RemoveWall(1);
-                        currentPath[currentPath.Count - 1].RemoveWall(0);
-                        break;
-                    case 2:
-                        // Remove bottom wall of the chosen node, and top wall of the current node
-                        chosenNode.RemoveWall(0);
-                        currentPath[currentPath.Count - 1].RemoveWall(1);
-                        break;
-                    case 3:
-                        // Remove left wall of the chosen node, and right wall of the current node
-                        chosenNode.RemoveWall(3);
-                        currentPath[currentPath.Count - 1].RemoveWall(2);
-                        break;
-                    case 4:
-                        // Remove right wall of the chosen node, and left wall of the current node
-                        chosenNode.RemoveWall(2);
-                        currentPath[currentPath.Count - 1].RemoveWall(3);
-                        break;
-                }
-
-                // Add the chosen node to the current path
-                currentPath.Add(chosenNode);
-                // Set the state of the chosen node to "Current"
-                chosenNode.SetState(NodeState.Current);
-            }
-            else {
-                completedNodes.Add(currentPath[currentPath.Count - 1]);
-                // Local array for NavMesh baking
-                // completedMazeNodes.Add(currentPath[currentPath.Count - 1]);
-                currentPath[currentPath.Count - 1].SetState(NodeState.Completed);
-                currentPath.RemoveAt(currentPath.Count - 1);
             }
         }
+
         return completedNodes;
     }
 
+    public void RemoveWallsBetween(MazeNode currentNode, MazeNode nextNode) {
+        int currentNodeX = stringUtils.GetNodeX(currentNode.name);
+        int currentNodeY = stringUtils.GetNodeY(currentNode.name);
+        int nextNodeX = stringUtils.GetNodeX(nextNode.name);
+        int nextNodeY = stringUtils.GetNodeY(nextNode.name);
+
+        if (currentNodeX < nextNodeX) {
+            currentNode.RemoveWall(0); // Remove right wall of currentNode
+            nextNode.RemoveWall(1); // Remove left wall of nextNode
+        } else if (currentNodeX > nextNodeX) {
+            currentNode.RemoveWall(1); // Remove left wall of currentNode
+            nextNode.RemoveWall(0); // Remove right wall of nextNode
+        } else if (currentNodeY < nextNodeY) {
+            currentNode.RemoveWall(2); // Remove top wall of currentNode
+            nextNode.RemoveWall(3); // Remove bottom wall of nextNode
+        } else if (currentNodeY > nextNodeY) {
+            currentNode.RemoveWall(3); // Remove bottom wall of currentNode
+            nextNode.RemoveWall(2); // Remove top wall of nextNode
+        }
+
+    }
+
+    // This method should return the list of nodes touching the passed node
+    // i.e an outside corner should return 2 nodes
+    // an outside edge should return 3 nodes
+    // an interior should return 4 nodes
+    public List<MazeNode> GetNeighborNodes(List<MazeNode> nodes, MazeNode currentNode) {
+        List<MazeNode> neighborNodes = new List<MazeNode>();
+        // Create a string with the name of the node to be found
+        string name = currentNode.name;
+        int currentNodeX = stringUtils.GetNodeX(name);
+        int currentNodeY = stringUtils.GetNodeY(name);
+        
+        // Check the neighbors in each direction: left, right, up, and down
+        MazeNode leftNeighbor = GetNodeByName(nodes, currentNodeX - 1, currentNodeY);
+        MazeNode rightNeighbor = GetNodeByName(nodes, currentNodeX + 1, currentNodeY);
+        MazeNode upNeighbor = GetNodeByName(nodes, currentNodeX, currentNodeY + 1);
+        MazeNode downNeighbor = GetNodeByName(nodes, currentNodeX, currentNodeY - 1);
+
+        // Add the neighbors to the list if they are not null
+        if (leftNeighbor != null) {
+            neighborNodes.Add(leftNeighbor);
+        }
+        if (rightNeighbor != null) {
+            neighborNodes.Add(rightNeighbor);
+        }
+        if (upNeighbor != null) {
+            neighborNodes.Add(upNeighbor);
+        }
+        if (downNeighbor != null) {
+            neighborNodes.Add(downNeighbor);
+        }
+
+        return neighborNodes;
+    }
 
     // This method returns a maze node with a specific name from a list of maze nodes
     public MazeNode GetNodeByName(List<MazeNode> nodes, int x, int y) {
@@ -223,23 +218,31 @@ public class MazeGenerator : MonoBehaviour {
         List<MazeNode> nodes = new List<MazeNode>();
         // Create nodes (Initially all nodes will have 4 walls)
         for (int x = 0; x < size.x; x++) {
-            for (int y = 0; y < size.y; y++) { // Use size.y instead of mazeSize.y
-                Vector3 nodePos = new Vector3(x * 4f - (size.x * 2f), 0, y * 4 - (size.y * 2f)); // Use size.y instead of mazeSize.y
+            for (int y = 0; y < size.y; y++) {
+                Vector3 nodePos = new Vector3(x * 4f - (size.x * 2f), 0, y * 4 - (size.y * 2f));
                 MazeNode newNode = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
                 newNode.name = string.Format("Node_{0}_{1}", x, y);
                 nodes.Add(newNode);
+
+                newNode.AddPillars(x, y);
+                newNode.SetRandomFloorMaterial();
             }
         }
         return nodes;
     }
+
     
-    void PlaceObjects(GameObject[] objectsToPlace, List<MazeNode> nodes){
+    void PlaceRandom(GameObject[] objectsToPlace, List<MazeNode> nodes){
 
         GameObject mudPrefab = objectsToPlace[0]; // Mud_A 
         GameObject redMushroomPrefab = objectsToPlace[1]; // mushroom_A
         GameObject brokenRockPrefab = objectsToPlace[2]; // rock_A2
         GameObject rockPrefab = objectsToPlace[3]; // rock_A
         GameObject skullPrefab = objectsToPlace[4]; // skull
+        GameObject yellowMushroomPrefab1 = objectsToPlace[5]; // Mushroom1
+        GameObject yellowMushroomPrefab2 = objectsToPlace[6]; // Mushroom2
+        GameObject redMushroomPrefab1 = objectsToPlace[7]; // Mushroom3
+        GameObject redMushroomPrefab2 = objectsToPlace[8]; // Mushroom4
 
         // Hide yo' random object clutter in this thing
         GameObject placedObjectsParent = new GameObject("PlacedObjects");
@@ -257,6 +260,10 @@ public class MazeGenerator : MonoBehaviour {
         */
         PlaceObjectsRandomly(mudPrefab, 21, nodes, placedObjectsParent, false);
         PlaceObjectsRandomly(redMushroomPrefab, 33, nodes, placedObjectsParent, false);
+        PlaceObjectsRandomly(redMushroomPrefab1, 33, nodes, placedObjectsParent, false);
+        PlaceObjectsRandomly(redMushroomPrefab2, 33, nodes, placedObjectsParent, false);
+        PlaceObjectsRandomly(yellowMushroomPrefab1, 33, nodes, placedObjectsParent, false);
+        PlaceObjectsRandomly(yellowMushroomPrefab2, 33, nodes, placedObjectsParent, false);
         PlaceObjectsRandomly(brokenRockPrefab, 250, nodes, placedObjectsParent, false);
         PlaceObjectsRandomly(rockPrefab, 250, nodes, placedObjectsParent, false);
         PlaceObjectsRandomly(skullPrefab, 10, nodes, placedObjectsParent, true);
@@ -360,25 +367,11 @@ public class MazeGenerator : MonoBehaviour {
         MazeNode bottomLeftDoor = GetNodeByName(nodes, x, y - 3);
         MazeNode topRightDoor = GetNodeByName(nodes, x + 2, y + 1);
 
+        // Top left
         if (topLeft != null) {
             completedNodes.Add(topLeft);
             topLeft.RemoveWall(0); // RIGHT
             topLeft.RemoveWall(3); // BOTTOM
-        }
-
-        // Top right
-        if (topRight != null) {
-            completedNodes.Add(topRight);
-            topRight.RemoveWall(1); // LEFT
-            topRight.RemoveWall(3); // BOTTOM
-            topRight.RemoveWall(2); // TOP
-        }
-
-        // Bottom right
-        if (bottomRight != null) {
-            completedNodes.Add(bottomRight);
-            bottomRight.RemoveWall(1); // LEFT
-            bottomRight.RemoveWall(2); // TOP
         }
 
         // Top center
@@ -394,6 +387,14 @@ public class MazeGenerator : MonoBehaviour {
 
             }
         }
+        // Top right
+        if (topRight != null) {
+            completedNodes.Add(topRight);
+            topRight.RemoveWall(1); // LEFT
+            topRight.RemoveWall(3); // BOTTOM
+            topRight.RemoveWall(2); // TOP
+        }
+
 
         // Center left
         if (centerLeft != null) {
@@ -401,6 +402,7 @@ public class MazeGenerator : MonoBehaviour {
             centerLeft.RemoveWall(0); // RIGHT
             centerLeft.RemoveWall(2); // TOP
             centerLeft.RemoveWall(3); // BOTTOM
+            centerLeft.RemovePillar(0);
             if (starting_room == 1) {
                 playerCharacter.transform.position = centerLeft.transform.position;
             }
@@ -413,6 +415,7 @@ public class MazeGenerator : MonoBehaviour {
             center.RemoveWall(1); // LEFT
             center.RemoveWall(2); // TOP
             center.RemoveWall(3); // BOTTOM
+            center.RemovePillar(0);
             if (is_center_room)  {
                 // center.addLadder();
                 center.SetAsCompletionNode();
@@ -430,23 +433,30 @@ public class MazeGenerator : MonoBehaviour {
             centerRight.RemoveWall(3); // BOTTOM
         }
 
-        // Bottom center
-        if (bottomCenter != null) {
-            completedNodes.Add(bottomCenter);
-            bottomCenter.RemoveWall(1); // LEFT
-            bottomCenter.RemoveWall(0); // RIGHT
-            bottomCenter.RemoveWall(2); // TOP
-            // centerRight.RemoveWall(3); // BOTTOM
-        }
-
         // Bottom left
         if (bottomLeft != null) {
             completedNodes.Add(bottomLeft);
             bottomLeft.RemoveWall(0); // RIGHT
             bottomLeft.RemoveWall(2); // TOP
             bottomLeft.RemoveWall(3); // BOTTOM
+            bottomLeft.RemovePillar(0);
         }
 
+        // Bottom center
+        if (bottomCenter != null) {
+            completedNodes.Add(bottomCenter);
+            bottomCenter.RemoveWall(1); // LEFT
+            bottomCenter.RemoveWall(0); // RIGHT
+            bottomCenter.RemoveWall(2); // TOP
+            bottomCenter.RemovePillar(0);
+        }
+
+        // Bottom right
+        if (bottomRight != null) {
+            completedNodes.Add(bottomRight);
+            bottomRight.RemoveWall(1); // LEFT
+            bottomRight.RemoveWall(2); // TOP
+        }
         // Outside Door
         if (bottomLeftDoor != null) {
                 bottomLeftDoor.AddDoor(2, is_center_room); // TOP
