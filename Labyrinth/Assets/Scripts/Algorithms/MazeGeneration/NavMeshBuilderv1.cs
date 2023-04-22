@@ -17,18 +17,18 @@ public class NavMeshBuilderv1 : MonoBehaviour
 
     // }
 
-    // public Vector3 RandomNavmeshLocation(float radius) {
-    //     Vector3 finalPosition = Vector3.zero;
-    //     while (finalPosition == Vector3.zero) {
-    //         Vector3 randomDirection = Random.insideUnitSphere * radius;
-    //         randomDirection += transform.position;
-    //         NavMeshHit hit;
-    //         if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1)) {
-    //             finalPosition = hit.position;            
-    //         }
-    //     }
-    //     return finalPosition;
-    // }
+    public Vector3 RandomNavmeshLocation(float radius) {
+        Vector3 finalPosition = Vector3.zero;
+        while (finalPosition == Vector3.zero) {
+            Vector3 randomDirection = Random.insideUnitSphere * radius;
+            randomDirection += transform.position;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1)) {
+                finalPosition = hit.position;            
+            }
+        }
+        return finalPosition;
+    }
 
     // // Update is called once per frame
     // void Update()

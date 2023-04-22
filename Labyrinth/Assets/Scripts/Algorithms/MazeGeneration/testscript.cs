@@ -8,13 +8,16 @@ public class testscript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<NavMeshSurface>().BuildNavMesh();
+        // GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<NavMeshSurface>().BuildNavMesh();
+        // GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
+    public void CreateNavMesh() {
+        GetComponent<NavMeshSurface>().BuildNavMesh();
+    }
 }

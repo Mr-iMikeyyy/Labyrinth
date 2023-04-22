@@ -159,6 +159,10 @@ PrefabInstance:
       value: Neg Z Top
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
@@ -309,7 +313,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 1, y: 1, z: 0.020000001}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1, z: 0.020000001}
   m_TimeToStationary: 0.5
@@ -323,6 +327,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
       propertyPath: m_Name
       value: Pos X Top
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
       propertyPath: m_TagString
@@ -384,6 +392,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
       propertyPath: m_Name
       value: Neg X Top
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
       propertyPath: m_TagString
@@ -637,7 +649,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 1, y: 1, z: 0.020000001}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1, z: 0.020000001}
   m_TimeToStationary: 0.5
@@ -656,6 +668,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
       propertyPath: m_Name
       value: Pos Z Top
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: aa092e255eef9b442aff264483b45fec, type: 3}
       propertyPath: m_TagString
@@ -803,7 +819,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 1, y: 1, z: 0.020000001}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1, z: 0.020000001}
   m_TimeToStationary: 0.5
@@ -988,7 +1004,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 1, y: 1, z: 0.020000001}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1, z: 0.020000001}
   m_TimeToStationary: 0.5

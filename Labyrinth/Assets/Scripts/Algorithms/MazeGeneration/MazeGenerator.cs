@@ -37,30 +37,32 @@ public class MazeGenerator : MonoBehaviour {
     // private List<MazeNode> completedMazeNodes;
     private List<MazeNode> roomNodes;
     private List<NavMeshSurface> navMeshSurfaces;
+    [SerializeField] GameObject navMesh;
 
     private void Start() {
         List<MazeNode> completedMazeNodes = GenerateMazeInstant(MazeParams.getSize(), objectsToPlace, playerCharacter);
-        BakeMesh(completedMazeNodes);
+        BakeMesh();
         InstantiateMino(completedMazeNodes);
         //StartCoroutine(GenerateMaze(mazeSize));
     }
 
-    private void BakeMesh(List<MazeNode> completedMazeNodes) {
-
+    private void BakeMesh() {
+        testscript navBuilder = navMesh.GetComponent<testscript>();
+        navBuilder.CreateNavMesh();
 
         // Add each MazeNode mesh surface to local array or surfaces
-        List<GameObject> floors = Resources.FindObjectsOfTypeAll(typeof(GameObject)).Cast<GameObject>().Where(g => g.tag == "Floor").ToList();
-        Debug.Log(floors);
-        List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
-        foreach (GameObject floor in floors) {
-            surfaces.Add(floor.GetComponent<NavMeshSurface>());
-        }
-        Debug.Log(surfaces);
-        NavMeshSurface[] surfArr = surfaces.ToArray();
+        // List<GameObject> floors = Resources.FindObjectsOfTypeAll(typeof(GameObject)).Cast<GameObject>().Where(g => g.tag == "Floor").ToList();
+        // Debug.Log(floors);
+        // List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
+        // foreach (GameObject floor in floors) {
+        //     surfaces.Add(floor.GetComponent<NavMeshSurface>());
+        // }
+        // Debug.Log(surfaces);
+        // NavMeshSurface[] surfArr = surfaces.ToArray();
 
-        foreach(NavMeshSurface surf in surfArr) {
-            surf.BuildNavMesh();
-        }
+        // foreach(NavMeshSurface surf in surfArr) {
+        //     surf.BuildNavMesh();
+        // }
 
 
         // Debug.Log(completedMazeNodes);
@@ -265,7 +267,7 @@ public class MazeGenerator : MonoBehaviour {
         // Create nodes (Initially all nodes will have 4 walls)
         for (int w = 0; w < size.x; w++) {
             for (int y = 0; y < size.y; y++) {
-                Vector3 nodePos = new Vector3(w - (size.x / .5f), 0, y - (size.y / .5f));
+                Vector3 nodePos = new Vector3(w * 4f - (size.x * 2f), 0, y * 4 - (size.y * 2f));
                 MazeNode newNode = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
                 newNode.name = string.Format("Node_{0}_{1}", w, y);
                 nodes.Add(newNode);

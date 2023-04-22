@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
+using Unity.AI.Navigation;
 
 public class MinosAI : MonoBehaviour {
     private Transform player;
     private MinosSenses senses; 
 
-    // private UnityEngine.AI.NavMesh minosNavMesh;
+    [SerializeField] GameObject navMesh;
+    private NavMeshSurface surface;
+    private NavMeshAgent agent;
 
 
 
@@ -27,11 +30,12 @@ public class MinosAI : MonoBehaviour {
     private void Start ()
     {
         player = GameObject.Find("Player").transform;
-        // agent = GetComponent<NavMeshAgent>();
         senses = GetComponent<MinosSenses>();
-        
+        surface = navMesh.GetComponent<NavMeshSurface>();
+        agent = GetComponent<NavMeshAgent>();
+
         getWalkPoint();
-        // agent.SetDestination(walkPoint);
+        agent.SetDestination(walkPoint);
     }
 
     private void Update()
@@ -59,7 +63,7 @@ public class MinosAI : MonoBehaviour {
 
     private void ChasePlayer() {
         // The Minotaur should be slightly faster than the player
-        // agent.SetDestination(player.position);
+        agent.SetDestination(player.position);
             
     }
 
@@ -71,7 +75,7 @@ public class MinosAI : MonoBehaviour {
         }
         if (walkPointSet)
         {
-            // agent.SetDestination(walkPoint);
+            agent.SetDestination(walkPoint);
         }
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
@@ -84,7 +88,7 @@ public class MinosAI : MonoBehaviour {
 
     private void AttackPlayer()
     {
-        // agent.SetDestination(transform.position);
+        agent.SetDestination(transform.position);
         transform.LookAt(player);
 
         if (!alreadyAttacked)
@@ -101,7 +105,19 @@ public class MinosAI : MonoBehaviour {
 
     private void getWalkPoint()
     {
-        // walkPoint = builder.RandomNavmeshLocation(4f);
+        walkPoint = RandomNavmeshLocation(16f);
         walkPointSet = true;
+    }
+    public Vector3 RandomNavmeshLocation(float radius) {
+        Vector3 finalPosition = Vector3.zero;
+        while (finalPosition == Vector3.zero) {
+            Vector3 randomDirection = Random.insideUnitSphere * radius;
+            randomDirection += transform.position;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1)) {
+                finalPosition = hit.position;            
+            }
+        }
+        return finalPosition;
     }
 }
