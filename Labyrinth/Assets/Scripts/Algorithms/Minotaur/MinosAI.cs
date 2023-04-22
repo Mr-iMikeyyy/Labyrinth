@@ -80,6 +80,9 @@ public class MinosAI : MonoBehaviour {
 
     private void ChasePlayer() {
         // The Minotaur should be slightly faster than the player
+        isChasing = true;
+        isAttacking = false;
+        isWalking = false;
         transform.LookAt(player);
         agent.SetDestination(player.position);
             
@@ -87,6 +90,10 @@ public class MinosAI : MonoBehaviour {
 
     private void Roaming()
     {
+        isWalking = true;
+        isAttacking = false;
+        isChasing = false;
+
         if (!walkPointSet)
         {
             getWalkPoint();
@@ -106,13 +113,17 @@ public class MinosAI : MonoBehaviour {
 
     private void AttackPlayer()
     {
+        isWalking = false;
+        isChasing = true;
         agent.SetDestination(transform.position);
         transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
+            isAttacking = true;
             alreadyAttacked = true;
             Invoke("resetAttack", timeBetweenAttacks);
+            isAttacking = false;
         }
     }
 

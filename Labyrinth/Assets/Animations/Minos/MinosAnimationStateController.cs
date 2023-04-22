@@ -18,6 +18,8 @@ public class MinosAnimationStateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        animator.SetBool("isWalking", aI.isWalking);
+        animator.SetBool("isAttacking", aI.isAttacking);
+        animator.SetBool("isChasing", aI.isChasing);
     }
 }

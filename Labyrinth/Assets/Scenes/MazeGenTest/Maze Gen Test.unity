@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.1
@@ -2568,7 +2568,7 @@ MonoBehaviour:
   - {fileID: 118758, guid: c79a726f1bf80484a859f6bb4ce4959f, type: 3}
   - {fileID: 195220, guid: a5d1138742629d940ba6df4373f57310, type: 3}
   playerCharacter: {fileID: 344588101}
-  enemyCharacter: {fileID: 5653923518193315827, guid: 4cb6e2ad3df44d4428e1a0046abdd791, type: 3}
+  enemyCharacter: {fileID: 3530632293563122256, guid: a4bf5a9758ad7af408092f9db2b46788, type: 3}
 --- !u!4 &584500077
 Transform:
   m_ObjectHideFlags: 0
