@@ -5,9 +5,6 @@ using Unity.AI.Navigation;
 public class MinosAI : MonoBehaviour {
     private Transform player;
     private MinosSenses senses; 
-
-    [SerializeField] GameObject navMesh;
-    private NavMeshSurface surface;
     private NavMeshAgent agent;
 
 
@@ -31,7 +28,6 @@ public class MinosAI : MonoBehaviour {
     {
         player = GameObject.Find("Player").transform;
         senses = GetComponent<MinosSenses>();
-        surface = navMesh.GetComponent<NavMeshSurface>();
         agent = GetComponent<NavMeshAgent>();
 
         getWalkPoint();
@@ -63,6 +59,7 @@ public class MinosAI : MonoBehaviour {
 
     private void ChasePlayer() {
         // The Minotaur should be slightly faster than the player
+        transform.LookAt(player);
         agent.SetDestination(player.position);
             
     }
@@ -105,19 +102,19 @@ public class MinosAI : MonoBehaviour {
 
     private void getWalkPoint()
     {
-        walkPoint = RandomNavmeshLocation(16f);
+        walkPoint = RandomNavmeshLocation(4f);
         walkPointSet = true;
     }
     public Vector3 RandomNavmeshLocation(float radius) {
         Vector3 finalPosition = Vector3.zero;
-        while (finalPosition == Vector3.zero) {
-            Vector3 randomDirection = Random.insideUnitSphere * radius;
-            randomDirection += transform.position;
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1)) {
-                finalPosition = hit.position;            
-            }
-        }
+        // while (finalPosition == Vector3.zero) {
+        //     Vector3 randomDirection = Random.insideUnitSphere * radius;
+        //     randomDirection += transform.position;
+        //     NavMeshHit hit;
+        //     if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1)) {
+        //         finalPosition = hit.position;            
+        //     }
+        // }
         return finalPosition;
     }
 }
