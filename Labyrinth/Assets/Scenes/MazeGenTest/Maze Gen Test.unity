@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.07
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -2557,16 +2557,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodePrefab: {fileID: 8775671690344581252, guid: 2095953e7008ff2448b01e8bddd4ec1c, type: 3}
   mazeSize: {x: 11, y: 11}
+  navMesh: {fileID: 1279654213}
   objectsToPlace:
   - {fileID: 100000, guid: f224c1dc99e7bc841ae5a1e1e37d8849, type: 3}
   - {fileID: 100000, guid: 5b8b1ef4862b0214bb901b95407aeb52, type: 3}
   - {fileID: 100000, guid: d2bae68a73c37b9409630fa2251431bc, type: 3}
   - {fileID: 100000, guid: 600bd9ed8b5184f4a8233b6472bc387e, type: 3}
   - {fileID: 100000, guid: 481b635407ffb1f4c9f82ae6f468e377, type: 3}
-  - {fileID: 120638, guid: f8efad34b6fb67641a44679362c8f942, type: 3}
   playerCharacter: {fileID: 344588101}
   enemyCharacter: {fileID: 5653923518193315827, guid: 4cb6e2ad3df44d4428e1a0046abdd791, type: 3}
-  navMesh: {fileID: 1279654213}
 --- !u!4 &584500077
 Transform:
   m_ObjectHideFlags: 0
