@@ -6,6 +6,9 @@ public class MinosAI : MonoBehaviour {
     private Transform player;
     private MinosSenses senses; 
     private NavMeshAgent agent;
+    public bool isWalking;
+    public bool isChasing;
+    public bool isAttacking;
 
 
 
@@ -65,11 +68,11 @@ public class MinosAI : MonoBehaviour {
         currentloc = transform.position;
         if (currentloc == previousloc)
         {
-            timeBetweenAttacks += Time.deltaTime;
+            timeBetweenLast += Time.deltaTime;
         }
-        if (timeBetweenAttacks >= .5f)
+        if (timeBetweenLast >= .5f)
         {
-            timeBetweenAttacks = 0;
+            timeBetweenLast = 0;
             getWalkPoint();
             Roaming();
         }
