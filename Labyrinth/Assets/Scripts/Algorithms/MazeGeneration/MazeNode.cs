@@ -1,5 +1,7 @@
 using UnityEngine;
 using Unity.AI.Navigation;
+using System;
+
 
 public enum NodeState {
     Available,
@@ -9,6 +11,8 @@ public enum NodeState {
 
 public class MazeNode : MonoBehaviour {
     [SerializeField] GameObject[] walls;
+    [SerializeField] GameObject[] pillars;
+    [SerializeField] GameObject[] stoneMaterials;
     [SerializeField] GameObject Door;
     [SerializeField] GameObject Ceiling;
     [SerializeField] GameObject Light;
@@ -27,19 +31,52 @@ public class MazeNode : MonoBehaviour {
     private void Awake() {
         floor.gameObject.SetActive(true);
         Ladder.gameObject.SetActive(false);
-        
-        // Light.gameObject.SetActive(false);
-        // floor.material = floorMaterial; // set the floor material
-    }
-
-    public NavMeshSurface GetNavMeshSurface(){
-        return surface;
+        Array.ForEach(pillars, pillar => RandomizePillar(pillar));
     }
 
     public void RemoveWall(int wallToRemove) {
         walls[wallToRemove].gameObject.SetActive(false);
-        // floor.gameObject.SetActive(true);
     }
+
+    public void RemovePillar(int pillarToRemove) {
+        pillars[pillarToRemove].gameObject.SetActive(false);
+    }
+    public void AddPillars(int x, int y) {
+        Vector2Int mazeSize = MazeParams.getSize();
+
+        if (x == 0 && y == 0) {
+            // Top-left node: add pillars 1 and 2
+            pillars[0].gameObject.SetActive(true);
+            pillars[1].gameObject.SetActive(true);
+            pillars[2].gameObject.SetActive(true);
+            pillars[3].gameObject.SetActive(true);
+        } else if (x == 0) {
+            // Left side, excluding bottom-left node: add pillars 1 and 2
+            pillars[0].gameObject.SetActive(true);
+            pillars[3].gameObject.SetActive(true);
+        } else if (y == 0) {
+            // Bottom row, excluding bottom-left node: add pillars 2 and 4
+            pillars[0].gameObject.SetActive(true);
+            pillars[1].gameObject.SetActive(true);
+        } else {
+            // Bottom-right node: add all 4 pillars
+            pillars[0].gameObject.SetActive(true);
+        }
+    }
+
+    public void RandomizePillar(GameObject pillar){
+        int randomRotation = UnityEngine.Random.Range(0, 4) * 90;
+        pillar.transform.rotation = Quaternion.Euler(0, randomRotation, 0);
+        pillar.gameObject.SetActive(false);
+    }
+
+
+    public void SetRandomFloorMaterial() {
+        int randomRotation = UnityEngine.Random.Range(0, 4) * 180;
+        floor.transform.rotation = Quaternion.Euler(0, randomRotation, 0);
+    }
+
+    
     public void AddDoor(int wallToRemove, bool is_center_room) {
         Vector3 wallPosition = walls[wallToRemove].transform.position;
         Quaternion wallRotation = walls[wallToRemove].transform.rotation;
@@ -63,9 +100,9 @@ public class MazeNode : MonoBehaviour {
     }
     public void AddChest() {
         Vector3 centerPos = transform.position;
-        float distanceZ = transform.localScale.z / 2f;
-        float offsetZ = distanceZ * 0.25f;
-        Vector3 chestPos = new Vector3(centerPos.x, centerPos.y, centerPos.z + offsetZ);
+        // float distanceZ = transform.localScale.z / 2f;
+
+        Vector3 chestPos = new Vector3(centerPos.x, centerPos.y, centerPos.z );
         // Rotate the chest GameObject on the Y axis by 0 degrees
 
         Vector3 chestRotation = Chest.transform.rotation.eulerAngles;
