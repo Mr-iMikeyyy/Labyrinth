@@ -236,7 +236,8 @@ public class MazeGenerator : MonoBehaviour {
             }
             float x = UnityEngine.Random.Range(minX, maxX);
             float z = UnityEngine.Random.Range(minZ, maxZ);
-            GameObject newObject = Instantiate(objectPrefab, new Vector3(x, 0, z), Quaternion.identity);
+            Vector3 objectPos = new Vector3(x, 0, z) * 4f; // Multiply position by 4
+            GameObject newObject = Instantiate(objectPrefab, objectPos, Quaternion.identity);
 
             if (add_gravity) {
                 // Add Rigidbody component and enable gravity
@@ -247,10 +248,9 @@ public class MazeGenerator : MonoBehaviour {
                 MeshCollider collider = newObject.AddComponent<MeshCollider>();
                 collider.convex = true; // Enable convex mesh collider for more accurate collisions
             }
-
-
         }
     }
+
 
     List<MazeNode> GenerateMazeInstant(Vector2Int size, GameObject[] objectsToPlace, GameObject playerCharacter) {
         List<MazeNode> nodes = new List<MazeNode>();
@@ -268,6 +268,14 @@ public class MazeGenerator : MonoBehaviour {
         for (int w = 0; w < size.x; w++) {
             for (int y = 0; y < size.y; y++) {
                 Vector3 nodePos = new Vector3(w * 4f - (size.x * 2f), 0, y * 4 - (size.y * 2f));
+                MazeNode newNode = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
+                newNode.name = string.Format("Node_{0}_{1}", w, y);
+                nodes.Add(newNode);
+            }
+        }
+        for (int w = 0; w < size.x; w++) {
+            for (int y = 0; y < size.y; y++) {
+                Vector3 nodePos = new Vector3((w - (size.x / 2f)) * 4, 0, (y - (size.y / 2f)) * 4);
                 MazeNode newNode = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
                 newNode.name = string.Format("Node_{0}_{1}", w, y);
                 nodes.Add(newNode);
