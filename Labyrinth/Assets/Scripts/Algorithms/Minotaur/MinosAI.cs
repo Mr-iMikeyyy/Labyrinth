@@ -24,6 +24,12 @@ public class MinosAI : MonoBehaviour {
     private float timeBetweenAttacks = 1f;
     private bool alreadyAttacked = false;
 
+    //workaround for getting stuck on corners
+    private float timeBetweenLast = 0f;
+    private Vector3 currentloc = new Vector3(0,0,0);
+    private Vector3 previousloc = new Vector3(0, 0, 0);
+
+
     private void Start ()
     {
         player = GameObject.Find("Player").transform;
@@ -54,6 +60,18 @@ public class MinosAI : MonoBehaviour {
         else {
             // Debug.Log("4");
             ChasePlayer();
+        }
+        previousloc = currentloc;
+        currentloc = transform.position;
+        if (currentloc == previousloc)
+        {
+            timeBetweenAttacks += Time.deltaTime;
+        }
+        if (timeBetweenAttacks >= .5f)
+        {
+            timeBetweenAttacks = 0;
+            getWalkPoint();
+            Roaming();
         }
     }
 
