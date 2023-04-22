@@ -222,7 +222,7 @@ public class MazeGenerator : MonoBehaviour {
 
     }
 
-    void PlaceObjectsRandomly(GameObject objectPrefab, int numObjects, List<MazeNode> nodes, bool add_gravity) {
+    void PlaceObjectsRandomly(GameObject objectPrefab, int numObjects, List<MazeNode> nodes, GameObject placedObjectsParent, bool add_gravity) {
         for (int i = 0; i < numObjects; i++) {
             // Place object at random position in the maze
             float minX = float.MaxValue;
@@ -237,20 +237,23 @@ public class MazeGenerator : MonoBehaviour {
             }
             float x = UnityEngine.Random.Range(minX, maxX);
             float z = UnityEngine.Random.Range(minZ, maxZ);
-            // Vector3 objectPos = new Vector3(x, 0, z); // Multiply position by 4
-            GameObject newObject = Instantiate(objectPrefab, new Vector3(x, 0, z), Quaternion.identity);
+
+            GameObject newObject = Instantiate(objectPrefab, new Vector3(x, 0, z), Quaternion.Euler(0, Random.Range(0, 360), 0));
 
             if (add_gravity) {
                 // Add Rigidbody component and enable gravity
                 Rigidbody rb = newObject.AddComponent<Rigidbody>();
                 rb.useGravity = true;
-
                 // Add MeshCollider component
                 MeshCollider collider = newObject.AddComponent<MeshCollider>();
                 collider.convex = true; // Enable convex mesh collider for more accurate collisions
-
             }
+
+            // Set the parent of the placed object to the parent GameObject
+            newObject.transform.SetParent(placedObjectsParent.transform);
+        
             newObject.transform.localScale *= 4f;
+            
         }
     }
 
@@ -260,12 +263,11 @@ public class MazeGenerator : MonoBehaviour {
         List<MazeNode> currentPath = new List<MazeNode>();
         List<MazeNode> completedNodes = new List<MazeNode>();
 
-        GameObject objectPrefab = objectsToPlace[0]; // Mud_A 
-        GameObject objectPrefab1 = objectsToPlace[1]; // mushroom_A
-        GameObject objectPrefab2 = objectsToPlace[2]; // rock_A2
-        GameObject objectPrefab3 = objectsToPlace[3]; // rock_A
-        GameObject objectPrefab4 = objectsToPlace[4]; // skull
-        GameObject objectPrefab5 = objectsToPlace[5]; // PowerUp
+        GameObject mudPrefab = objectsToPlace[0]; // Mud_A 
+        GameObject redMushroomPrefab = objectsToPlace[1]; // mushroom_A
+        GameObject brokenRockPrefab = objectsToPlace[2]; // rock_A2
+        GameObject rockPrefab = objectsToPlace[3]; // rock_A
+        GameObject skullPrefab = objectsToPlace[4]; // skull
 
         // Create nodes (Initially all nodes will have 4 walls)
         for (int w = 0; w < size.x; w++) {
@@ -276,13 +278,15 @@ public class MazeGenerator : MonoBehaviour {
                 nodes.Add(newNode);
             }
         }
+
+        // Hide yo' random object clutter in this thing
+        GameObject placedObjectsParent = new GameObject("PlacedObjects");
         
-        PlaceObjectsRandomly(objectPrefab, 21, nodes, false);
-        PlaceObjectsRandomly(objectPrefab1, 33, nodes, false);
-        PlaceObjectsRandomly(objectPrefab2, 150, nodes, false);
-        PlaceObjectsRandomly(objectPrefab3, 150, nodes, false);
-        PlaceObjectsRandomly(objectPrefab4, 10, nodes, true);
-        // PlaceObjectsRandomly(objectPrefab5, 30, nodes, false);
+        PlaceObjectsRandomly(mudPrefab, 21, nodes, placedObjectsParent, false);
+        PlaceObjectsRandomly(redMushroomPrefab, 33, nodes, placedObjectsParent, false);
+        PlaceObjectsRandomly(brokenRockPrefab, 250, nodes, placedObjectsParent, false);
+        PlaceObjectsRandomly(rockPrefab, 250, nodes, placedObjectsParent, false);
+        PlaceObjectsRandomly(skullPrefab, 10, nodes, placedObjectsParent, true);
         
         
         // # topLeft room
