@@ -265,7 +265,7 @@ public class MazeGenerator : MonoBehaviour {
         // Create nodes (Initially all nodes will have 4 walls)
         for (int w = 0; w < size.x; w++) {
             for (int y = 0; y < size.y; y++) {
-                Vector3 nodePos = new Vector3(w - (size.x / 2f), 0, y - (size.y / 2f));
+                Vector3 nodePos = new Vector3(w - (size.x / .5f), 0, y - (size.y / .5f));
                 MazeNode newNode = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
                 newNode.name = string.Format("Node_{0}_{1}", w, y);
                 nodes.Add(newNode);
