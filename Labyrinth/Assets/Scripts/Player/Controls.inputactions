@@ -244,6 +244,28 @@
                 },
                 {
                     "name": "",
+                    "id": "056184cb-0872-4f3f-b5e7-be0c705bda6b",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractA",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "639fc0dc-5a1e-4dc9-8580-da53e9c3e03e",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InteractA",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "00289a4a-e99e-47e4-ba7b-776e068fb858",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
