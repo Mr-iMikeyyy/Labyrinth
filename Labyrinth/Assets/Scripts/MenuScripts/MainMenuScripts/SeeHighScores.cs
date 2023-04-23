@@ -32,7 +32,7 @@ public class SeeHighScores : MonoBehaviour
             HighScoreCollection highScoreCollection = JsonUtility.FromJson<HighScoreCollection>(scores);
             highScores = highScoreCollection.highScores;
         }
-        Debug.Log("Loaded high scores: " + scores);
+        // Debug.Log("Loaded high scores: " + scores);
     }
 
     private void UpdateHighScoreTexts()
@@ -48,7 +48,7 @@ public class SeeHighScores : MonoBehaviour
                 highScoreTexts[i].text = "-";
             }
         }
-        Debug.Log("Updated high score texts");
+        // Debug.Log("Updated high score texts");
     }
 
     private string GetFormattedScore(HighScore highScore)
