@@ -33,6 +33,7 @@ using Random = UnityEngine.Random;
 public class MazeGenerator : MonoBehaviour {
     [SerializeField] MazeNode nodePrefab;
     [SerializeField] GameObject navMesh;
+    [SerializeField] GameObject key;
 
     public GameObject[] objectsToPlace;
     public GameObject playerCharacter;
@@ -43,7 +44,7 @@ public class MazeGenerator : MonoBehaviour {
     private void Start() {
         // Generate a maze with specified size, objects to place, and player character, 
         // and get a list of maze nodes 
-        List<MazeNode> completedMazeNodes = GenerateMaze(objectsToPlace, playerCharacter);
+        List<MazeNode> completedMazeNodes = GenerateMaze(objectsToPlace, playerCharacter, key);
         
         // Bake the generated maze mesh to create a navigation mesh
         BakeMesh();
@@ -86,7 +87,7 @@ public class MazeGenerator : MonoBehaviour {
     /// <param name="objectsToPlace">An array of GameObjects to be randomly placed in the maze.</param>
     /// <param name="playerCharacter">The GameObject representing the player character.</param>
     /// <returns>A List of MazeNodes representing the completed maze.</returns>
-    List<MazeNode> GenerateMaze(GameObject[] objectsToPlace, GameObject playerCharacter) {
+    List<MazeNode> GenerateMaze(GameObject[] objectsToPlace, GameObject playerCharacter, GameObject key) {
         Vector2Int mazeSize = MazeParams.getSize();
 
         Stack<MazeNode> currentPath = new Stack<MazeNode>();
@@ -98,7 +99,7 @@ public class MazeGenerator : MonoBehaviour {
 
         PlaceRandom(objectsToPlace, nodes);
 
-        PlaceRooms(mazeSize, nodes, completedNodes);
+        PlaceRooms(mazeSize, nodes, completedNodes, key);
 
         // Choose starting node
         MazeNode currentNode = GetNodeByName(nodes, 0, 0);
@@ -304,7 +305,7 @@ public class MazeGenerator : MonoBehaviour {
         }
     }
 
-    void PlaceRooms(Vector2Int size, List<MazeNode> nodes, List<MazeNode> completedNodes){
+    void PlaceRooms(Vector2Int size, List<MazeNode> nodes, List<MazeNode> completedNodes, GameObject key){
         /*
         * =============================================================================================================================
         * The CreateRoom method is being called with the following variables:
@@ -318,15 +319,15 @@ public class MazeGenerator : MonoBehaviour {
         * =============================================================================================================================
         */
         // # topLeft room
-        CreateRoom(nodes, completedNodes, 1, size.y - 2, false, 1);
+        CreateRoom(nodes, completedNodes, 1, size.y - 2, false, 1, key);
         // # topRight room
-        CreateRoom(nodes, completedNodes, size.x - 4, size.y - 2, false, 0);
+        CreateRoom(nodes, completedNodes, size.x - 4, size.y - 2, false, 0, key);
         // # Center room
-        CreateRoom(nodes, completedNodes, size.x / 2 - 1, size.y / 2 + 1, true, 0);
+        CreateRoom(nodes, completedNodes, size.x / 2 - 1, size.y / 2 + 1, true, 0, key);
         // # bottomRight room
-        CreateRoom(nodes, completedNodes, size.x - 4, 3, false, 0);
+        CreateRoom(nodes, completedNodes, size.x - 4, 3, false, 2, key);
         // # bottomLeft room
-        CreateRoom(nodes, completedNodes, 1, 3, false, 0);
+        CreateRoom(nodes, completedNodes, 1, 3, false, 0, key);
     }
 
     /*
@@ -353,7 +354,7 @@ public class MazeGenerator : MonoBehaviour {
     *   the top right node.
     * =============================================================================================================================
     */
-    void CreateRoom(List<MazeNode> nodes, List<MazeNode> completedNodes, int x, int y, bool is_center_room, int starting_room) {
+    void CreateRoom(List<MazeNode> nodes, List<MazeNode> completedNodes, int x, int y, bool is_center_room, int room, GameObject key) {
         // MazeNode centerCenter = GetNodeByName(nodes, )
         MazeNode topLeft = GetNodeByName(nodes, x, y);
         MazeNode topCenter = GetNodeByName(nodes, x + 1, y);
@@ -403,7 +404,7 @@ public class MazeGenerator : MonoBehaviour {
             centerLeft.RemoveWall(2); // TOP
             centerLeft.RemoveWall(3); // BOTTOM
             centerLeft.RemovePillar(0);
-            if (starting_room == 1) {
+            if (room == 1) {
                 playerCharacter.transform.position = centerLeft.transform.position;
             }
         }
@@ -421,8 +422,16 @@ public class MazeGenerator : MonoBehaviour {
                 center.SetAsCompletionNode();
             } else {
                 center.AddTable();
+                if (room == 2) {
+                    // Get the center position of the node's floor
+                    Vector3 floorCenter = center.GetFloor().bounds.center;
+                    floorCenter = new Vector3(floorCenter.x, floorCenter.y + 4, floorCenter.z);
+
+                    // Instantiate the key prefab at the center position
+                    GameObject keyObject = Instantiate(key, floorCenter, Quaternion.identity, transform);
+                    keyObject.name = "Key";
+                }
             }
-            
         }
 
         // Center right

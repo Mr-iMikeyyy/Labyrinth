@@ -71,8 +71,9 @@ public class MazeNode : MonoBehaviour {
         pillar.transform.rotation = Quaternion.Euler(0, randomRotation, 0);
         pillar.gameObject.SetActive(false);
     }
-
-
+    public MeshRenderer GetFloor() {
+        return floor;
+    }
     public void SetRandomFloorMaterial() {
         int randomRotation = UnityEngine.Random.Range(0, 4) * 180;
         floor.transform.rotation = Quaternion.Euler(0, randomRotation, 0);
@@ -99,15 +100,20 @@ public class MazeNode : MonoBehaviour {
     public void AddWall(int wallToAdd) {
         walls[wallToAdd].gameObject.SetActive(true);
     }
-    public void AddTable() {
-        // Get the center position of the node's floor
-        Vector3 floorCenter = floor.bounds.center;
+public void AddTable() {
+    // Get the center position of the node's floor
+    Vector3 floorCenter = floor.bounds.center;
 
-        // Instantiate the table prefab at the center position
-        GameObject tableObject = Instantiate(Table, floorCenter, Quaternion.identity, transform);
-        tableObject.name = "Table";
-    }
-    public void AddChest() {
+    // Instantiate the table prefab at the center position
+    GameObject tableObject = Instantiate(Table, floorCenter, Quaternion.identity, transform);
+    tableObject.name = "Table";
+
+    // Add a collider component to the table object
+    BoxCollider collider = tableObject.AddComponent<BoxCollider>();
+
+}
+    
+public void AddChest() {
     Vector3 centerPos = transform.position;
 
     Vector3 chestPos = new Vector3(centerPos.x, centerPos.y, centerPos.z);
@@ -118,15 +124,13 @@ public class MazeNode : MonoBehaviour {
     // Parent the chest object to the current node
     chestObject.transform.parent = transform;
 
-    // Rotate the chestObject on the Y axis by 180 degrees (or any other value you want)
+    // Rotate the chestObject on the Y axis by 0 degrees (or any other value you want)
     Vector3 chestRotation = chestObject.transform.rotation.eulerAngles;
     chestRotation.y += 180;
     chestObject.transform.rotation = Quaternion.Euler(chestRotation);
 
-    // If you want to scale the chestObject, uncomment the following lines
-    // Vector3 chestScale = chestObject.transform.localScale * 0.5f;
-    // chestObject.transform.localScale = chestScale;
 }
+
 
     public void SetAsCompletionNode() {
         Ceiling.gameObject.SetActive(false);
