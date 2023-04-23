@@ -4,11 +4,14 @@ using UnityEngine.EventSystems;
 
 public class GameOverMenu : MonoBehaviour
 {
-    public GameObject gameOverMenu;
-    public GameObject playerCamera;
+    public GameObject gameOverMenuContainer;
+    private GameObject gameOverMenu;
 
     private bool isGameOver = false;
 
+    void Start() {
+        gameOverMenu = gameOverMenuContainer.transform.GetChild(0).gameObject;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -16,7 +19,7 @@ public class GameOverMenu : MonoBehaviour
             isGameOver = true;
             Time.timeScale = 0;
             gameOverMenu.SetActive(true);
-
+            
             EventSystem.current.SetSelectedGameObject(GameObject.Find("ReturnButton"));
         }
     }

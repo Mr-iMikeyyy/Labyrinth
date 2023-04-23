@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.AI;
+using Unity.AI.Navigation;
 
 public class MinosAI : MonoBehaviour {
-
-    private NavMeshAgent agent;
     private Transform player;
     private MinosSenses senses; 
-
-    private NavMeshBuilder builder;
+    private NavMeshAgent agent;
+    public bool isWalking;
+    public bool isChasing;
+    public bool isAttacking;
 
 
 
@@ -26,12 +27,18 @@ public class MinosAI : MonoBehaviour {
     private float timeBetweenAttacks = 1f;
     private bool alreadyAttacked = false;
 
+    //workaround for getting stuck on corners
+    private float timeBetweenLast = 0f;
+    private Vector3 currentloc = new Vector3(0,0,0);
+    private Vector3 previousloc = new Vector3(0, 0, 0);
+
+
     private void Start ()
     {
         player = GameObject.Find("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
         senses = GetComponent<MinosSenses>();
-        builder = GameObject.Find("Floor").GetComponent<NavMeshBuilder>();
+        agent = GetComponent<NavMeshAgent>();
+
         getWalkPoint();
         agent.SetDestination(walkPoint);
     }
@@ -57,16 +64,40 @@ public class MinosAI : MonoBehaviour {
             // Debug.Log("4");
             ChasePlayer();
         }
+        previousloc = currentloc;
+        currentloc = transform.position;
+        if (currentloc == previousloc)
+        {
+            timeBetweenLast += Time.deltaTime;
+        }
+        if (timeBetweenLast >= .5f)
+        {
+            timeBetweenLast = 0;
+            getWalkPoint();
+            Roaming();
+        }
     }
 
     private void ChasePlayer() {
+        
         // The Minotaur should be slightly faster than the player
+        agent.speed = 6f;
+
+        isChasing = true;
+        isAttacking = false;
+        isWalking = false;
+        transform.LookAt(player);
         agent.SetDestination(player.position);
             
     }
 
     private void Roaming()
     {
+        agent.speed = 3f;
+        isWalking = true;
+        isAttacking = false;
+        isChasing = false;
+
         if (!walkPointSet)
         {
             getWalkPoint();
@@ -86,13 +117,17 @@ public class MinosAI : MonoBehaviour {
 
     private void AttackPlayer()
     {
+        isWalking = false;
+        isChasing = true;
         agent.SetDestination(transform.position);
         transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
+            isAttacking = true;
             alreadyAttacked = true;
             Invoke("resetAttack", timeBetweenAttacks);
+            isAttacking = false;
         }
     }
 
@@ -103,7 +138,19 @@ public class MinosAI : MonoBehaviour {
 
     private void getWalkPoint()
     {
-        walkPoint = builder.RandomNavmeshLocation(4f);
+        walkPoint = RandomNavmeshLocation(50f);
         walkPointSet = true;
+    }
+    public Vector3 RandomNavmeshLocation(float radius) {
+        Vector3 finalPosition = Vector3.zero;
+        while (finalPosition == Vector3.zero) {
+            Vector3 randomDirection = Random.insideUnitSphere * radius;
+            randomDirection += transform.position;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randomDirection, out hit, radius, 1); 
+            finalPosition = hit.position;            
+            
+        }
+        return finalPosition;
     }
 }
