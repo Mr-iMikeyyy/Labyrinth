@@ -468,5 +468,5 @@ public class MazeGenerator : MonoBehaviour {
         }
 
     }
- 
+
 }

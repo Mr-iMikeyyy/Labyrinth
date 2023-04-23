@@ -50,6 +50,8 @@ namespace PlayerInformation
                     PlayerStats.getTimer().GetTime() / 60,
                     PlayerStats.getTimer().GetTime() % 60
                 );
+                Debug.Log(string.Format("Timer Format: {0:00}:{1:00}:{2:00}", PlayerStats.getTimer().GetTime() / 3600, PlayerStats.getTimer().GetTime() / 60, PlayerStats.getTimer().GetTime() % 60));
+
             }
         }
     }

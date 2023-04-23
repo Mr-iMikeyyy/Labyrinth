@@ -13,7 +13,8 @@ public class MazeNode : MonoBehaviour {
     [SerializeField] GameObject[] walls;
     [SerializeField] GameObject[] pillars;
     [SerializeField] GameObject[] stoneMaterials;
-    [SerializeField] GameObject Door;
+    [SerializeField] GameObject LockedDoor;
+    [SerializeField] GameObject UnlockedDoor;
     [SerializeField] GameObject Ceiling;
     [SerializeField] GameObject Light;
     [SerializeField] GameObject CenterCollider;
@@ -81,7 +82,14 @@ public class MazeNode : MonoBehaviour {
         Vector3 wallPosition = walls[wallToRemove].transform.position;
         Quaternion wallRotation = walls[wallToRemove].transform.rotation;
         Destroy(walls[wallToRemove].gameObject);
-        GameObject doorObject = Instantiate(Door, wallPosition, wallRotation, transform);
+        if (is_center_room)
+        {
+            doorObject = Instantiate(LockedDoor, wallPosition, wallRotation, transform);
+        }
+        else
+        {
+            doorObject = Instantiate(UnlockedDoor, wallPosition, wallRotation, transform);
+        }
         doorObject.name = "Door";
         if (is_center_room) {
 

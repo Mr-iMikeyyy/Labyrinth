@@ -1,9 +1,14 @@
-public class HighScore{
-    public string name { get; set; }
-    public int level { get; set; }
-    public float time { get; set; }
+using System;
 
-    public HighScore(string name, int level, float time) {
+[Serializable]
+public class HighScore
+{
+    public string name;
+    public int level;
+    public float time;
+
+    public HighScore(string name, int level, float time)
+    {
         this.name = name;
         this.level = level;
         this.time = time;

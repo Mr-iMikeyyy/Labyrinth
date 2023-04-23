@@ -10,6 +10,7 @@ public class ResumeGameButton : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1;
+        PlayerStats.timer.StartTiming();
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
