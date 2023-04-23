@@ -9,7 +9,7 @@ public class Keys :MonoBehaviour, ICollectible {
 
     private void Start()
     {
-        if (keytype == null)
+        if (keytype == null|| keytype == "")
         {
             keytype = "White";
         }
