@@ -1344,7 +1344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 424887433}
-  distance: 3
+  distance: 12
   mask:
     serializedVersion: 2
     m_Bits: 64
@@ -6713,7 +6713,7 @@ RectTransform:
   - {fileID: 2034099050}
   - {fileID: 1923608259}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
