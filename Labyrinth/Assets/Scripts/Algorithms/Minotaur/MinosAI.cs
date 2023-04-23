@@ -79,7 +79,10 @@ public class MinosAI : MonoBehaviour {
     }
 
     private void ChasePlayer() {
+        
         // The Minotaur should be slightly faster than the player
+        agent.speed = 6f;
+
         isChasing = true;
         isAttacking = false;
         isWalking = false;
@@ -90,6 +93,7 @@ public class MinosAI : MonoBehaviour {
 
     private void Roaming()
     {
+        agent.speed = 3f;
         isWalking = true;
         isAttacking = false;
         isChasing = false;
