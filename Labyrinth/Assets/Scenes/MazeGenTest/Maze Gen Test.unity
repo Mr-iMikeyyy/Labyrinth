@@ -2488,6 +2488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodePrefab: {fileID: 8775671690344581252, guid: 2095953e7008ff2448b01e8bddd4ec1c, type: 3}
   navMesh: {fileID: 1279654213}
+  key: {fileID: 2904915404976063481, guid: a14aa0a40cdf28244bdc908b2e072000, type: 3}
   objectsToPlace:
   - {fileID: 100000, guid: f224c1dc99e7bc841ae5a1e1e37d8849, type: 3}
   - {fileID: 100000, guid: 5b8b1ef4862b0214bb901b95407aeb52, type: 3}

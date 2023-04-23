@@ -425,20 +425,11 @@ public class MazeGenerator : MonoBehaviour {
                 if (room == 2) {
                     // Get the center position of the node's floor
                     Vector3 floorCenter = center.GetFloor().bounds.center;
+                    floorCenter = new Vector3(floorCenter.x, floorCenter.y + 4, floorCenter.z);
 
                     // Instantiate the key prefab at the center position
                     GameObject keyObject = Instantiate(key, floorCenter, Quaternion.identity, transform);
                     keyObject.name = "Key";
-
-
-                    // Add Rigidbody component and enable gravity
-                    Rigidbody rb = keyObject.AddComponent<Rigidbody>();
-                    rb.useGravity = true;
-
-                    // Add MeshCollider component
-                    MeshCollider collider = keyObject.AddComponent<MeshCollider>();
-                    collider.convex = true; // Enable convex mesh collider for more accurate collisions
-
                 }
             }
         }

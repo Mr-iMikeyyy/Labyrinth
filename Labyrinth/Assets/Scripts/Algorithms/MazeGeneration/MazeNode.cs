@@ -71,7 +71,7 @@ public class MazeNode : MonoBehaviour {
         pillar.transform.rotation = Quaternion.Euler(0, randomRotation, 0);
         pillar.gameObject.SetActive(false);
     }
-    public GameObject GetFloor() {
+    public MeshRenderer GetFloor() {
         return floor;
     }
     public void SetRandomFloorMaterial() {
