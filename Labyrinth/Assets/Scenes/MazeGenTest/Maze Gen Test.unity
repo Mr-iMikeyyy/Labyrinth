@@ -1373,7 +1373,7 @@ MonoBehaviour:
   SprintDrain: 0.1
   SprintRec: 0.1
   SprintMode: 3
-  sandalBoost: 0
+  sandalBoost: 2
 --- !u!54 &344588106
 Rigidbody:
   m_ObjectHideFlags: 0
