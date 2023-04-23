@@ -15,6 +15,7 @@ public class MazeNode : MonoBehaviour {
     [SerializeField] GameObject[] stoneMaterials;
     [SerializeField] GameObject LockedDoor;
     [SerializeField] GameObject UnlockedDoor;
+    private GameObject doorObject;
     [SerializeField] GameObject Ceiling;
     [SerializeField] GameObject Light;
     [SerializeField] GameObject CenterCollider;
