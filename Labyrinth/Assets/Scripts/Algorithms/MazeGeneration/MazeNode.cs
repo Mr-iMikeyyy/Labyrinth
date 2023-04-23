@@ -108,25 +108,25 @@ public class MazeNode : MonoBehaviour {
         tableObject.name = "Table";
     }
     public void AddChest() {
-        Vector3 centerPos = transform.position;
-        // float distanceZ = transform.localScale.z / 2f;
+    Vector3 centerPos = transform.position;
 
-        Vector3 chestPos = new Vector3(centerPos.x, centerPos.y, centerPos.z );
-        // Rotate the chest GameObject on the Y axis by 0 degrees
+    Vector3 chestPos = new Vector3(centerPos.x, centerPos.y, centerPos.z);
 
-        Vector3 chestRotation = Chest.transform.rotation.eulerAngles;
-        chestRotation.y += 0;
-        Chest.transform.rotation = Quaternion.Euler(chestRotation);
+    // Instantiate a new chest object at the calculated position
+    GameObject chestObject = Instantiate(Chest, chestPos, Quaternion.identity);
 
-        // Scale the chest GameObject by 50% in all directions
-        // Vector3 chestScale = Chest.transform.localScale * 0.5f;
-        // Chest.transform.localScale = chestScale;
-        // Instantiate a new chest object at the calculated position
-        GameObject chestObject = Instantiate(Chest, chestPos, Quaternion.identity);
+    // Parent the chest object to the current node
+    chestObject.transform.parent = transform;
 
-        // Parent the chest object to the current node
-        chestObject.transform.parent = transform;
-    }
+    // Rotate the chestObject on the Y axis by 180 degrees (or any other value you want)
+    Vector3 chestRotation = chestObject.transform.rotation.eulerAngles;
+    chestRotation.y += 180;
+    chestObject.transform.rotation = Quaternion.Euler(chestRotation);
+
+    // If you want to scale the chestObject, uncomment the following lines
+    // Vector3 chestScale = chestObject.transform.localScale * 0.5f;
+    // chestObject.transform.localScale = chestScale;
+}
 
     public void SetAsCompletionNode() {
         Ceiling.gameObject.SetActive(false);

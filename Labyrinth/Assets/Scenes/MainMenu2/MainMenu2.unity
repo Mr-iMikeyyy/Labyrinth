@@ -1115,11 +1115,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18b87e03553f1742a39bdbd810c1825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreListPanel: {fileID: 757661558}
   highScoreTexts:
   - {fileID: 745132982}
   - {fileID: 384095393}
   - {fileID: 2100856687}
+  highScoreListPanel: {fileID: 757661558}
 --- !u!1 &97574657
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,11 +2660,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18b87e03553f1742a39bdbd810c1825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreListPanel: {fileID: 757661558}
   highScoreTexts:
   - {fileID: 745132982}
   - {fileID: 384095393}
   - {fileID: 2100856687}
+  highScoreListPanel: {fileID: 757661558}
 --- !u!114 &384095393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2891,11 +2891,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18b87e03553f1742a39bdbd810c1825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreListPanel: {fileID: 757661558}
   highScoreTexts:
   - {fileID: 745132982}
   - {fileID: 384095393}
   - {fileID: 2100856687}
+  highScoreListPanel: {fileID: 757661558}
 --- !u!114 &434747033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4095,11 +4095,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18b87e03553f1742a39bdbd810c1825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreListPanel: {fileID: 757661558}
   highScoreTexts:
   - {fileID: 745132982}
   - {fileID: 384095393}
   - {fileID: 2100856687}
+  highScoreListPanel: {fileID: 757661558}
 --- !u!114 &745132982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4770,11 +4770,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18b87e03553f1742a39bdbd810c1825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreListPanel: {fileID: 757661558}
   highScoreTexts:
   - {fileID: 745132982}
   - {fileID: 384095393}
   - {fileID: 2100856687}
+  highScoreListPanel: {fileID: 757661558}
 --- !u!1 &789260674
 GameObject:
   m_ObjectHideFlags: 0
@@ -10352,11 +10352,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18b87e03553f1742a39bdbd810c1825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreListPanel: {fileID: 757661558}
   highScoreTexts:
   - {fileID: 745132982}
   - {fileID: 384095393}
   - {fileID: 2100856687}
+  highScoreListPanel: {fileID: 757661558}
 --- !u!114 &2100856687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10516,6 +10516,8 @@ MonoBehaviour:
   buttonHover: {fileID: 310557301}
   footsteps: {fileID: 0}
   sprintFootsteps: {fileID: 0}
+  runBreathing: {fileID: 0}
+  exhaustedBreathing: {fileID: 0}
 --- !u!1 &2116188184
 GameObject:
   m_ObjectHideFlags: 0
