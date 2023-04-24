@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,16 +6,53 @@ using UnityEngine;
 public static class SeedFormulas
 {
     private static string base36 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    public static uint SeedNum;
-    public static string Seed;
+    private static string lowercase = "abcdefghijklmnopqrstuvwxyz";
+    private static int SeedNum;
+    private static string Seed;
+    private static long find;
+    private static long Seedheld;
 
-    public static int ConvertToSeed(string seed)
+    public static int ConvertToNum(string seed)
     {
         Seed = seed;
-        for (int x = seed.Length - 1; 0 <= x; x--)
-        {
+        Seedheld = -1000000000;
 
+        for (int x = 0; Seed.Length > x; x++)
+        {
+            if (lowercase.Contains(Seed[x]))
+            {
+                Seedheld += base36.IndexOf(Char.ToUpper(seed[x])) * (int)MathF.Pow(36 , Seed.Length - x - 1);
+            }
+            else if (base36.Contains(seed[x])) {
+                Seedheld += base36.IndexOf(seed[x]) * (int)Math.Pow(36, (Seed.Length - x - 1));
+            }
+            else
+            {
+                Seedheld += 0;
+            }
         }
+
+        SeedNum = Convert.ToInt32(Seedheld);
+        return SeedNum;
     }
 
+
+    public static string ConvertToSeed(int num)
+    {
+        Seed = "";
+        Seedheld = SeedNum + 1000000000;
+
+        while (Seedheld != 0) {
+            find = Seedheld % 36L;
+            Seedheld = Seedheld / 36;
+            Seed = base36[Convert.ToInt32(find)].ToString() + Seed;
+        }
+
+        return Seed;
+    }
+
+    public static string getSeed(){
+        return Seed;
+    }
 }
+
