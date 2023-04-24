@@ -51,8 +51,22 @@ public static class SeedFormulas
         return Seed;
     }
 
-    public static string getSeed(){
+    public static string createSeed()
+    {
+        string createdSeed = "";
+        for (int x = 0; x < 6; x++)
+        {
+            createdSeed += base36[UnityEngine.Random.Range(0, 36)];
+        }
+        return createdSeed;
+    }
+    public static string getSeed()
+    {
         return Seed;
+    }
+    public static void setSeed(int set)
+    {
+        UnityEngine.Random.InitState(set);
     }
 }
 
