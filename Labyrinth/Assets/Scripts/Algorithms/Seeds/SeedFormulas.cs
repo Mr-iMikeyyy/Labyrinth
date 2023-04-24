@@ -9,35 +9,42 @@ public static class SeedFormulas
     private static string lowercase = "abcdefghijklmnopqrstuvwxyz";
     private static int SeedNum;
     private static string Seed;
-    private static long find;
+    //private static long find;
     private static long Seedheld;
+    private static UnityEngine.Random.State state;
 
+    //converts the seed to a usable int number
     public static int ConvertToNum(string seed)
     {
-        Seed = seed;
+        //needs to be done to not bypass the the int limit
         Seedheld = -1000000000;
 
-        for (int x = 0; Seed.Length > x; x++)
+        //for loop to calculate seed
+        for (int x = 0; seed.Length > x; x++)
         {
-            if (lowercase.Contains(Seed[x]))
+            //if lowercase letter change to uppercase then do maths
+            if (lowercase.Contains(seed[x]))
             {
                 Seedheld += base36.IndexOf(Char.ToUpper(seed[x])) * (int)MathF.Pow(36 , Seed.Length - x - 1);
             }
+            //if uppercase letter or number do maths
             else if (base36.Contains(seed[x])) {
                 Seedheld += base36.IndexOf(seed[x]) * (int)Math.Pow(36, (Seed.Length - x - 1));
             }
+            //ignores the char
             else
             {
                 Seedheld += 0;
             }
         }
-
+        //converts it back into a 32bit int
         SeedNum = Convert.ToInt32(Seedheld);
         return SeedNum;
     }
 
 
-    public static string ConvertToSeed(int num)
+    //Unneeded Method for mostly testing maths
+    /*public static string ConvertToSeed(int num)
     {
         Seed = "";
         Seedheld = SeedNum + 1000000000;
@@ -49,8 +56,9 @@ public static class SeedFormulas
         }
 
         return Seed;
-    }
+    }*/
 
+    //creates a seed
     public static string createSeed()
     {
         string createdSeed = "";
@@ -60,13 +68,30 @@ public static class SeedFormulas
         }
         return createdSeed;
     }
+
+    //gets the current seed
     public static string getSeed()
     {
         return Seed;
     }
-    public static void setSeed(int set)
+
+    //sets the current seed
+    public static void setSeed(string s)
     {
-        UnityEngine.Random.InitState(set);
+        Seed = s;
+        UnityEngine.Random.InitState(ConvertToNum(Seed));
+    }
+    
+    //saves the state of RNG
+    public static void saveState()
+    {
+        state = UnityEngine.Random.state;
+    }
+
+    //loads the state of RNG
+    public static void loadState()
+    {
+        UnityEngine.Random.state = state;
     }
 }
 
