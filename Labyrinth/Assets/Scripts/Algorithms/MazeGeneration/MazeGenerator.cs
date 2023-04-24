@@ -52,6 +52,10 @@ public class MazeGenerator : MonoBehaviour {
         // Instantiate an enemy character at a specific node in the completed maze nodes list
         int xPosition = MazeParams.getSize().x - 1;
         int yPosition = 0;
+
+        //Saves the RNG so different mazes will be same.
+        SeedFormulas.saveState();
+
         InstantiateMino(completedMazeNodes, xPosition, yPosition);
     }
 
