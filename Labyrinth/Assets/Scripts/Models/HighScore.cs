@@ -4,13 +4,11 @@ using System;
 public class HighScore
 {
     public string name;
-    public int level;
-    public float time;
+    public float totalTime;
 
-    public HighScore(string name, int level, float time)
+    public HighScore(string name, float totalTime)
     {
         this.name = name;
-        this.level = level;
-        this.time = time;
+        this.totalTime = totalTime;
     }
 }

@@ -48,6 +48,7 @@ public class NewGameButton : MonoBehaviour
     public void ValidateName()
     {
         PlayerStats.Name = NameInputField.text;
+        Debug.Log("Player name is: " + PlayerStats.Name); // Debug statement
         if (PlayerStats.Name == "")
         {
             // make input box outlined in red and say "Please enter a name"
@@ -57,6 +58,7 @@ public class NewGameButton : MonoBehaviour
         }
         StartNewGame();
     }
+
 
 
     // Start new maze
