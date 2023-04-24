@@ -37,6 +37,31 @@ public static class SeedFormulas
                 Seedheld += 0;
             }
         }
+
+        //if seed is invalid
+        if (Seedheld == -1000000000)
+        {
+            seed = createSeed();
+            for (int x = 0; seed.Length > x; x++)
+            {
+                //if lowercase letter change to uppercase then do maths
+                if (lowercase.Contains(seed[x]))
+                {
+                    Seedheld += base36.IndexOf(Char.ToUpper(seed[x])) * (int)MathF.Pow(36, Seed.Length - x - 1);
+                }
+                //if uppercase letter or number do maths
+                else if (base36.Contains(seed[x]))
+                {
+                    Seedheld += base36.IndexOf(seed[x]) * (int)Math.Pow(36, (Seed.Length - x - 1));
+                }
+                //ignores the char
+                else
+                {
+                    Seedheld += 0;
+                }
+            }
+        }
+
         //converts it back into a 32bit int
         SeedNum = Convert.ToInt32(Seedheld);
         return SeedNum;
