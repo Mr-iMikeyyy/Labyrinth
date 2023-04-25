@@ -20,6 +20,11 @@ public class MinosAnimationStateController : MonoBehaviour
     {
         animator.SetBool("isWalking", aI.isWalking);
         animator.SetBool("isAttacking", aI.isAttacking);
+        if (animator.GetBool("isAttacking")) {
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1) {
+                animator.SetBool("isChasing", true);
+            }
+        }
         animator.SetBool("isChasing", aI.isChasing);
     }
 }

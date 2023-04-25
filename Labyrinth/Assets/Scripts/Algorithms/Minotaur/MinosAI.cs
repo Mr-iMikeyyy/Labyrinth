@@ -57,13 +57,16 @@ public class MinosAI : MonoBehaviour {
         }
         else if (senses.GetInSight() && senses.GetInAttackRange() && !alreadyAttacked)
         {
-            // Debug.Log("3");
+            Debug.Log("3");
             AttackPlayer();
         }
         else {
-            // Debug.Log("4");
-            ChasePlayer();
+            FollowPlayer();
         }
+        // else {
+        //     // Debug.Log("4");
+        //     ChasePlayer();
+        // }
         previousloc = currentloc;
         currentloc = transform.position;
         if (currentloc == previousloc)
@@ -77,6 +80,8 @@ public class MinosAI : MonoBehaviour {
             Roaming();
         }
     }
+
+    
 
     private void ChasePlayer() {
         
@@ -118,7 +123,7 @@ public class MinosAI : MonoBehaviour {
     private void AttackPlayer()
     {
         isWalking = false;
-        isChasing = true;
+        isChasing = false;
         agent.SetDestination(transform.position);
         transform.LookAt(player);
 
@@ -127,13 +132,23 @@ public class MinosAI : MonoBehaviour {
             isAttacking = true;
             alreadyAttacked = true;
             Invoke("resetAttack", timeBetweenAttacks);
-            isAttacking = false;
+        }
+        if(alreadyAttacked) {
+            agent.SetDestination(transform.position);
+            transform.LookAt(player);
         }
     }
 
     private void resetAttack()
     {
+        isAttacking=false;
         alreadyAttacked = false;
+        isChasing = true;
+    }
+
+    private void FollowPlayer()
+    {
+        
     }
 
     private void getWalkPoint()

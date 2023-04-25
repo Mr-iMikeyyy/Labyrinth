@@ -5,14 +5,14 @@ using UnityEngine;
 public class MinosSenses : MonoBehaviour
 {
     private float viewRadius = 15f;
-    private float viewAngle = 45f;
+    private float viewAngle = 90f;
 
     private LayerMask targetPlayer;
     private LayerMask obstacleMask;
 
     private GameObject player;
 
-    [SerializeField] float attackRange = 2f;
+    [SerializeField] float attackRange;
 
     private bool inSight = false;
     private bool inAttackRange = false;
