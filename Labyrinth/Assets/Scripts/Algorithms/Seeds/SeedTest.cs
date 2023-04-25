@@ -5,7 +5,7 @@ using UnityEngine;
 public class SeedTest : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //    string formula = SeedFormulas.createSeed();
         //    Debug.Log(formula);

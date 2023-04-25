@@ -12,7 +12,7 @@ public class CineCam : MonoBehaviour
     async void Start()
     {
         await Task.Delay(1000);
-        minos = GameObject.Find("Minos_test(Clone)");
+        minos = GameObject.Find("MinosCinematic(Clone)");
         cam = GetComponent<CinemachineVirtualCamera>();
         cam.Follow = minos.transform;
         cam.LookAt = minos.transform;

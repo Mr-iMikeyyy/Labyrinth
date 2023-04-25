@@ -2466,7 +2466,6 @@ GameObject:
   m_Component:
   - component: {fileID: 584500077}
   - component: {fileID: 584500076}
-  - component: {fileID: 584500078}
   m_Layer: 0
   m_Name: Maze gen
   m_TagString: Untagged
@@ -2516,15 +2515,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!45 &584500078
-Skybox:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 584500075}
-  m_Enabled: 0
-  m_CustomSkybox: {fileID: 2100000, guid: e632c4b1ce376264d95ef45858c23fde, type: 2}
 --- !u!1 &620757231
 GameObject:
   m_ObjectHideFlags: 0

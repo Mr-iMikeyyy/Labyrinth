@@ -268,6 +268,22 @@ MonoBehaviour:
   keyType: 
   doorAnimator: {fileID: 1751754486752054210}
   doorOpenSound: {fileID: 8548720768471211048}
+--- !u!208 &2030978378009108143
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751754486744676352}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 1.5380001, z: 0.15}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.462, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!95 &1751754486752054210 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
