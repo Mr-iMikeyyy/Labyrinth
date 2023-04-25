@@ -17,7 +17,8 @@ public class Chest : Interactable
     private int rand;
     //decides what rarity
     private int rarity;
-    protected override void Interact()
+
+    private void Start()
     {
         //randomly generates a number using the weights
         rarity = Random.Range(0, weightRare + weightUncommon + weightCommon + 1);
@@ -40,6 +41,9 @@ public class Chest : Interactable
         rand = Random.Range(0, Chosen.Length);
         spawnpoint = gameObject.transform.position;
         //creates Object
+    }
+    protected override void Interact()
+    {
         Instantiate(Chosen[rand], spawnpoint, Quaternion.identity);
         Destroy(gameObject);
     }
