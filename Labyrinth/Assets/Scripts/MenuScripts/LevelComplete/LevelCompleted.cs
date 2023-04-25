@@ -37,19 +37,25 @@ namespace PlayerInformation
             // Upon level completion the player's time is saved and the level complete menu is shown.
             PlayerStats.getTimer().PauseTiming();
             float completedLevelTime = PlayerStats.getTimer().GetTime();
-            float totalRunTime = completedLevelTime;
+            PlayerStats.totalTime += completedLevelTime;
+
             int currentLevel = PlayerStats.getCurrentLevel();
             string playerName = PlayerStats.Name;
 
             // If player reached the maximum level, save total run time
             if (currentLevel == PlayerStats.getMaxLevel())
             {
-                float level1Time = PlayerPrefs.GetFloat("Level1Time");
-                totalRunTime += level1Time;
-                PlayerPrefs.SetFloat("Level1Time", 0f);
-                PlayerPrefs.SetFloat("Level2Time", 0f);
-                PlayerPrefs.SetFloat("TotalRunTime", totalRunTime);
-                Debug.Log("Total Run Time: " + totalRunTime);
+                //whatisdiseven?
+                //    float level1Time = PlayerPrefs.GetFloat("Level1Time");
+                //    totalRunTime += level1Time;
+                //    PlayerPrefs.SetFloat("Level1Time", 0f);
+                //    PlayerPrefs.SetFloat("Level2Time", 0f);
+                //    PlayerPrefs.SetFloat("TotalRunTime", totalRunTime);
+                //    Debug.Log("Total Run Time: " + totalRunTime);
+
+                FindObjectOfType<Timer>().SaveLevelTime(playerName, PlayerStats.totalTime);
+                PlayerStats.resetTotalTime();
+                PlayerStats.getTimer().ResetTimer();
                 SceneManager.LoadScene("Credits");
             }
             else
@@ -59,7 +65,7 @@ namespace PlayerInformation
                 Debug.Log("Level " + currentLevel + " Time: " + completedLevelTime);
 
                 // Save the completed level time to high scores
-                FindObjectOfType<Timer>().SaveLevelTime(playerName, completedLevelTime);
+                
             }
 
             // Display the completed level time in level completed menu
