@@ -16,6 +16,7 @@ public class GameOverMenu : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            PlayerStats.resetTotalTime();
             isGameOver = true;
             Time.timeScale = 0;
             gameOverMenu.SetActive(true);
