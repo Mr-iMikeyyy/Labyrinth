@@ -12,7 +12,7 @@ public class SeedTest : MonoBehaviour
         //    Debug.Log(SeedFormulas.ConvertToNum(formula));
         //    Debug.Log(SeedFormulas.ConvertToSeed(SeedFormulas.ConvertToNum(formula)));
 
-        SeedFormulas.setSeed("AXW8P9");
+        //SeedFormulas.setSeed("AXW8P9");
     }
 
     // Update is called once per frame
