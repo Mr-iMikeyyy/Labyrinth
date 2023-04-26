@@ -118,7 +118,7 @@ public class MinosAI : MonoBehaviour {
 
     private void AttackPlayer()
     {
-        Debug.Log("Stopping distance: " + agent.stoppingDistance);
+        // Debug.Log("Stopping distance: " + agent.stoppingDistance);
         isWalking = false;
         isChasing = false;
         agent.SetDestination(transform.position);
