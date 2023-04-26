@@ -601,11 +601,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ChatGPT
+  m_text: 'Mike M.
 
-
-
-    Mike M.
 
 
 
@@ -616,12 +613,18 @@ MonoBehaviour:
 
 
 
+
+
     Matt L.
 
 
 
 
+
+
     Alex M.
+
+
 
 
 
@@ -769,42 +772,48 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lead Developer
+  m_text: 'Team Lead
 
+    Animation/AI
 
-
-    Team Lead
-
-    (MinotaurAI)
+    /Project Management
 
 
 
     Tech Lead
 
-    (I
-    can''t list everything here)
+    Player
+    Controls/Item Implement/Seeding
 
 
 
-    Father of Children
+    Dungeon Master
 
-    (and the maze)
+    Procedural Generation
 
-
-
-    Alex
-    I need a cool title for you
+    /Environment
+    Art
 
 
 
-    Resident DJ
+    Project Manager
 
-    (Soundtrack is fire)
+    Supporting Documentation
+
+    /Orgnization
 
 
 
-    I
-    made this'
+    Audio
+    Specialist
+
+    SoundFX/Music
+
+
+
+    UI Specialist
+
+    Menus/UI/Scene Managment'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
