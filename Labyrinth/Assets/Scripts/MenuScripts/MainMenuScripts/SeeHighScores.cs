@@ -9,30 +9,30 @@ public class SeeHighScores : MonoBehaviour
 {
     public TextMeshProUGUI[] highScoreTexts;
     public GameObject highScoreListPanel;
-
+    //bool scoresCleared = false;
     private List<HighScore> highScores = new List<HighScore>();
-    //UN-COMMENT ME TO DELETE HIGH SCORES bool scoresCleared = false;
 
     private void Start()
     {
         LoadHighScores();
         //UN-COMMENT ME TO DELETE HIGH SCORES
-    /*  if (!scoresCleared)
+
+        /*if (!scoresCleared)
         {
             PlayerPrefs.DeleteKey("HighScores");
             scoresCleared = true;
-        } */
+        }*/
     }
 
     public void LoadHighScores()
     {
         string scores = PlayerPrefs.GetString("HighScores");
+        Debug.Log("Loaded high scores: " + scores);
         if (!string.IsNullOrEmpty(scores))
         {
             HighScoreCollection highScoreCollection = JsonUtility.FromJson<HighScoreCollection>(scores);
             highScores = highScoreCollection.highScores;
         }
-        // Debug.Log("Loaded high scores: " + scores);
     }
 
     private void UpdateHighScoreTexts()
@@ -41,20 +41,23 @@ public class SeeHighScores : MonoBehaviour
         {
             if (i < highScores.Count)
             {
-                highScoreTexts[i].text = GetFormattedScore(highScores[i]);
+                string formattedScore = GetFormattedScore(highScores[i]);
+                highScoreTexts[i].text = formattedScore;
+                Debug.Log("Formatted Score: " + formattedScore);
             }
             else
             {
                 highScoreTexts[i].text = "-";
             }
         }
-        // Debug.Log("Updated high score texts");
+        Debug.Log("Updated high score texts");
     }
+
 
     private string GetFormattedScore(HighScore highScore)
     {
-        string timeString = string.Format("{0:00}:{1:00}", Mathf.FloorToInt(highScore.time / 60f), Mathf.FloorToInt(highScore.time % 60f));
-        return string.Format("{0} - Level {1} - {2}", highScore.name, highScore.level, timeString);
+        string timeString = string.Format("{0:00}:{1:00}", Mathf.FloorToInt(highScore.totalTime / 60f), Mathf.FloorToInt(highScore.totalTime % 60f));
+        return string.Format("{0,-15}{1}{2}", highScore.name, "Total Time: ", timeString);
     }
 
     public void OpenHighScoreList()

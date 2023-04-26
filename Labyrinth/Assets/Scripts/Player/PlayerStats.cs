@@ -13,12 +13,14 @@ public static class PlayerStats {
     private static GameObject timerObject;
     private static int currentLevel = 1;
     private static int maxLevel = 2;
+    public static float totalTime;
 
     
     static PlayerStats()
     {
         timerObject = new GameObject("Timer");
         timer = timerObject.AddComponent<Timer>();
+        totalTime = 0f;
     }
 
     public static void setMaxHP(float x)
@@ -75,5 +77,10 @@ public static class PlayerStats {
     public static GameObject getTimerObject()
     {
         return timerObject;
+    }
+
+    public static void resetTotalTime()
+    {
+        totalTime = 0;
     }
 }

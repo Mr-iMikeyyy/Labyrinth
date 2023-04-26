@@ -21,6 +21,7 @@ namespace PlayerInformation
         {
             playerCamera = GameObject.Find("Main Camera");
         }
+
         private void OnTriggerEnter(Collider other)
         {
             Debug.Log("Something has entered the trigger volume.");
@@ -31,28 +32,53 @@ namespace PlayerInformation
                 ShowLevelCompleteMenu();
             }
         }
-
         private void ShowLevelCompleteMenu()
         {
             // Upon level completion the player's time is saved and the level complete menu is shown.
             PlayerStats.getTimer().PauseTiming();
-            PlayerStats.getTimer().SaveLevelTime(PlayerStats.Name, PlayerStats.getCurrentLevel());
+            float completedLevelTime = PlayerStats.getTimer().GetTime();
+            PlayerStats.totalTime += completedLevelTime;
 
-            if (PlayerStats.getCurrentLevel() >= PlayerStats.getMaxLevel()) {
+            int currentLevel = PlayerStats.getCurrentLevel();
+            string playerName = PlayerStats.Name;
+
+            // If player reached the maximum level, save total run time
+            if (currentLevel == PlayerStats.getMaxLevel())
+            {
+                //whatisdiseven?
+                //    float level1Time = PlayerPrefs.GetFloat("Level1Time");
+                //    totalRunTime += level1Time;
+                //    PlayerPrefs.SetFloat("Level1Time", 0f);
+                //    PlayerPrefs.SetFloat("Level2Time", 0f);
+                //    PlayerPrefs.SetFloat("TotalRunTime", totalRunTime);
+                //    Debug.Log("Total Run Time: " + totalRunTime);
+
+                FindObjectOfType<Timer>().SaveLevelTime(playerName, PlayerStats.totalTime);
+                PlayerStats.resetTotalTime();
+                PlayerStats.getTimer().ResetTimer();
                 SceneManager.LoadScene("Credits");
-            } else{
-                levelCompleteMenu.SetActive(true);
-                EventSystem.current.SetSelectedGameObject(null);
-                EventSystem.current.SetSelectedGameObject(GameObject.Find("NextLevelButton"));
-                CompletedTime.text = string.Format(
-                    "{0:00}:{1:00}:{2:00}",
-                    PlayerStats.getTimer().GetTime() / 3600,
-                    PlayerStats.getTimer().GetTime() / 60,
-                    PlayerStats.getTimer().GetTime() % 60
-                );
-                Debug.Log(string.Format("Timer Format: {0:00}:{1:00}:{2:00}", PlayerStats.getTimer().GetTime() / 3600, PlayerStats.getTimer().GetTime() / 60, PlayerStats.getTimer().GetTime() % 60));
-
             }
+            else
+            {
+                // Save the completed level time to playerprefs
+                PlayerPrefs.SetFloat("Level" + currentLevel + "Time", completedLevelTime);
+                Debug.Log("Level " + currentLevel + " Time: " + completedLevelTime);
+
+                // Save the completed level time to high scores
+                
+            }
+
+            // Display the completed level time in level completed menu
+            levelCompleteMenu.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(GameObject.Find("NextLevelButton"));
+            CompletedTime.text = string.Format(
+                "{0:00}:{1:00}",
+                Mathf.FloorToInt(completedLevelTime / 60f),
+                Mathf.FloorToInt(completedLevelTime % 60f)
+            );
+            Debug.Log(string.Format("Timer Format: {0:00}:{1:00}", Mathf.FloorToInt(completedLevelTime / 60f), Mathf.FloorToInt(completedLevelTime % 60f)));
         }
+
     }
 }

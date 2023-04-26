@@ -40,7 +40,7 @@ public class Timer : MonoBehaviour
         return time;
     }
 
-    public void SaveLevelTime(string name, int level)
+    public void SaveLevelTime(string name, float totalTime)
     {
         HighScoreCollection highScoreCollection = new HighScoreCollection();
 
@@ -50,30 +50,20 @@ public class Timer : MonoBehaviour
             highScoreCollection = JsonUtility.FromJson<HighScoreCollection>(scores);
         }
 
-        // Add new score
-        highScoreCollection.highScores.Add(new HighScore(name, level, time));
+        // Create a new high score and add it to the collection
+        HighScore newHighScore = new HighScore(name, totalTime);
+        highScoreCollection.highScores.Add(newHighScore);
 
-        // bubble sort the high scores
-        for (int i = 0; i < highScoreCollection.highScores.Count; i++)
-        {
-            for (int j = 0; j < highScoreCollection.highScores.Count - 1; j++)
-            {
-                if (highScoreCollection.highScores[j].time > highScoreCollection.highScores[j + 1].time)
-                {
-                    HighScore temp = highScoreCollection.highScores[j];
-                    highScoreCollection.highScores[j] = highScoreCollection.highScores[j + 1];
-                    highScoreCollection.highScores[j + 1] = temp;
-                }
-            }
-        }
+        // Sort the high scores in ascending order based on total time
+        highScoreCollection.highScores.Sort((a, b) => a.totalTime.CompareTo(b.totalTime));
 
-        // remove scores exceeding max count
+        // Remove any excess scores beyond the maximum allowed
         if (highScoreCollection.highScores.Count > MAX_HIGH_SCORES)
         {
             highScoreCollection.highScores.RemoveRange(MAX_HIGH_SCORES, highScoreCollection.highScores.Count - MAX_HIGH_SCORES);
         }
 
-        // Save the high scores
+        // Save the updated high score collection to PlayerPrefs
         string updatedScores = JsonUtility.ToJson(highScoreCollection);
         PlayerPrefs.SetString("HighScores", updatedScores);
         Debug.Log("These are the current scores: " + updatedScores);
