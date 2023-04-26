@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu2/MainMenu2.unity
     guid: 41a0748a5babcb447a63da6925e7558a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Nav mesh test/Nav mesh test.unity
     guid: b4db14c5acd6d4e43909f6d96c6b58b1
   - enabled: 1
