@@ -24,7 +24,7 @@ public class MainMenuButton : MonoBehaviour
 
     public void ConfirmMainMenu()
     {
-        
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu2");
     }
 }
