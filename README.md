@@ -5,19 +5,18 @@ This is a Unity-based Labyrinth game created as a college project. The game is d
 ## Features
 - Procedurally generated maze using DFS algorithm
 - Minotaur enemy that constantly searches for the player
-- Center completion room locked until player retrieves key
+- Inner sanctum locked until player retrieves key
 - Power-ups
-- Sprint mechanic for fast movement through the maze
+- Sprint mechanic for escaping the Minotaur
 
 ## How to Play
 The game can be played using keyboard and mouse controls. The player can move using the arrow keys or WASD keys, and look around using the mouse. The game features the following controls:
 
 - Arrow keys or WASD keys: Move
 - Mouse: Look around
-- Left mouse button: Interact with objects, such as opening doors or picking up items
+- F Button: Interact with objects, opening doors, opening chests
 - Shift: Sprint (limited use)
-- Space: Jump
-- Tab: View inventory and select power-ups
+- Space: Use Power-Up
 
 
 # Team
@@ -63,3 +62,18 @@ I look forward to learning more as a developer, expanding my knowlege of object 
 
 ## Mitchell Furman
 Hello! My name is Mitchell Furman. I'm currently a CIS major who is attending classes here at WCC to transfer to EMU after I finish the classes here. I am 22 years old and have been interested in coding and computers to years. I love playing games online with friends. Right now a couple favorites of mine are Destiny 2 and Elden Ring. I currently have experience in C++ and Linux Coding and am currently working on Php and C# activities!
+
+
+
+## Lore
+In the heart of the ancient island of Crete, an enigmatic labyrinth conceals a dark secret. This impenetrable maze was designed by the ingenious Daedalus to contain the fearsome Minotaur, a half-man, half-bull creature that terrorizes all who dare to enter.
+
+Rumors speak of a locked inner sanctum deep within the winding passages, where the Eternal Flame burns, offering freedom and salvation to those who find it. Yet, the Flame's guardians have hidden a mystical key in the farthest reaches of the labyrinth, ensuring that only the most worthy can unlock the sanctum's doors.
+
+As a daring adventurer, you venture into the labyrinth in search of the elusive key, determined to outwit the cunning Minotaur and claim your place among legends. The echoing growls of the beast fill the air as you navigate the ever-shifting passages, your bravery and wits pitted against the formidable creature's instincts and ferocity.
+
+Each step brings new challenges, as the labyrinth's walls shift and change with every turn. Time is of the essence, as the Minotaur draws closer, driven by an insatiable hunger for the hunt.
+
+With the mystical key finally in hand, you race to the inner sanctum, the Minotaur's breath hot on your heels. As you unlock the door, the Eternal Flame casts its warm glow upon your face, promising freedom and safety from the monstrous beast.
+
+The door closes behind you, and the Minotaur's roars fade into the distance. You have escaped the treacherous labyrinth, forever etching your name in the annals of history as the one who defied the Minotaur and triumphed over the darkness.
