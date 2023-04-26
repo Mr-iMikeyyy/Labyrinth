@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using Unity.AI.Navigation;
 
-public class MinosAI : MonoBehaviour {
-    private Transform player;
-    private MinosSenses senses; 
+public class CinematicMinosAI : MonoBehaviour {
+    // private Transform player;
+    private CinematicMinosSenses senses; 
     private NavMeshAgent agent;
     public bool isWalking;
     public bool isChasing;
@@ -35,8 +35,8 @@ public class MinosAI : MonoBehaviour {
 
     private void Start ()
     {
-        player = GameObject.Find("Player").transform;
-        senses = GetComponent<MinosSenses>();
+        // player = GameObject.Find("Player").transform;
+        senses = GetComponent<CinematicMinosSenses>();
         agent = GetComponent<NavMeshAgent>();
 
         getWalkPoint();
@@ -57,16 +57,13 @@ public class MinosAI : MonoBehaviour {
         }
         else if (senses.GetInSight() && senses.GetInAttackRange() && !alreadyAttacked)
         {
-            Debug.Log("3");
+            // Debug.Log("3");
             AttackPlayer();
         }
         else {
-            FollowPlayer();
+            // Debug.Log("4");
+            ChasePlayer();
         }
-        // else {
-        //     // Debug.Log("4");
-        //     ChasePlayer();
-        // }
         previousloc = currentloc;
         currentloc = transform.position;
         if (currentloc == previousloc)
@@ -81,8 +78,6 @@ public class MinosAI : MonoBehaviour {
         }
     }
 
-    
-
     private void ChasePlayer() {
         
         // The Minotaur should be slightly faster than the player
@@ -91,8 +86,8 @@ public class MinosAI : MonoBehaviour {
         isChasing = true;
         isAttacking = false;
         isWalking = false;
-        transform.LookAt(player);
-        agent.SetDestination(player.position);
+        // transform.LookAt(player);
+        // agent.SetDestination(player.position);
             
     }
 
@@ -123,32 +118,22 @@ public class MinosAI : MonoBehaviour {
     private void AttackPlayer()
     {
         isWalking = false;
-        isChasing = false;
+        isChasing = true;
         agent.SetDestination(transform.position);
-        transform.LookAt(player);
+        // transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
             isAttacking = true;
             alreadyAttacked = true;
             Invoke("resetAttack", timeBetweenAttacks);
-        }
-        if(alreadyAttacked) {
-            agent.SetDestination(transform.position);
-            transform.LookAt(player);
+            isAttacking = false;
         }
     }
 
     private void resetAttack()
     {
-        isAttacking=false;
         alreadyAttacked = false;
-        isChasing = true;
-    }
-
-    private void FollowPlayer()
-    {
-        
     }
 
     private void getWalkPoint()

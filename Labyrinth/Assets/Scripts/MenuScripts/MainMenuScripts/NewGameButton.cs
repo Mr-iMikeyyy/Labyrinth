@@ -13,7 +13,8 @@ public class NewGameButton : MonoBehaviour
     public GameObject NameCoinfirmationButton;
     public Button ExitInputButton;
     public TMP_InputField NameInputField;
-    
+    public TMP_InputField SEEDInputText;
+
     public void OpenConfirmationBox()
     {
         confirmationBox.SetActive(true);
@@ -67,6 +68,7 @@ public class NewGameButton : MonoBehaviour
         MazeParams.setSize();
 
         DontDestroyOnLoad(PlayerStats.getTimerObject());
+        SeedFormulas.setSeed(SEEDInputText.text);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Maze gen test");
         // Start timer
 

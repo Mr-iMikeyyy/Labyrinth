@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinosAnimationStateController : MonoBehaviour
+public class CinematicMinosAnimationStateController : MonoBehaviour
 {
 
     Animator animator;
-    MinosAI aI;
+    CinematicMinosAI aI;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        aI = GetComponent<MinosAI>();
+        aI = GetComponent<CinematicMinosAI>();
     }
 
     // Update is called once per frame
@@ -20,11 +20,6 @@ public class MinosAnimationStateController : MonoBehaviour
     {
         animator.SetBool("isWalking", aI.isWalking);
         animator.SetBool("isAttacking", aI.isAttacking);
-        if (animator.GetBool("isAttacking")) {
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1) {
-                animator.SetBool("isChasing", true);
-            }
-        }
         animator.SetBool("isChasing", aI.isChasing);
     }
 }

@@ -30,13 +30,13 @@ using Random = UnityEngine.Random;
         selection, the algorithm generates unique mazes every time it is run.
         **/
 
-public class MazeGenerator : MonoBehaviour {
+public class CinematicMazeGenerator : MonoBehaviour {
     [SerializeField] MazeNode nodePrefab;
     [SerializeField] GameObject navMesh;
     [SerializeField] GameObject key;
 
     public GameObject[] objectsToPlace;
-    public GameObject playerCharacter;
+    // public GameObject playerCharacter;
     public GameObject enemyCharacter;
     // private Random random = new Random();
     public StringUtils stringUtils = new StringUtils();
@@ -44,7 +44,7 @@ public class MazeGenerator : MonoBehaviour {
     private void Start() {
         // Generate a maze with specified size, objects to place, and player character, 
         // and get a list of maze nodes 
-        List<MazeNode> completedMazeNodes = GenerateMaze(objectsToPlace, playerCharacter, key);
+        List<MazeNode> completedMazeNodes = GenerateMaze(objectsToPlace, key);
         
         // Bake the generated maze mesh to create a navigation mesh
         BakeMesh();
@@ -91,7 +91,7 @@ public class MazeGenerator : MonoBehaviour {
     /// <param name="objectsToPlace">An array of GameObjects to be randomly placed in the maze.</param>
     /// <param name="playerCharacter">The GameObject representing the player character.</param>
     /// <returns>A List of MazeNodes representing the completed maze.</returns>
-    List<MazeNode> GenerateMaze(GameObject[] objectsToPlace, GameObject playerCharacter, GameObject key) {
+    List<MazeNode> GenerateMaze(GameObject[] objectsToPlace, GameObject key) {
         Vector2Int mazeSize = MazeParams.getSize();
 
         Stack<MazeNode> currentPath = new Stack<MazeNode>();
@@ -408,9 +408,9 @@ public class MazeGenerator : MonoBehaviour {
             centerLeft.RemoveWall(2); // TOP
             centerLeft.RemoveWall(3); // BOTTOM
             centerLeft.RemovePillar(0);
-            if (room == 1) {
-                playerCharacter.transform.position = centerLeft.transform.position;
-            }
+            // if (room == 1) {
+            //     playerCharacter.transform.position = centerLeft.transform.position;
+            // }
         }
 
         // Center
