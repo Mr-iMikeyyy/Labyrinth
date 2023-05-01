@@ -143,5 +143,9 @@ public class Movement_2 : MonoBehaviour
         }
     }
 
+    public float getSensitivity()
+    {
+        return Sensitivity;
+    }
    
 }
