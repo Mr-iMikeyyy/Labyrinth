@@ -102,10 +102,13 @@ MonoBehaviour:
   promptMessage: 
   Common:
   - {fileID: 5387415857870169537, guid: db3b2ce5a32e92e498ad16ac71a5ee12, type: 3}
+  - {fileID: 2189448830211429924, guid: 24ed3e4cbd624ce4ba750275e0396eb7, type: 3}
   Uncommon:
   - {fileID: 5387415857870169537, guid: db3b2ce5a32e92e498ad16ac71a5ee12, type: 3}
+  - {fileID: 2189448830211429924, guid: 24ed3e4cbd624ce4ba750275e0396eb7, type: 3}
   Rare:
   - {fileID: 5387415857870169537, guid: db3b2ce5a32e92e498ad16ac71a5ee12, type: 3}
+  - {fileID: 2189448830211429924, guid: 24ed3e4cbd624ce4ba750275e0396eb7, type: 3}
   weightCommon: 1
   weightUncommon: 1
   weightRare: 1
