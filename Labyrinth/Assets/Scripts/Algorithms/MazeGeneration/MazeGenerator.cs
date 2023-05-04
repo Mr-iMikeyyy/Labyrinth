@@ -63,7 +63,7 @@ public class MazeGenerator : MonoBehaviour {
     // This method bakes the generated maze mesh to create a navigation mesh
     private void BakeMesh() {
         // Get the script that will build the navigation mesh
-        testscript navBuilder = navMesh.GetComponent<testscript>();
+        MazeNavMeshBuilder navBuilder = navMesh.GetComponent<MazeNavMeshBuilder>();
         
         // Create the navigation mesh using the script
         navBuilder.CreateNavMesh();

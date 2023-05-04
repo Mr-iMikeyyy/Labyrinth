@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.AI.Navigation;
 using Unity.AI;
-public class testscript : MonoBehaviour
+public class MazeNavMeshBuilder : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
