@@ -17,9 +17,11 @@ public class Chest : Interactable
     private int rand;
     //decides what rarity
     private int rarity;
+    private Animator chestAnimator;
 
     private void Start()
     {
+        chestAnimator = GetComponent<Animator>();
         //randomly generates a number using the weights
         rarity = Random.Range(0, weightRare + weightUncommon + weightCommon + 1);
 
@@ -44,7 +46,8 @@ public class Chest : Interactable
     }
     protected override void Interact()
     {
+        chestAnimator.Play("Chest Opening");
         Instantiate(Chosen[rand], spawnpoint, Quaternion.identity);
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }
