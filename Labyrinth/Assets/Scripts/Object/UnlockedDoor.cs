@@ -34,7 +34,6 @@ public class UnlockedDoor : Interactable
             inProcess = true;
             if (doorOpen == false && timesincelastpress > 1)
             {
-                Debug.Log("open");
                 Parentcollider.enabled = false;
                 doorAnimator.Play("door opening");
                 doorOpenSound.Play();
@@ -44,7 +43,6 @@ public class UnlockedDoor : Interactable
             }
             else if (doorOpen == true && timesincelastpress > 1)
             {
-                Debug.Log("close");
                 Parentcollider.enabled = true;
                 doorAnimator.Play("door closing");
                 doorOpenSound.Play();
