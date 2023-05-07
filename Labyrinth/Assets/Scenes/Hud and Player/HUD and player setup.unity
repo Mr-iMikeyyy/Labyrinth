@@ -2946,11 +2946,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: -89.997, z: 0}
---- !u!82 &474875098 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8548720768471211048, guid: 4876c29c8e7a6de4d814c0e47d11dee2, type: 3}
-  m_PrefabInstance: {fileID: 1751754486469494453}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &591308028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5918,30 +5913,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: -0.000061035, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1052413292 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1751754486744676352, guid: 4876c29c8e7a6de4d814c0e47d11dee2, type: 3}
-  m_PrefabInstance: {fileID: 1751754486469494453}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1052413293
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052413292}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
---- !u!95 &1052413295 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1751754486752054210, guid: 4876c29c8e7a6de4d814c0e47d11dee2, type: 3}
-  m_PrefabInstance: {fileID: 1751754486469494453}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1057539590
 GameObject:
   m_ObjectHideFlags: 0
@@ -9513,45 +9484,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: -0.01, z: 0}
---- !u!1 &1711703562 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1751754486744676354, guid: 4876c29c8e7a6de4d814c0e47d11dee2, type: 3}
-  m_PrefabInstance: {fileID: 1751754486469494453}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &1711703564
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711703562}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
---- !u!114 &1711703565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711703562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20228f1b3e2fb9d41b695d1b44204b2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptMessage: 
-  doorAnimator: {fileID: 1052413295}
-  Parentcollider: {fileID: 1052413293}
-  parent: {fileID: 1052413292}
-  navmesh: {fileID: 0}
-  op: {fileID: 0}
-  cl: {fileID: 0}
-  doorOpenSound: {fileID: 474875098}
 --- !u!1 &1719657939
 GameObject:
   m_ObjectHideFlags: 0
@@ -12153,13 +12085,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unlocked Door
       objectReference: {fileID: 0}
-    - target: {fileID: 1751754486752054210, guid: 4876c29c8e7a6de4d814c0e47d11dee2, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 920518977, guid: 4876c29c8e7a6de4d814c0e47d11dee2, type: 3}
-    - {fileID: 920518975, guid: 4876c29c8e7a6de4d814c0e47d11dee2, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4876c29c8e7a6de4d814c0e47d11dee2, type: 3}
 --- !u!1001 &7292961722147492829
 PrefabInstance:

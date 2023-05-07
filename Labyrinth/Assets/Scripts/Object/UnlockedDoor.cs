@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Unity.AI.Navigation;
+using UnityEngine.AI;
 public class UnlockedDoor : Interactable
 {
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private Collider Parentcollider;
     [SerializeField] private GameObject parent;
-    [SerializeField] private GameObject navmesh;
-    [SerializeField] private Animation op, cl;
+    private GameObject nmesh;
+    private NavMeshSurface navmesh;
+    [SerializeField] private NavMeshObstacle obstacle;
     public AudioSource doorOpenSound;
     private bool doorOpen;
     private float timesincelastpress = 0;
@@ -17,6 +19,8 @@ public class UnlockedDoor : Interactable
     {
         doorOpen = false;
         inProcess = false;
+        nmesh = GameObject.Find("NavMesh");
+        navmesh = nmesh.GetComponent<NavMeshSurface>();
     }
 
     private void Update()
@@ -35,6 +39,7 @@ public class UnlockedDoor : Interactable
                 doorAnimator.Play("door opening");
                 doorOpenSound.Play();
                 timesincelastpress = 0;
+                obstacle.enabled = false;
                 changeDoor();
             }
             else if (doorOpen == true && timesincelastpress > 1)
@@ -44,8 +49,10 @@ public class UnlockedDoor : Interactable
                 doorAnimator.Play("door closing");
                 doorOpenSound.Play();
                 timesincelastpress = 0;
+                obstacle.enabled = true;
                 changeDoor();
             }
+            navmesh.BuildNavMesh();
             inProcess = false;
         }
     }
