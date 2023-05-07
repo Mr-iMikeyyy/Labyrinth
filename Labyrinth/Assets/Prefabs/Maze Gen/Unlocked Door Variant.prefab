@@ -239,8 +239,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
   m_PrefabInstance: {fileID: 1751754486744710818}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &920518975
-BoxCollider:
+--- !u!64 &1052413293
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -249,9 +249,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 3, z: 0.4}
-  m_Center: {x: 0, y: 1.462, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
 --- !u!208 &2030978378009108143
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -268,21 +269,44 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1.462, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &920518977
+--- !u!1 &1751754486744676354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
+  m_PrefabInstance: {fileID: 1751754486744710818}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1711703564
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751754486744676354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
+--- !u!114 &1711703565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751754486744676352}
+  m_GameObject: {fileID: 1751754486744676354}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20228f1b3e2fb9d41b695d1b44204b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: 
-  keyType: 
   doorAnimator: {fileID: 1751754486752054210}
+  Parentcollider: {fileID: 1052413293}
+  parent: {fileID: 1751754486744676352}
+  nmesh: {fileID: 0}
+  navmesh: {fileID: 0}
+  obstacle: {fileID: 2030978378009108143}
   doorOpenSound: {fileID: 8548720768471211048}
 --- !u!95 &1751754486752054210 stripped
 Animator:

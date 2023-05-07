@@ -379,6 +379,8 @@ MonoBehaviour:
   promptMessage: 
   keyType: White
   doorAnimator: {fileID: 0}
+  doorOpenSound: {fileID: 0}
+  doorLockedSound: {fileID: 0}
 --- !u!65 &83854195
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3434,6 +3436,7 @@ MonoBehaviour:
   isSprinting: 0
   isMoving: 0
   audioSprint: 0
+  noStaminaAudio: 0
   PlayerCamera: {fileID: 963194228}
   Playerbody: {fileID: 684492441}
   Speed: 5
@@ -3518,7 +3521,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 2.2227777e-38, y: 9.1858e-41, z: -2.4405384e-30, w: 1.83716e-40}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
