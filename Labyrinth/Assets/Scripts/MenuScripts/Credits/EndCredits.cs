@@ -12,7 +12,7 @@ public class EndCredits : MonoBehaviour
 
         if (timer >= sceneChangeDelay)
         {
-            SceneManager.LoadScene("MainMenu2");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
