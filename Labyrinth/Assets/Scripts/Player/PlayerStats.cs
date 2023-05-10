@@ -6,15 +6,14 @@ public static class PlayerStats {
     
     public static string Name { get; set; }
     public static Timer timer { get; set; }
-    private static float MaxHP;
-    private static float HP;
+    private static int MaxHP = 3;
+    private static int HP = 3;
     private static float MaxSprint;
     private static float Sprint;
     private static GameObject timerObject;
     private static int currentLevel = 1;
     private static int maxLevel = 2;
     public static float totalTime;
-
     
     static PlayerStats()
     {
@@ -23,10 +22,6 @@ public static class PlayerStats {
         totalTime = 0f;
     }
 
-    public static void setMaxHP(float x)
-    {
-        MaxHP = x;
-    }
     public static void resetCurrentLevel() {
         currentLevel = 1;
     }
@@ -34,10 +29,7 @@ public static class PlayerStats {
     {
         currentLevel += 1;
     }
-    public static void setHP(float x)
-    {
-        HP = x;
-    }
+
     public static void setSprint(float x)
     {
         Sprint = x;
@@ -46,14 +38,7 @@ public static class PlayerStats {
     {
         MaxSprint = x;
     }
-    public static float getMaxHP()
-    {
-        return MaxHP;
-    }
-    public static float getHP()
-    {
-        return HP;
-    }
+
     public static float getSprint()
     {
         return Sprint;
@@ -82,5 +67,58 @@ public static class PlayerStats {
     public static void resetTotalTime()
     {
         totalTime = 0;
+    }
+
+    public static int getHP()
+    {
+        return HP;
+    }
+
+    public static int getMaxHP()
+    {
+        return MaxHP;
+    }
+
+    public static void reduceHP(int reduction) {
+        HP -= reduction;
+        if (HP < 0)
+        {
+            HP = 0;
+        }
+    }
+
+    public static void increaseHP(int increment)
+    {
+        HP += increment;
+        if (HP > MaxHP)
+        {
+            HP = MaxHP;
+        }
+    }
+    public static void DecreaseMaxHP(int reduction)
+    {
+        MaxHP += reduction;
+        if (MaxHP < 1)
+        {
+            MaxHP = 1;
+        }
+    }
+    public static void IncreaseMaxHP(int increment)
+    {
+        MaxHP += increment;
+        if (MaxHP > 12)
+        {
+            MaxHP = 12;
+        }
+    }
+
+    public static void SetHP(int change)
+    {
+        HP = change;
+    }
+
+    public static void SetMaxHP(int change)
+    {
+        MaxHP = change;
     }
 }
