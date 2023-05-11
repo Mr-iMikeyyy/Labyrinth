@@ -16,11 +16,17 @@ public class GameOverMenu : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            PlayerStats.reduceHP(1);
+        }
+
+        if (PlayerStats.getHP() == 0)
+        {
+            PlayerStats.SetHP(3);
             PlayerStats.resetTotalTime();
             isGameOver = true;
             Time.timeScale = 0;
             gameOverMenu.SetActive(true);
-            
+
             EventSystem.current.SetSelectedGameObject(GameObject.Find("ReturnButton"));
         }
     }

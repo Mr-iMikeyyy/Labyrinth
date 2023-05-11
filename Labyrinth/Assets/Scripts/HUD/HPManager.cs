@@ -7,6 +7,7 @@ public class HPManager : MonoBehaviour
 {
     [SerializeField] private Sprite[] heartstates;
     [SerializeField] private GameObject[] hearts;
+    private float invincibilityFrames = 0f;
     private int currentHP;
     private int currentMaxHP;
     private bool alreadyadjusting = false;
@@ -32,10 +33,35 @@ public class HPManager : MonoBehaviour
                 hearts[x].GetComponent<SpriteRenderer>().sprite = heartstates[1];
             }
         }
+
+        //player not invincible when starting level
+        PlayerStats.setInvincibilty(false);
     }
 
     // Update is called once per frame
     void Update()
+    {
+        updateHP();
+        invincibilityHandler();
+    }
+
+
+    private void invincibilityHandler()
+    {
+        if (PlayerStats.getInvincibilityState())
+        {
+            invincibilityFrames += Time.deltaTime;
+            if (invincibilityFrames > PlayerStats.getInvincibilityTimeLimit())
+            {
+                invincibilityFrames = 0;
+                PlayerStats.setInvincibilty(false);
+            }
+        }
+    }
+    /// <summary>
+    /// Updates the HP Value on HUD
+    /// </summary>
+    private void updateHP()
     {
         //checks if its already adjusting
         if (!alreadyadjusting)
@@ -100,9 +126,10 @@ public class HPManager : MonoBehaviour
     /// </summary>
     private void AdjustCurrentHP()
     {
+        currentHP = PlayerStats.getHP();
         for (int x = 0; x < currentMaxHP; x++)
         {
-            if (x < currentHP)
+            if (x < PlayerStats.getHP())
             {
                 hearts[x].GetComponent<SpriteRenderer>().sprite = heartstates[0];
             }

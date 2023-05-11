@@ -32,6 +32,7 @@ public class Movement_2 : MonoBehaviour
     [SerializeField] private int SprintMode; //Mode 1: when player is standing still, Mode 2: When player is not holding shift
                                              //Mode 3: Both are implemented, doubled boost when player is idle not holding shift.
     [SerializeField] private float sandalBoost;
+    [SerializeField] private float invulnerabilityBoost;
     PlayerControls controls; //Controller Class
 
     private bool Invoked = false;
@@ -88,6 +89,11 @@ public class Movement_2 : MonoBehaviour
         if(CurrentSprint >= MaxSprint)
         {
             noStaminaAudio = false;
+        }
+
+        if (PlayerStats.getInvincibilityState())
+        {
+            MoveVector *= invulnerabilityBoost;
         }
 
         //actually moves the player

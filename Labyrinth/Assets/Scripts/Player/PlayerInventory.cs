@@ -61,6 +61,7 @@ public static class PlayerInventory
         }
         return PowerupItem[currentPowerup - 1].getID();
     }
+
     //checks the ID of the current Powerup
     public static int getCurrentID()
     {
