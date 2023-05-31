@@ -77,7 +77,7 @@ public class InputManager : MonoBehaviour
 
     public void usePowerup()
     {
-        UsePowerup.activate();
+        PlayerInventory.ActivatePowerup();
         Debug.Log("working");
     }
 }

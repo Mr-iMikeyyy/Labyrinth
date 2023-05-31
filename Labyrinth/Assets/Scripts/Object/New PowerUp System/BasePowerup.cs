@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public abstract class BasePowerup {
+
+public abstract class BasePowerup  {
 
     /// <summary>
     /// activation of the effect of the item
@@ -26,5 +27,15 @@ public abstract class BasePowerup {
     public virtual string getItemDescription()
     {
         return "";
+    }
+
+    public virtual bool MultiUse()
+    {
+        return true;
+    }
+
+    public virtual char getRarity()
+    {
+        return 'c';
     }
 }

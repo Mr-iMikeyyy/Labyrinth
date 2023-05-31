@@ -1,0 +1,22 @@
+------------------------------------------------------------------------
+Creating A PowerUp:
+
+Step 1: Create a gameobject.
+Step 2: Create the powerup script
+	Step 2a: Right click the inspector
+	Step 2b: Create -> C# Templates -> ItemTemplates
+	Step 2c: Fill out what you want your item to do
+Step 3: Give the gameobject a collider and set it to trigger.
+Step 4: Give the gameobject the ItemCollectionV2 Script
+Step 5: Use the script created in step 2 and attach it to ItemCollectionV2
+Step 6: Drag the item back into the inspector to create a prefab.
+TBA:
+------------------------------------------------------------------------
+CURSE Rarity System
+(C)ommons are found in chests. The most common option to find, expendable.
+(U)ncommons are found in chests. Better then common items, but harder to find.
+(R)ares are found in chests. Best possible items you can find in a chest.
+(S)pecial are items cannot be found in chests. Has Special purposes.
+	Example: Empty Hand given to player by default.      
+(E)pic are found in rare spawning rooms. Most powerful Items.
+------------------------------------------------------------------------

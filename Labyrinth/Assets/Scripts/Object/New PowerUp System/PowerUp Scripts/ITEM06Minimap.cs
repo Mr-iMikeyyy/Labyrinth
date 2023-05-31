@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmptyHand : BasePowerup
+public class ITEM06Minimap : BasePowerup
 {
-    protected int ItemID = 0; //used for sprite array.
-    protected string ItemName = "Empty"; //Name of Item
-    protected string ItemDescription = "There was nothing, There is nothing."; //Lore or Item Description
-    protected char rarity = 'S'; //(C)ommon (U)ncommon (R)are (S)pecial (E)pic
+    protected int ItemID = 6; //used for sprite array.
+    protected string ItemName = "Map"; //Name of Item
+    protected string ItemDescription = "A piece of parchment you can keep track of your location with."; //Lore or Item Description
+    protected char rarity = 'C'; //(C)ommon (U)ncommon (R)are (S)pecial (E)pic
 
     public override void activateItem()
     {
-        //nothing
+        UsePowerup.activateMap();
     }
 
     public override int getItemID()
@@ -31,7 +31,7 @@ public class EmptyHand : BasePowerup
 
     public override bool MultiUse()
     {
-        return true;
+        return false;
     }
 
     public override char getRarity()
