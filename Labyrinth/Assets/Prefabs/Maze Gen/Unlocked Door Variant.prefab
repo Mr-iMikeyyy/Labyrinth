@@ -227,6 +227,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0595089c0dbf3e04595d3f549c7a2e24, type: 2}
+    - target: {fileID: 9500000, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26aec004d42c0a640bf94c71b19365ec, type: 3}
 --- !u!4 &1751754486744572960 stripped
@@ -304,8 +308,6 @@ MonoBehaviour:
   doorAnimator: {fileID: 1751754486752054210}
   Parentcollider: {fileID: 1052413293}
   parent: {fileID: 1751754486744676352}
-  nmesh: {fileID: 0}
-  navmesh: {fileID: 0}
   obstacle: {fileID: 2030978378009108143}
   doorOpenSound: {fileID: 8548720768471211048}
 --- !u!95 &1751754486752054210 stripped

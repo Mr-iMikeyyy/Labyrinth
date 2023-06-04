@@ -6,7 +6,7 @@ public class DoubleSide : MonoBehaviour
 {
     private MeshFilter meshFilter;
 
-    void Start()
+    /*void Start()
     {
         meshFilter = GetComponent<MeshFilter>();
         Mesh originalMesh = meshFilter.sharedMesh;
@@ -44,5 +44,5 @@ public class DoubleSide : MonoBehaviour
 
         // Assign the new mesh to the mesh filter
         meshFilter.mesh = doubleSidedMesh;
-    }
+    }*/
 }

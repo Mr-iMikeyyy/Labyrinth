@@ -11,12 +11,30 @@ public static class PlayerInventory
 
     public static int currentPowerup = 0;
 
+    private static List<BasePowerup> NewSystem = new List<BasePowerup>();
+
     //this initializes the list
     public static void initPowerups()
     {
-        if (PowerupItem.Count == 0)
+        //if (NewSystem.Count == 0)
+        //{
+        //    NewSystem.Add(new EmptyHand());
+        //}
+        if (NewSystem.Count == 0)
         {
-            PowerupItem.Add(new powerup());
+            NewSystem.Add(ScriptableObject.CreateInstance<EmptyHand>());
+        }
+    }
+    
+    public static void ActivatePowerup()
+    {
+        if (currentPowerup != 0)
+        {
+            NewSystem[currentPowerup].activateItem();
+        }
+        if (!NewSystem[currentPowerup].MultiUse())
+        {
+            removePowerup();
         }
     }
 
@@ -26,59 +44,78 @@ public static class PlayerInventory
         PowerupItem.Add(new powerup(ID, power));
     }
 
+    public static void addPowerup(BasePowerup ad)
+    {
+        NewSystem.Add(ad);
+    }
+
     //checks the name of the previous powerup
     public static string checkPrevious()
     {
         if (currentPowerup - 1 < 0)
         {
-            return PowerupItem[PowerupItem.Count - 1].getName();
+            //return PowerupItem[PowerupItem.Count - 1].getName();
+            return NewSystem[NewSystem.Count - 1].getItemName();
         }
-        return PowerupItem[currentPowerup - 1].getName();
+        return NewSystem[NewSystem.Count - 1].getItemName();
     }
 
     //checks the name of the current powerup
     public static string checkCurrentPower()
     {
-        return PowerupItem[currentPowerup].getName();
+        //return PowerupItem[currentPowerup].getName();
+        return NewSystem[currentPowerup].getItemName();
     }
 
 
     //checks the name of the next powerup
     public static string checkNext()
     {
-        if (currentPowerup + 1 >= PowerupItem.Count)
+        //if (currentPowerup + 1 >= PowerupItem.Count)
+        if (currentPowerup + 1 >= NewSystem.Count)
         {
-            return PowerupItem[0].getName();
+            //return PowerupItem[0].getName();
+            return NewSystem[0].getItemName();
         }
-        return PowerupItem[currentPowerup + 1].getName();
+        //return PowerupItem[currentPowerup + 1].getName(); 
+        return NewSystem[currentPowerup + 1].getItemName();
     }
 
     public static int getPrevID()
     {
         if (currentPowerup - 1 < 0)
         {
-            return PowerupItem[PowerupItem.Count - 1].getID();
+            //return PowerupItem[PowerupItem.Count - 1].getID();
+            return NewSystem[NewSystem.Count - 1].getItemID();
         }
-        return PowerupItem[currentPowerup - 1].getID();
+        //return PowerupItem[currentPowerup - 1].getID();
+        return NewSystem[currentPowerup - 1].getItemID();
     }
+
     //checks the ID of the current Powerup
     public static int getCurrentID()
     {
-        return PowerupItem[currentPowerup].getID();
+        //return PowerupItem[currentPowerup].getID();
+        return NewSystem[currentPowerup].getItemID();
     }
 
     public static int getNextID()
     {
-        if (currentPowerup + 1 >= PowerupItem.Count)
+        //if (currentPowerup + 1 >= PowerupItem.Count)
+        if (currentPowerup + 1 >= NewSystem.Count)
         {
-            return PowerupItem[0].getID();
+            //return PowerupItem[0].getID();
+            return NewSystem[0].getItemID();
         }
-        return PowerupItem[currentPowerup + 1].getID();
+        //return PowerupItem[currentPowerup + 1].getID();
+        return NewSystem[currentPowerup + 1].getItemID();
     }
+
     //remove the current powerup in the list
     public static void removePowerup()
     {
-        PowerupItem.Remove(PowerupItem[currentPowerup]);
+        //PowerupItem.Remove(PowerupItem[currentPowerup]);
+        NewSystem.Remove(NewSystem[currentPowerup]);
         currentPowerup -= 1;
     }
 
@@ -88,21 +125,23 @@ public static class PlayerInventory
         currentPowerup -= 1;
         if (currentPowerup < 0) //rotates to the last number
         {
-            currentPowerup = PowerupItem.Count - 1;
+            //currentPowerup = PowerupItem.Count - 1;
+            currentPowerup = NewSystem.Count - 1;
         }
     }
     //rotates to the next number
     public static void rightRotatePower()
     {
         currentPowerup += 1;
-        if (currentPowerup >= PowerupItem.Count) //roatates to the first number
+        //if (currentPowerup >= PowerupItem.Count) //rotates to the first number
+        if (currentPowerup >= NewSystem.Count)
         {
             currentPowerup = 0;
         }
     }
 
-
-
+    //Key system.
+    //----------------------------------------------------------------------------------------------------------------------
     //removes ALL keys from the list
     public static void resetKeys()
     {

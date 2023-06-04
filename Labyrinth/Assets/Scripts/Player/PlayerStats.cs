@@ -14,12 +14,26 @@ public static class PlayerStats {
     private static int currentLevel = 1;
     private static int maxLevel = 2;
     public static float totalTime;
+    private static bool invincibility = false;
+    private static float invincibilityTimeLimit = 3f;
     
     static PlayerStats()
     {
         timerObject = new GameObject("Timer");
         timer = timerObject.AddComponent<Timer>();
         totalTime = 0f;
+    }
+
+    /// <summary>
+    /// Implement a reset for everything bundled into 1 command
+    /// </summary>
+    public static void resetEverything()
+    {
+        currentLevel = 1;
+        totalTime = 0f;
+        invincibility = false;
+        HP = 3;
+        MaxHP = 3;
     }
 
     public static void resetCurrentLevel() {
@@ -80,10 +94,14 @@ public static class PlayerStats {
     }
 
     public static void reduceHP(int reduction) {
-        HP -= reduction;
-        if (HP < 0)
+        if (invincibility == false)
         {
-            HP = 0;
+            HP -= reduction;
+            if (HP < 0)
+            {
+                HP = 0;
+            }
+            invincibility = true;
         }
     }
 
@@ -102,6 +120,7 @@ public static class PlayerStats {
         {
             MaxHP = 1;
         }
+
     }
     public static void IncreaseMaxHP(int increment)
     {
@@ -121,4 +140,21 @@ public static class PlayerStats {
     {
         MaxHP = change;
     }
+
+    public static bool getInvincibilityState()
+    {
+        return invincibility;
+    }
+
+    public static void setInvincibilty(bool invinci)
+    {
+        invincibility = invinci;
+    }
+
+    public static float getInvincibilityTimeLimit()
+    {
+        return invincibilityTimeLimit;
+    }
+
+
 }

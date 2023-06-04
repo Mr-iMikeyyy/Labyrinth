@@ -9970,5 +9970,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 379294383289120332, guid: 71af21ef9522bc64a8c8e7e2926a3128, type: 3}
+      propertyPath: invulnerabilityBoost
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71af21ef9522bc64a8c8e7e2926a3128, type: 3}
