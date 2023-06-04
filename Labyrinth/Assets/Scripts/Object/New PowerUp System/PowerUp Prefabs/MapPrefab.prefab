@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4307459052554746738}
-  - component: {fileID: 5267578183550738534}
   - component: {fileID: 5852709646814137065}
+  - component: {fileID: 2371869787738287834}
   m_Layer: 0
   m_Name: MapPrefab
   m_TagString: Untagged
@@ -34,20 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &5267578183550738534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800192726186097998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f72677b54039eb4caf38346b383eec4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemID: 6
-  ItemName: Map
 --- !u!65 &5852709646814137065
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61,6 +47,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.33, y: 2.43, z: 4.97}
   m_Center: {x: 0, y: 0, z: 0.7}
+--- !u!114 &2371869787738287834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800192726186097998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2346926d11d41e49936fe4717914a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: {fileID: 11400000, guid: 844a0df3c1e4dc248918aa051f886d49, type: 2}
 --- !u!1001 &7650496433623258518
 PrefabInstance:
   m_ObjectHideFlags: 0

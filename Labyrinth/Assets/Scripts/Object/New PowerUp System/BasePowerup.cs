@@ -5,8 +5,7 @@ using UnityEngine.UI;
 using System;
 
 
-public abstract class BasePowerup  {
-
+public class BasePowerup : ScriptableObject{
     /// <summary>
     /// activation of the effect of the item
     /// </summary>

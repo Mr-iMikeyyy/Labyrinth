@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class EmptyHand : BasePowerup
 {
     protected int ItemID = 0; //used for sprite array.

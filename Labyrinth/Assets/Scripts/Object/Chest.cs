@@ -48,6 +48,6 @@ public class Chest : Interactable
     {
         chestAnimator.Play("Chest Opening");
         Instantiate(Chosen[rand], spawnpoint, Quaternion.identity);
-        // Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }

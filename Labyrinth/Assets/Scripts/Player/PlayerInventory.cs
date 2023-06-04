@@ -22,7 +22,7 @@ public static class PlayerInventory
         //}
         if (NewSystem.Count == 0)
         {
-            NewSystem.Add(new EmptyHand());
+            NewSystem.Add(ScriptableObject.CreateInstance<EmptyHand>());
         }
     }
     

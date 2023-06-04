@@ -2,15 +2,21 @@
 Creating A PowerUp:
 
 Step 1: Create a gameobject.
-Step 2: Create the powerup script
+Step 2: Create the powerup script and data.
 	Step 2a: Right click the inspector
 	Step 2b: Create -> C# Templates -> ItemTemplates
 	Step 2c: Fill out what you want your item to do
+	Step 2d: create a data object 
+		you can use this code, if you do, delete it after:
+		[CreateAssetMenu(fileName = "Item Data", menuName = "ScriptableObjects/AAAA", order = 70)]
+		(Right Click to use it Should be under scriptable objects context)
+	(Optional) Step 2e: Create variables and methods in the UsePowerup script if needed.
 Step 3: Give the gameobject a collider and set it to trigger.
 Step 4: Give the gameobject the ItemCollectionV2 Script
-Step 5: Use the script created in step 2 and attach it to ItemCollectionV2
+Step 5: Use the data created in step 2 and attach it to ItemCollectionV2
 Step 6: Drag the item back into the inspector to create a prefab.
-TBA:
+Step 7: Go to the Item List Data and increase the list by 1 (Main Item List or Workshop List).
+Step 8: Place the prefab in the new slot.
 ------------------------------------------------------------------------
 CURSE Rarity System
 (C)ommons are found in chests. The most common option to find, expendable.
