@@ -13,6 +13,8 @@ Labyrinth/[Uu]ser[Ss]ettings/
 Labyrinth/[Uu]ser[Ll]ocal[Ss]ettings/
 Labyrinth/[Uu]ser[Ss]ettings/EditorUserSettings.asset
 
+# multiplayer
+Labyrinth_clone_*/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta

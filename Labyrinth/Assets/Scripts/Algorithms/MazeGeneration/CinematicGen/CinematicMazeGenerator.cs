@@ -42,6 +42,7 @@ public class CinematicMazeGenerator : MonoBehaviour {
     public StringUtils stringUtils = new StringUtils();
 
     private void Start() {
+        SeedFormulas.setSeed("test");
         // Generate a maze with specified size, objects to place, and player character, 
         // and get a list of maze nodes 
         List<MazeNode> completedMazeNodes = GenerateMaze(objectsToPlace, key);
@@ -96,8 +97,6 @@ public class CinematicMazeGenerator : MonoBehaviour {
 
         Stack<MazeNode> currentPath = new Stack<MazeNode>();
         List<MazeNode> completedNodes = new List<MazeNode>();
-
-
 
         List<MazeNode> nodes = CreateMazeGrid(mazeSize);
 
