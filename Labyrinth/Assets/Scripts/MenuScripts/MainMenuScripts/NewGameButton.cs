@@ -69,7 +69,7 @@ public class NewGameButton : MonoBehaviour
 
         DontDestroyOnLoad(PlayerStats.getTimerObject());
         SeedFormulas.setSeed(SEEDInputText.text);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Maze gen");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Maze gen test");
         // Start timer
 
         PlayerStats.timer.StartTiming();
