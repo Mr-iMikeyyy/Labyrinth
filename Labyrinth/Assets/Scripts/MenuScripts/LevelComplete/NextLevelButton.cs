@@ -26,7 +26,7 @@ public class NextLevelButton : MonoBehaviour
         // Reset the timer and increment the current level.
         PlayerStats.getTimer().ResetTimer();
         PlayerStats.incrementCurrentLevel();
-        SceneManager.LoadScene("Maze Gen Test");
+        SceneManager.LoadScene("Maze Gen");
         PlayerStats.getTimer().StartTiming();
         //}
     }

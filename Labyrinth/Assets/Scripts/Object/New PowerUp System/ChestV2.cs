@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : Interactable
+public class ChestV2 : Interactable
 {
     //holds array of possible items to spawn.
-    public GameObject[] Common;
-    public GameObject[] Uncommon;
-    public GameObject[] Rare;
+    private List<GameObject> Common;
+    private List<GameObject> Uncommon;
+    private List<GameObject> Rare;
+
+    //the data list used
+    public ItemList Ilist;
+
     public int weightCommon, weightUncommon, weightRare;
     //chosen array
-    private GameObject[] Chosen;
+    private List<GameObject> Chosen;
     //the spawn point of the object
     private Vector3 spawnpoint;
     //decides which item
@@ -18,6 +22,12 @@ public class Chest : Interactable
     //decides what rarity
     private int rarity;
     private Animator chestAnimator;
+    private void OnEnable()
+    {
+        Common = Ilist.getList('C');
+        Uncommon = Ilist.getList('U');
+        Rare = Ilist.getList('R');
+    }
 
     private void Start()
     {
@@ -40,7 +50,7 @@ public class Chest : Interactable
         }
 
         //gets position of object
-        rand = Random.Range(0, Chosen.Length);
+        rand = Random.Range(0, Chosen.Count);
         spawnpoint = gameObject.transform.position;
         //creates Object
     }
@@ -48,7 +58,7 @@ public class Chest : Interactable
     {
         chestAnimator.Play("Chest Opening");
         Instantiate(Chosen[rand], spawnpoint, Quaternion.identity);
-        gameObject.GetComponent<Collider>().enabled = false;
         //Destroy(gameObject);
     }
+ 
 }

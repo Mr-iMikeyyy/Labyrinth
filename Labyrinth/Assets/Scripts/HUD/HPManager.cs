@@ -48,6 +48,7 @@ public class HPManager : MonoBehaviour
 
     private void invincibilityHandler()
     {
+
         if (PlayerStats.getInvincibilityState())
         {
             invincibilityFrames += Time.deltaTime;
@@ -106,6 +107,7 @@ public class HPManager : MonoBehaviour
         {
             hearts[x].SetActive(true);
         }
+
         AdjustCurrentHP();
     }
 
@@ -114,9 +116,9 @@ public class HPManager : MonoBehaviour
     /// </summary>
     private void DecrementMaxHP()
     {
-        for (int x = currentMaxHP; x > PlayerStats.getMaxHP(); x--)
+        for (int x = currentMaxHP - 1; x >= PlayerStats.getMaxHP(); x--)
         {
-            hearts[x-1].SetActive(false); ;
+            hearts[x].SetActive(false); ;
         }
         AdjustCurrentHP();
     }

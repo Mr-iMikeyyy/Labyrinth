@@ -115,7 +115,7 @@ public static class PlayerStats {
     }
     public static void DecreaseMaxHP(int reduction)
     {
-        MaxHP += reduction;
+        MaxHP -= reduction;
         if (MaxHP < 1)
         {
             MaxHP = 1;
@@ -129,6 +129,7 @@ public static class PlayerStats {
         {
             MaxHP = 12;
         }
+        increaseHP(increment);
     }
 
     public static void SetHP(int change)

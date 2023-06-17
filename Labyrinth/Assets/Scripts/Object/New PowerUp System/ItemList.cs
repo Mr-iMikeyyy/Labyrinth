@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemList : ScriptableObject
 {
     public List<GameObject> PrefabsOfItems;
+    private List<GameObject> UnlockedPrefabs;
     private List<GameObject> CType, UType, RType, SType, EType;
     private char Rarity;
 
@@ -51,6 +52,42 @@ public class ItemList : ScriptableObject
                     break;
 
             }
+        }
+    }
+    
+    /// <summary>
+    /// locking and unlocking of objects
+    /// </summary>
+    public void unlockedObjects()
+    {
+        //TODO: Check if object by id is currently available.
+    }
+    /// <summary>
+    /// gets a list with a char from CURSE
+    /// </summary>
+    /// <param name="letter">Decides what list is grabbed</param>
+    /// <returns>a list of GameObjects</returns>
+    public List<GameObject> getList(char letter)
+    {
+        switch (letter)
+        {
+            case 'c':
+            case 'C':
+                return CType;
+            case 'u':
+            case 'U':
+                return UType;
+            case 'r':
+            case 'R':
+                return RType;
+            case 's':
+            case 'S':
+                return SType;
+            case 'e':
+            case 'E':
+                return EType;
+            default:
+                return SType;
         }
     }
 }
