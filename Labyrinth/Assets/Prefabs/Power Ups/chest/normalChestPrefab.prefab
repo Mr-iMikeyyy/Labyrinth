@@ -147,13 +147,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptMessage: 
   Common:
-  - {fileID: 800192726186097998, guid: 3f341a023bdf8894b8ae95163a266dea, type: 3}
-  - {fileID: 800192726186097998, guid: 3f341a023bdf8894b8ae95163a266dea, type: 3}
+  - {fileID: 2153825951045173814, guid: fbc00fc931834d04995872816320edc9, type: 3}
   Uncommon:
   - {fileID: 800192726186097998, guid: 3f341a023bdf8894b8ae95163a266dea, type: 3}
   - {fileID: 800192726186097998, guid: 3f341a023bdf8894b8ae95163a266dea, type: 3}
   Rare:
-  - {fileID: 800192726186097998, guid: 3f341a023bdf8894b8ae95163a266dea, type: 3}
   - {fileID: 800192726186097998, guid: 3f341a023bdf8894b8ae95163a266dea, type: 3}
   weightCommon: 1
   weightUncommon: 1
