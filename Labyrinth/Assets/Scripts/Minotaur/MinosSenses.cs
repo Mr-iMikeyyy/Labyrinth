@@ -7,6 +7,9 @@ public class MinosSenses : MonoBehaviour
     private float viewRadius = 15f;
     private float viewAngle = 90f;
 
+    private float calmingTime = 0;
+    private float maximumcalmingtime = 5;
+
     private LayerMask targetPlayer;
     private LayerMask obstacleMask;
 
@@ -16,6 +19,7 @@ public class MinosSenses : MonoBehaviour
 
     private bool inSight = false;
     private bool inAttackRange = false;
+    private bool chasing = false;
 
     void Start()
     {
@@ -36,6 +40,8 @@ public class MinosSenses : MonoBehaviour
                 if (Physics.Raycast(transform.position, playTarget, distanceToTarget, obstacleMask) == false)
                 {
                     inSight = true;
+                    chasing = true;
+                    calmingTime = 0;
 
                     if (distanceToTarget < attackRange)
                     {
@@ -48,20 +54,29 @@ public class MinosSenses : MonoBehaviour
                 }
                 else
                 {
-                    inSight = false;
+                    chasing = false;
                     inAttackRange = false;
                 }
             }
             else
             {
-                inSight = false;
+                chasing = false;
                 inAttackRange = false;
             }
         }
         else
         {
-            inSight = false;
+            chasing = false;
             inAttackRange = false;
+        }
+
+        if (inSight == true && chasing == false)
+        {
+            calmingTime += Time.deltaTime;
+            if (calmingTime > maximumcalmingtime)
+            {
+                inSight = false;
+            }
         }
     }
     public bool GetInSight() {

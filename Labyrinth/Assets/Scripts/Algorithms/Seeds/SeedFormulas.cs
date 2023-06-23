@@ -12,6 +12,7 @@ public static class SeedFormulas
     //private static long find;
     private static long Seedheld;
     private static UnityEngine.Random.State state;
+    private static System.Random MazeRand, MinosRand, ItemRand;
 
     //converts the seed to a usable int number
     public static int ConvertToNum(string seed)
@@ -104,7 +105,11 @@ public static class SeedFormulas
     public static void setSeed(string s)
     {
         Seed = s;
-        UnityEngine.Random.InitState(ConvertToNum(Seed));
+        int number = (ConvertToNum(Seed));
+        UnityEngine.Random.InitState(number);
+        MazeRand = new System.Random(number);
+        MinosRand = new System.Random(number);
+        ItemRand = new System.Random(number);
     }
     
     //saves the state of RNG
@@ -119,6 +124,19 @@ public static class SeedFormulas
         UnityEngine.Random.state = state;
     }
 
+    public static System.Random getMazeRand()
+    {
+        return MazeRand;
+    }
 
+    public static System.Random getMinosRand()
+    {
+        return MazeRand;
+    }
+
+    public static System.Random getItemRand()
+    {
+        return MazeRand;
+    }
 }
 
