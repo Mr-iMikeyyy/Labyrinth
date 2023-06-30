@@ -7,9 +7,9 @@ public class AntiRotation : MonoBehaviour
     // Start is called before the first frame update
 
 
-    [SerializeField] private InputManager input;
+    [SerializeField] private InputV2 input;
 
-    [SerializeField] private Movement_2 move;
+    [SerializeField] private MovementV3 move;
 
     private float Sensitivity;
 

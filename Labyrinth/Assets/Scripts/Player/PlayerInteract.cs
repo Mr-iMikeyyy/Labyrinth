@@ -9,10 +9,10 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float distance = 3f;
     [SerializeField] private LayerMask mask;
     // Start is called before the first frame update
-    InputManager input;
+    InputV2 input;
     void Start()
     {
-        input = GetComponent<InputManager>();
+        input = GetComponent<InputV2>();
     }
 
     // Update is called once per frame

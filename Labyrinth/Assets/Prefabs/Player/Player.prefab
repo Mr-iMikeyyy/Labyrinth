@@ -173,8 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeaf5d4567533704487a9e57803738d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 379294383289120323}
-  move: {fileID: 379294383289120332}
+  input: {fileID: 6756187646880171336}
+  move: {fileID: 6722201247908363633}
 --- !u!1 &379294382383752537
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,10 +799,10 @@ GameObject:
   - component: {fileID: 379294383289120329}
   - component: {fileID: 379294383289120334}
   - component: {fileID: 379294383289120335}
-  - component: {fileID: 379294383289120332}
   - component: {fileID: 379294383289120333}
   - component: {fileID: 379294383289120322}
-  - component: {fileID: 379294383289120323}
+  - component: {fileID: 6756187646880171336}
+  - component: {fileID: 6722201247908363633}
   - component: {fileID: 379294383289120330}
   - component: {fileID: 379294383289120340}
   m_Layer: 0
@@ -926,33 +926,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &379294383289120332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 379294383289120320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c3b23b3d0e3c684497aa178c89f8494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSprinting: 0
-  isMoving: 0
-  audioSprint: 0
-  noStaminaAudio: 0
-  PlayerCamera: {fileID: 379294383350287758}
-  Playerbody: {fileID: 379294383289120335}
-  Speed: 3
-  Sensitivity: 1
-  SprintMultiplier: 2
-  MaxSprint: 100
-  SprintDrain: 0.1
-  SprintRec: 0.1
-  SprintMode: 3
-  sandalBoost: 3
-  invulnerabilityBoost: 0
 --- !u!114 &379294383289120333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf26a24a1561ec43afd65ed561063fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &379294383289120323
+--- !u!114 &6756187646880171336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -991,12 +964,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 379294383289120320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 958e57a2ab353a745905416f4e3994f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 80036a2f1eba5a24d9486685e3722dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isSprinting: 0
   isMoving: 0
---- !u!114 &379294383289120330
+--- !u!114 &6722201247908363633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1004,6 +977,34 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 379294383289120320}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6555e222a321ea34aba9b48a15db8120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSprinting: 0
+  isMoving: 0
+  audioSprint: 0
+  noStaminaAudio: 0
+  PlayerCamera: {fileID: 379294383350287758}
+  Playerbody: {fileID: 379294383289120335}
+  Speed: 3
+  Sensitivity: 1
+  SprintMultiplier: 2
+  MaxSprint: 100
+  SprintDrain: 0.1
+  SprintRec: 0.1
+  SprintMode: 3
+  Jumpforce: 10
+  sandalBoost: 3
+  invulnerabilityBoost: 1
+--- !u!114 &379294383289120330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379294383289120320}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e17ab2ce5865fdd4191aeb21b12e3c5f, type: 3}
   m_Name: 

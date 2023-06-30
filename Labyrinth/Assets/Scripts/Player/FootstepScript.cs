@@ -12,7 +12,7 @@ public class FootstepScript : MonoBehaviour
 
     public AudioSource noStamina;
 
-    private Movement_2 movementScript;
+    private MovementV3 movementScript;
 
     private bool isPlayingNoStaminaAudio = false;
 
@@ -24,7 +24,7 @@ public class FootstepScript : MonoBehaviour
         runBreathing.enabled = false;
         noStamina.enabled = false;
 
-        movementScript = GetComponent<Movement_2>();
+        movementScript = GetComponent<MovementV3>();
     }
 
     // Update is called once per frame
